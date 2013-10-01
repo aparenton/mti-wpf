@@ -117,115 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AccountName" xml:space="preserve">
-    <value>Identifiant</value>
+  <data name="BlackIcon" xml:space="preserve">
+    <value>/Resources/Images/black_heart.png</value>
   </data>
-  <data name="Action" xml:space="preserve">
-    <value>Action</value>
+  <data name="MedicalSymbol" xml:space="preserve">
+    <value>/Resources/Images/medical_symbol.png</value>
   </data>
-  <data name="Add" xml:space="preserve">
-    <value>Ajouter</value>
-  </data>
-  <data name="AddObservation" xml:space="preserve">
-    <value>Ajout d'une observation</value>
-  </data>
-  <data name="AddPatient" xml:space="preserve">
-    <value>Ajout d'un patient</value>
-  </data>
-  <data name="AddUser" xml:space="preserve">
-    <value>Ajout d'un utilisateur</value>
-  </data>
-  <data name="Birthday" xml:space="preserve">
-    <value>Date de naissance</value>
-  </data>
-  <data name="BloodPressure" xml:space="preserve">
-    <value>Pression sanguine</value>
-  </data>
-  <data name="Born" xml:space="preserve">
-    <value>Né(e) le : </value>
-  </data>
-  <data name="Comment" xml:space="preserve">
-    <value>Commentaire</value>
-  </data>
-  <data name="Date" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Supprimer</value>
-  </data>
-  <data name="DeletePatient" xml:space="preserve">
-    <value>Supprimer le patient</value>
-  </data>
-  <data name="DeleteUser" xml:space="preserve">
-    <value>Supprimer l'utilisateur</value>
-  </data>
-  <data name="DoYouWantToDeletePatient" xml:space="preserve">
-    <value>Voulez-vous supprimer les informations concernant le patient </value>
-  </data>
-  <data name="Firstname" xml:space="preserve">
-    <value>Prénom</value>
-  </data>
-  <data name="Graphs" xml:space="preserve">
-    <value>Graphes</value>
-  </data>
-  <data name="Login" xml:space="preserve">
-    <value>Connexion</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Nom</value>
-  </data>
-  <data name="No" xml:space="preserve">
-    <value>Non</value>
-  </data>
-  <data name="Observations" xml:space="preserve">
-    <value>Observations</value>
-  </data>
-  <data name="Password" xml:space="preserve">
-    <value>Mot de passe</value>
-  </data>
-  <data name="Patient" xml:space="preserve">
-    <value>Patient</value>
-  </data>
-  <data name="Patients" xml:space="preserve">
-    <value>Patients</value>
-  </data>
-  <data name="Picture" xml:space="preserve">
-    <value>Photo</value>
-  </data>
-  <data name="Pictures" xml:space="preserve">
-    <value>Images</value>
-  </data>
-  <data name="Prescription" xml:space="preserve">
-    <value>Prescription</value>
-  </data>
-  <data name="QuestionMark" xml:space="preserve">
-    <value> ?</value>
-  </data>
-  <data name="Role" xml:space="preserve">
-    <value>Rôle</value>
-  </data>
-  <data name="Search" xml:space="preserve">
-    <value>Recherche</value>
-  </data>
-  <data name="SelectDate" xml:space="preserve">
-    <value>Sélectionner une date</value>
-  </data>
-  <data name="Title" xml:space="preserve">
-    <value>parent_bMedecine</value>
-  </data>
-  <data name="User" xml:space="preserve">
-    <value>Utilisateur</value>
-  </data>
-  <data name="Users" xml:space="preserve">
-    <value>Utilisateurs</value>
-  </data>
-  <data name="Validate" xml:space="preserve">
-    <value>Valider</value>
-  </data>
-  <data name="Weight" xml:space="preserve">
-    <value>Poids (en kg)</value>
-  </data>
-  <data name="Yes" xml:space="preserve">
-    <value>Oui</value>
+  <data name="WhiteIcon" xml:space="preserve">
+    <value>/Resources/Images/white_heart.png</value>
   </data>
 </root>

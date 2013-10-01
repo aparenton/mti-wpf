@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="118bea8e-a331-4a38-98f0-5c8246d8c646" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3055/ServicePatient.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServicePatient.xsd" MetadataType="Schema" ID="ef2a3fee-0a28-4da3-89a9-983c91b882e9" SourceId="1" SourceUrl="http://localhost:3055/ServicePatient.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServicePatient.wsdl" MetadataType="Wsdl" ID="fc694d17-2c20-4f48-acdd-7f3f8f54bc3c" SourceId="1" SourceUrl="http://localhost:3055/ServicePatient.svc?wsdl" />
+    <MetadataFile FileName="ServicePatient.disco" MetadataType="Disco" ID="9309cfa6-de8a-4c0f-8aad-dc2c599db231" SourceId="1" SourceUrl="http://localhost:3055/ServicePatient.svc?disco" />
+    <MetadataFile FileName="ServicePatient1.xsd" MetadataType="Schema" ID="6ea44ce0-3a3d-43c3-b25a-35f5cc5f4441" SourceId="1" SourceUrl="http://localhost:3055/ServicePatient.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServicePatient2.xsd" MetadataType="Schema" ID="e9bbb8cb-1072-4689-bdd9-a760a8bfa0c4" SourceId="1" SourceUrl="http://localhost:3055/ServicePatient.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServicePatient3.xsd" MetadataType="Schema" ID="56975868-f10f-4673-9d32-3f97ee426880" SourceId="1" SourceUrl="http://localhost:3055/ServicePatient.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

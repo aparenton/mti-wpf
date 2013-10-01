@@ -1,0 +1,138 @@
+﻿<UserControl x:Class="parent_bMedecine.View.PatientsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:resx="clr-namespace:parent_bMedecine.Properties"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:img="clr-namespace:parent_bMedecine.Resources.Images"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <DockPanel DataContext="{Binding Source={StaticResource Locator}, Path=PatientsViewModel}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="150" MaxWidth="350" Width="250"/>
+            </Grid.ColumnDefinitions>
+
+            <DockPanel Width="250">
+                <!-- Search TextBox-->
+                <TextBox x:Name="SearchBox" Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Controls:TextboxHelper.Watermark="{x:Static resx:Resources.Search}"
+                         Controls:TextboxHelper.ClearTextButton="True"
+                         Margin="2"
+                         HorizontalAlignment="Stretch"
+                         HorizontalContentAlignment="Left"
+                         Width="auto"
+                         DockPanel.Dock="Top">
+                </TextBox>
+
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="2">
+                    <Button Content="{x:Static resx:Resources.AddPatient}" Margin="2" Click="AddPatient_Click" />
+                    <Button Content="{x:Static resx:Resources.DeletePatient}" Margin="2" Click="DeletePatient_Click" />
+                </StackPanel>
+
+                <!-- Patient ListView -->
+                <ListView   x:Name="PatientListView"
+                            DockPanel.Dock="Top"
+                            Margin="2"
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                            ItemsSource="{Binding Patients}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonUp">
+                            <i:InvokeCommandAction Command="{Binding SelectPatientCommand}" CommandParameter="{Binding SelectedItem, ElementName=PatientListView}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <ListView.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="{x:Static resx:Resources.AddObservation}" Click="AddObservation_Click" />
+                            <MenuItem Header="{x:Static resx:Resources.DeletePatient}" Click="DeletePatient_Click" />
+                        </ContextMenu>
+                    </ListView.ContextMenu>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Margin="2">
+                                <StackPanel Orientation="Horizontal" TextBlock.FontWeight="Bold" Margin="2">
+                                    <TextBlock Text="{Binding Path=Name}" />
+                                    <TextBlock Text="{Binding Path=Firstname}" Padding="3,0,0,0"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" TextBlock.FontWeight="Light" Margin="2">
+                                    <TextBlock Text="{x:Static resx:Resources.Born}" />
+                                    <TextBlock Text="{Binding Path=Birthday}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </DockPanel>
+
+            <!--<GridSplitter       Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Stretch"
+                                Background="White"
+                                ShowsPreview="False"
+                                Width="1" />-->
+        </Grid>
+
+        <DockPanel>
+            <!--<Image Source="{Binding Source={x:Static img:Images.MedicalSymbol}}" Width="500" Height="500" Visibility="{Binding LogoVisibility}" 
+               HorizontalAlignment="Center" VerticalAlignment="Center" />-->
+
+            <DockPanel Visibility="Visible" LastChildFill="True">
+                <!-- Patients TabControl-->
+                <Controls:MetroContentControl HorizontalAlignment="Stretch" Margin="5">
+                    <Controls:MetroAnimatedSingleRowTabControl>
+                        <!-- Observations TabItem -->
+                        <TabItem Header="{x:Static resx:Resources.Observations}">
+                            <DockPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="0" DockPanel.Dock="Top">
+                                    <ComboBox x:Name="ObservationDates"
+                                              ItemsSource="{Binding Observations}"
+                                              DisplayMemberPath="Date"
+                                              SelectedValuePath="Date" 
+                                              SelectedIndex="{Binding SelectedObservationIndex, Mode=TwoWay}" />
+                                </StackPanel>
+                                
+                                <Button Content="{x:Static resx:Resources.AddObservation}" Click="AddObservation_Click" Margin="2" Width="200" HorizontalAlignment="Left" Grid.Row="15" DockPanel.Dock="Bottom"/>
+
+                                <StackPanel DockPanel.Dock="Right">
+                                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Date}" Grid.Row="1" Margin="2">
+                                        <Label Content="{Binding Path=SelectedItem.Date, ElementName=ObservationDates}" />
+                                    </GroupBox>
+                                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Patient}" Grid.Row="2" Margin="2">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="{Binding SelectedPatient.Name}" />
+                                            <Label Content="{Binding SelectedPatient.Firstname}" />
+                                        </StackPanel>
+                                    </GroupBox>
+                                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Weight}" Grid.Row="3" Margin="2">
+                                        <Label Content="{Binding Path=SelectedItem.Weight, ElementName=ObservationDates}" />
+                                    </GroupBox>
+                                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.BloodPressure}" Grid.Row="4" Margin="2">
+                                        <Label Content="{Binding Path=SelectedItem.BloodPressure, ElementName=ObservationDates}" />
+                                    </GroupBox>
+                                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Comment}" Grid.Row="5" Margin="2">
+                                        <Label Content="{Binding Path=SelectedItem.Comment, ElementName=ObservationDates}" />
+                                    </GroupBox>
+                                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Prescription}" Grid.Row="6" Margin="2">
+                                        <ListView ItemsSource="{Binding Path=SelectedItem.Prescription, ElementName=ObservationDates}" BorderThickness="0" />
+                                    </GroupBox>
+                                </StackPanel>
+                            </DockPanel>                       
+                        </TabItem>
+                        <!-- Graphes TabItem -->
+                        <TabItem Header="{x:Static resx:Resources.Graphs}">
+                            <StackPanel Background="Blue" />
+                        </TabItem>
+                        <!-- Images TabItem -->
+                        <TabItem Header="{x:Static resx:Resources.Pictures}">
+                            <!--<Controls:FlipView IsBannerEnabled="True" ItemsSource="{Binding }"-->
+                        </TabItem>
+                    </Controls:MetroAnimatedSingleRowTabControl>
+                </Controls:MetroContentControl>
+            </DockPanel>            
+        </DockPanel>        
+    </DockPanel>
+</UserControl>

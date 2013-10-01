@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0637c00e-f1ee-4796-8cda-8f674f1e7bce" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:3055/ServiceLive.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceLive.xsd" MetadataType="Schema" ID="6d826cbe-0c97-4585-a12b-c390aa82e0f7" SourceId="1" SourceUrl="http://localhost:3055/ServiceLive.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceLive.disco" MetadataType="Disco" ID="ed14c343-27bd-469b-a8b7-d2f09015f7ee" SourceId="1" SourceUrl="http://localhost:3055/ServiceLive.svc?disco" />
+    <MetadataFile FileName="ServiceLive.wsdl" MetadataType="Wsdl" ID="c2194d6c-78b0-4831-a00b-6664e748ed35" SourceId="1" SourceUrl="http://localhost:3055/ServiceLive.svc?wsdl" />
+    <MetadataFile FileName="ServiceLive1.xsd" MetadataType="Schema" ID="be61eab5-f769-4b91-a38e-f60f7b3168dc" SourceId="1" SourceUrl="http://localhost:3055/ServiceLive.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -31,6 +31,7 @@ namespace Wcf_Medical
             {
 
                 DaSingleton.GetInstance().ListUser = data.CreateListUser();
+                ;
             }
             return DaSingleton.GetInstance().ListUser;
         }
