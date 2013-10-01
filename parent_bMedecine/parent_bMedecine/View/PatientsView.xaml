@@ -119,16 +119,21 @@
                                     <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Prescription}" Grid.Row="6" Margin="2">
                                         <ListView ItemsSource="{Binding Path=SelectedItem.Prescription, ElementName=ObservationDates}" BorderThickness="0" />
                                     </GroupBox>
+                                    <Controls:FlipView DockPanel.Dock="Top" IsBannerEnabled="False" ItemsSource="{Binding Path=SelectedItem.Pictures, ElementName=ObservationDates}">
+                                        <Controls:FlipView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Image Source="{Binding }" Width="300" Height="300"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </Controls:FlipView.ItemTemplate>
+                                    </Controls:FlipView>
                                 </StackPanel>
                             </DockPanel>                       
                         </TabItem>
                         <!-- Graphes TabItem -->
                         <TabItem Header="{x:Static resx:Resources.Graphs}">
                             <StackPanel Background="Blue" />
-                        </TabItem>
-                        <!-- Images TabItem -->
-                        <TabItem Header="{x:Static resx:Resources.Pictures}">
-                            <!--<Controls:FlipView IsBannerEnabled="True" ItemsSource="{Binding }"-->
                         </TabItem>
                     </Controls:MetroAnimatedSingleRowTabControl>
                 </Controls:MetroContentControl>

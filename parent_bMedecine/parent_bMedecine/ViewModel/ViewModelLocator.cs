@@ -125,6 +125,17 @@ namespace parent_bMedecine.ViewModel
         public static void Cleanup()
         {
             // TODO Clear the ViewModels
+            SimpleIoc.Default.Unregister<MainViewModel>();
+
+            SimpleIoc.Default.Unregister<MainTabControlViewModel>();
+
+            SimpleIoc.Default.Unregister<LoginViewModel>();
+            SimpleIoc.Default.Unregister<PatientsViewModel>();
+            SimpleIoc.Default.Unregister<UsersViewModel>();
+
+            SimpleIoc.Default.Unregister<AddUserViewModel>();
+            SimpleIoc.Default.Unregister<AddPatientViewModel>();
+            SimpleIoc.Default.Unregister<AddObservationViewModel>();
         }
     }
 }

@@ -47,11 +47,6 @@ namespace parent_bMedecine.ViewModel
         #endregion // Constructors
 
         #region Methods
-        private void Initialize()
-        {
-            
-        }
-
         private void Reset()
         {
             Users.Clear();

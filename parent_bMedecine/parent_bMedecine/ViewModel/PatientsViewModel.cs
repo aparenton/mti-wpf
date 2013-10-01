@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace parent_bMedecine.ViewModel
 {
@@ -18,6 +19,7 @@ namespace parent_bMedecine.ViewModel
         private Dbo.Patient _selectedPatient;
         private ObservableCollection<Dbo.Observation> _observations = new ObservableCollection<Dbo.Observation>();
         private int _selectedObservationIndex;
+        private ObservableCollection<byte[]> _pictureList = new ObservableCollection<byte[]>();
 
         private string _logoVisibility = "Visible";
         private string _tabControlVisibility = "Collapsed";
@@ -75,6 +77,18 @@ namespace parent_bMedecine.ViewModel
             }
         }
 
+        public ObservableCollection<byte[]> PictureList
+        {
+            get
+            {
+                return _pictureList;
+            }
+            set
+            {
+                _pictureList = value;
+            }
+        }
+
         public int SelectedObservationIndex
         {
             get
@@ -125,13 +139,11 @@ namespace parent_bMedecine.ViewModel
             if (patient == null)
                 return;
 
-            //if (SelectedPatient.Id == patient.Id)
-            //    return;
-
             LogoVisibility = "Collapsed";
             TabControlVisibility = "Visible";
 
             Observations.Clear();
+            PictureList.Clear();
             SelectedPatient = patient;
 
             MessengerInstance.Send<Message.OnPatientSelectionMessage>(new Message.OnPatientSelectionMessage(patient));
@@ -141,7 +153,11 @@ namespace parent_bMedecine.ViewModel
             {
                 List<Dbo.Observation> res = client.GetPatient(SelectedPatient.Id).Observations;
                 foreach (var observation in res)
+                {
                     Observations.Add(observation);
+                    foreach (byte[] img in observation.Pictures)
+                        PictureList.Add(img);
+                }
                 RaisePropertyChanged("Observations");
                 SelectedObservationIndex = 0;
             }
@@ -216,6 +232,7 @@ namespace parent_bMedecine.ViewModel
         {
             Patients.Clear();
             Observations.Clear();
+            PictureList.Clear();
         }
         #endregion // Methors
     }
