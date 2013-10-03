@@ -41,6 +41,7 @@ namespace parent_bMedecine.ViewModel
             DeleteUserCommand = new RelayCommand<Dbo.User>(u => { DeleteUserExecute(u); });
 
             // Messages
+            MessengerInstance.Register<Message.OnLoginMessage>(this, m => { RetrieveUsers(); });
             MessengerInstance.Register<Message.OnLogoutMessage>(this, m => { Reset(); });
             MessengerInstance.Register<Message.OnAddUserMessage>(this, m => { RetrieveUsers(); });
         }

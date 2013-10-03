@@ -90,6 +90,7 @@ namespace parent_bMedecine.ViewModel
             DeletePatientCommand = new RelayCommand(DeletePatientExecute);
 
             // Messages
+            MessengerInstance.Register<Message.OnLoginMessage>(this, m => { RetrievePatients(); });
             MessengerInstance.Register<Message.OnLogoutMessage>(this, m => { Reset(); });
             MessengerInstance.Register<Message.OnAddPatientMessage>(this, m => { RetrievePatients(); });
             MessengerInstance.Register<Message.WhenNoObservationMessage>(this, m => { CurrentViewModel = SimpleIoc.Default.GetInstance<HomeViewModel>(); });
