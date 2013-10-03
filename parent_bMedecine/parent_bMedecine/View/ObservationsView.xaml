@@ -13,34 +13,36 @@
         <!-- Observations TabItem -->
         <TabItem Header="{x:Static resx:Resources.Observations}">
             <DockPanel>
-                <StackPanel Orientation="Horizontal" Grid.Row="0" DockPanel.Dock="Top">
-                    <ComboBox x:Name="ObservationDates"
+                <StackPanel DockPanel.Dock="Right">
+                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Date}">
+                        <ComboBox x:Name="ObservationDates"
                                               ItemsSource="{Binding Observations}"
                                               DisplayMemberPath="Date"
                                               SelectedValuePath="Date" 
                                               SelectedIndex="{Binding SelectedObservationIndex, Mode=TwoWay}" />
-                </StackPanel>
-
-                <StackPanel DockPanel.Dock="Right">
-                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Date}" Grid.Row="1" Margin="2">
-                        <Label Content="{Binding Path=SelectedItem.Date, ElementName=ObservationDates}" />
                     </GroupBox>
-                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Patient}" Grid.Row="2" Margin="2">
+                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Patient}">
                         <StackPanel Orientation="Horizontal">
                             <Label Content="{Binding SelectedPatient.Name}" />
                             <Label Content="{Binding SelectedPatient.Firstname}" />
                         </StackPanel>
                     </GroupBox>
-                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Weight}" Grid.Row="3" Margin="2">
-                        <Label Content="{Binding Path=SelectedItem.Weight, ElementName=ObservationDates}" />
-                    </GroupBox>
-                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.BloodPressure}" Grid.Row="4" Margin="2">
-                        <Label Content="{Binding Path=SelectedItem.BloodPressure, ElementName=ObservationDates}" />
-                    </GroupBox>
-                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Comment}" Grid.Row="5" Margin="2">
+                    <Grid HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <GroupBox Header="{x:Static resx:Resources.Weight}" Grid.Column="0">
+                            <Label Content="{Binding Path=SelectedItem.Weight, ElementName=ObservationDates}" />
+                        </GroupBox>
+                        <GroupBox Header="{x:Static resx:Resources.BloodPressure}" Grid.Column="1">
+                            <Label Content="{Binding Path=SelectedItem.BloodPressure, ElementName=ObservationDates}" />
+                        </GroupBox>
+                    </Grid>
+                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Comment}">
                         <Label Content="{Binding Path=SelectedItem.Comment, ElementName=ObservationDates}" />
                     </GroupBox>
-                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Prescription}" Grid.Row="6" Margin="2">
+                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Prescription}">
                         <ListView ItemsSource="{Binding Path=SelectedItem.Prescription, ElementName=ObservationDates}" BorderThickness="0" />
                     </GroupBox>
                     <Controls:FlipView DockPanel.Dock="Top" IsBannerEnabled="False" ItemsSource="{Binding Path=SelectedItem.Pictures, ElementName=ObservationDates}">
