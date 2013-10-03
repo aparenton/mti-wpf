@@ -117,8 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddObservation" xml:space="preserve">
+    <value>/Resources/Images/AddObservation.png</value>
+  </data>
+  <data name="AddPatient" xml:space="preserve">
+    <value>/Resources/Images/AddUser.png</value>
+  </data>
+  <data name="AddUser" xml:space="preserve">
+    <value>/Resources/Images/AddUser.png</value>
+  </data>
   <data name="BlackIcon" xml:space="preserve">
     <value>/Resources/Images/black_heart.png</value>
+  </data>
+  <data name="DeleteObservation" xml:space="preserve">
+    <value>/Resources/Images/DeleteObservation.png</value>
+  </data>
+  <data name="DeletePatient" xml:space="preserve">
+    <value>/Resources/Images/DeleteUser.png</value>
   </data>
   <data name="MedicalSymbol" xml:space="preserve">
     <value>/Resources/Images/medical_symbol.png</value>

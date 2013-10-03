@@ -102,6 +102,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Converters\BoolToColorConverter.cs" />
+    <Compile Include="Utilities\Converters\BoolToStringConverter.cs" />
     <Compile Include="Utilities\ImageManager.cs" />
     <Compile Include="ViewModel\FlyoutViewModel\AddObservationViewModel.cs" />
     <Compile Include="ViewModel\FlyoutViewModel\AddPatientViewModel.cs" />
@@ -350,6 +351,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\medical_symbol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\AddObservation.png" />
+    <Resource Include="Resources\Images\AddUser.png" />
+    <Resource Include="Resources\Images\DeleteUser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\DeleteObservation.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

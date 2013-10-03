@@ -21,19 +21,19 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
         public string Name
         {
             get { return _name; }
-            set { _name = value; }
+            set { _name = value; RaisePropertyChanged("Name"); }
         }
 
         public string Firstname
         {
             get { return _firstname; }
-            set { _firstname = value; }
+            set { _firstname = value; RaisePropertyChanged("Firstname"); }
         }
 
         public DateTime Birthday
         {
             get { return _birthday; }
-            set { _birthday = value; }
+            set { _birthday = value; RaisePropertyChanged("Birthday"); }
         }
 
         public RelayCommand AddPatientCommand { get; private set; }

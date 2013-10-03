@@ -31,16 +31,16 @@ namespace parent_bMedecine.View
             parentWindow.ToggleFlyout(1);
         }
 
-        private void DeletePatient_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow parentWindow = (MainWindow)Window.GetWindow(this);
-            parentWindow.ToggleFlyout(3);
-        }
-
         private void AddObservation_Click(object sender, RoutedEventArgs e)
         {
             MainWindow parentWindow = (MainWindow)Window.GetWindow(this);
             parentWindow.ToggleFlyout(2);
+        }
+
+        private void DeletePatient_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow parentWindow = (MainWindow)Window.GetWindow(this);
+            parentWindow.ToggleFlyout(3);
         }
     }
 }

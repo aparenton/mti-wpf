@@ -169,6 +169,15 @@ namespace parent_bMedecine.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Supprimer l&apos;observation.
+        /// </summary>
+        public static string DeleteObservation {
+            get {
+                return ResourceManager.GetString("DeleteObservation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Supprimer le patient.
         /// </summary>
         public static string DeletePatient {

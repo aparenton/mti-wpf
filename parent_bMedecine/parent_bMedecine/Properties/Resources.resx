@@ -153,6 +153,9 @@
   <data name="Delete" xml:space="preserve">
     <value>Supprimer</value>
   </data>
+  <data name="DeleteObservation" xml:space="preserve">
+    <value>Supprimer l'observation</value>
+  </data>
   <data name="DeletePatient" xml:space="preserve">
     <value>Supprimer le patient</value>
   </data>

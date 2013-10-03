@@ -28,9 +28,16 @@
                          DockPanel.Dock="Top">
                 </TextBox>
 
-                <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="2">
-                    <Button Content="{x:Static resx:Resources.AddPatient}" Margin="2" Click="AddPatient_Click" />
-                    <Button Content="{x:Static resx:Resources.DeletePatient}" Margin="2" Click="DeletePatient_Click" />
+                <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+                    <Button Margin="5" Click="AddPatient_Click" ToolTip="{x:Static resx:Resources.AddPatient}">
+                        <Image Source="{Binding Source={x:Static img:Images.AddPatient}}" Width="64" Height="64" />
+                    </Button>
+                    <Button Margin="5" Click="DeletePatient_Click" ToolTip="{x:Static resx:Resources.DeletePatient}">
+                        <Image Source="{Binding Source={x:Static img:Images.DeletePatient}}" Width="64" Height="64" />
+                    </Button>
+                    <Button Margin="5" Click="AddObservation_Click" ToolTip="{x:Static resx:Resources.AddObservation}" >
+                        <Image Source="{Binding Source={x:Static img:Images.AddObservation}}" Width="64" Height="64" />
+                    </Button>
                 </StackPanel>
 
                 <!-- Patient ListView -->
@@ -60,23 +67,16 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" TextBlock.FontWeight="Light" Margin="2">
                                     <TextBlock Text="{x:Static resx:Resources.Born}" />
-                                    <TextBlock Text="{Binding Path=Birthday}" />
+                                    <TextBlock Text="{Binding Path=Birthday, StringFormat=dd-MM-yyyy}" />
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </DockPanel>
-
-            <!--<GridSplitter       Grid.Column="1"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Stretch"
-                                Background="White"
-                                ShowsPreview="False"
-                                Width="1" />-->
         </Grid>
 
-        <DockPanel>
+        <ScrollViewer>
             <!--<Image Source="{Binding Source={x:Static img:Images.MedicalSymbol}}" Width="500" Height="500" Visibility="{Binding LogoVisibility}" 
                HorizontalAlignment="Center" VerticalAlignment="Center" />-->
 
@@ -93,9 +93,7 @@
                                               DisplayMemberPath="Date"
                                               SelectedValuePath="Date" 
                                               SelectedIndex="{Binding SelectedObservationIndex, Mode=TwoWay}" />
-                                </StackPanel>
-                                
-                                <Button Content="{x:Static resx:Resources.AddObservation}" Click="AddObservation_Click" Margin="2" Width="200" HorizontalAlignment="Left" Grid.Row="15" DockPanel.Dock="Bottom"/>
+                                </StackPanel>                                
 
                                 <StackPanel DockPanel.Dock="Right">
                                     <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Date}" Grid.Row="1" Margin="2">
@@ -137,7 +135,7 @@
                         </TabItem>
                     </Controls:MetroAnimatedSingleRowTabControl>
                 </Controls:MetroContentControl>
-            </DockPanel>            
-        </DockPanel>        
+            </DockPanel>
+        </ScrollViewer>        
     </DockPanel>
 </UserControl>

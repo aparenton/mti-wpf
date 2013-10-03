@@ -6,17 +6,21 @@
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:resx="clr-namespace:parent_bMedecine.Properties"
              xmlns:converters="clr-namespace:parent_bMedecine.Utilities.Converters"
+             xmlns:img="clr-namespace:parent_bMedecine.Resources.Images"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     
     <UserControl.Resources>
         <converters:BoolToColorConverter x:Key="boolToColorConverter" />
+        <converters:BoolToStringConverter x:Key="boolToStringConverter" />
     </UserControl.Resources>
 
     <DockPanel DataContext="{Binding Source={StaticResource Locator}, Path=UsersViewModel}" Margin="2">
 
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="2">
-            <Button Content="{x:Static resx:Resources.AddUser}" Margin="2" Click="AddUser_Click"/>
+            <Button Margin="5" Click="AddUser_Click" ToolTip="{x:Static resx:Resources.AddUser}">
+                <Image Source="{Binding Source={x:Static img:Images.AddUser}}" Width="64" Height="64" />
+            </Button>
         </StackPanel>
 
         <DataGrid x:Name="UserDataGrid"
@@ -29,7 +33,7 @@
                 <DataGridTemplateColumn Header="{x:Static resx:Resources.Status}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel Background="{Binding Connected, Converter={StaticResource boolToColorConverter}}" Width="15" Height="15" />
+                            <StackPanel Background="{Binding Connected, Converter={StaticResource boolToColorConverter}}" Width="15" Height="15" ToolTip="{Binding Connected, Converter={StaticResource boolToStringConverter}}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

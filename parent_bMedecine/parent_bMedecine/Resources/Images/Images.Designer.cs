@@ -61,11 +61,56 @@ namespace parent_bMedecine.Resources.Images {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à /Resources/Images/AddObservation.png.
+        /// </summary>
+        public static string AddObservation {
+            get {
+                return ResourceManager.GetString("AddObservation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à /Resources/Images/AddUser.png.
+        /// </summary>
+        public static string AddPatient {
+            get {
+                return ResourceManager.GetString("AddPatient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à /Resources/Images/AddUser.png.
+        /// </summary>
+        public static string AddUser {
+            get {
+                return ResourceManager.GetString("AddUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à /Resources/Images/black_heart.png.
         /// </summary>
         public static string BlackIcon {
             get {
                 return ResourceManager.GetString("BlackIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à /Resources/Images/DeleteObservation.png.
+        /// </summary>
+        public static string DeleteObservation {
+            get {
+                return ResourceManager.GetString("DeleteObservation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à /Resources/Images/DeleteUser.png.
+        /// </summary>
+        public static string DeletePatient {
+            get {
+                return ResourceManager.GetString("DeletePatient", resourceCulture);
             }
         }
         
