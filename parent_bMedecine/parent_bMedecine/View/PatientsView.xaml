@@ -123,7 +123,7 @@
                                         <Controls:FlipView.ItemTemplate>
                                             <DataTemplate>
                                                 <Grid>
-                                                    <Image Source="{Binding }" Width="300" Height="300"/>
+                                                    <Image Source="{Binding }" Width="300" Height="300" />
                                                 </Grid>
                                             </DataTemplate>
                                         </Controls:FlipView.ItemTemplate>

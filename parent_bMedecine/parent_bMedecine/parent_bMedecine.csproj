@@ -101,6 +101,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\Converters\BoolToColorConverter.cs" />
     <Compile Include="Utilities\ImageManager.cs" />
     <Compile Include="ViewModel\FlyoutViewModel\AddObservationViewModel.cs" />
     <Compile Include="ViewModel\FlyoutViewModel\AddPatientViewModel.cs" />

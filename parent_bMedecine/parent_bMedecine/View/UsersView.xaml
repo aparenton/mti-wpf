@@ -5,8 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:resx="clr-namespace:parent_bMedecine.Properties"
+             xmlns:converters="clr-namespace:parent_bMedecine.Utilities.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    
+    <UserControl.Resources>
+        <converters:BoolToColorConverter x:Key="boolToColorConverter" />
+    </UserControl.Resources>
 
     <DockPanel DataContext="{Binding Source={StaticResource Locator}, Path=UsersViewModel}" Margin="2">
 
@@ -21,6 +26,13 @@
                   CanUserAddRows="False"
                   IsReadOnly="True">
             <DataGrid.Columns>
+                <DataGridTemplateColumn Header="{x:Static resx:Resources.Status}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Background="{Binding Connected, Converter={StaticResource boolToColorConverter}}" Width="15" Height="15" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="{x:Static resx:Resources.Picture}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

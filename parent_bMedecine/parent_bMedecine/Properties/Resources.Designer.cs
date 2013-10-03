@@ -340,6 +340,15 @@ namespace parent_bMedecine.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Statut.
+        /// </summary>
+        public static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à parent_bMedecine.
         /// </summary>
         public static string Title {
