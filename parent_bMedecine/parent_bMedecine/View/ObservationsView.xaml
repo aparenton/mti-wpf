@@ -40,7 +40,9 @@
                         </GroupBox>
                     </Grid>
                     <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Comment}">
-                        <Label Content="{Binding Path=SelectedItem.Comment, ElementName=ObservationDates}" />
+                        <TextBlock Text="{Binding Path=SelectedItem.Comment, ElementName=ObservationDates}" 
+                                   TextWrapping="Wrap"
+                                   ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                     </GroupBox>
                     <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Prescription}">
                         <ListView ItemsSource="{Binding Path=SelectedItem.Prescription, ElementName=ObservationDates}" BorderThickness="0" />
