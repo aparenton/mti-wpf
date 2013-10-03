@@ -47,8 +47,10 @@ namespace parent_bMedecine.ViewModel
 
             SimpleIoc.Default.Register<MainTabControlViewModel>();
 
+            SimpleIoc.Default.Register<HomeViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<PatientsViewModel>();
+            SimpleIoc.Default.Register<ObservationsViewModel>();
             SimpleIoc.Default.Register<UsersViewModel>();
 
             SimpleIoc.Default.Register<AddUserViewModel>();
@@ -73,6 +75,14 @@ namespace parent_bMedecine.ViewModel
             }
         }
 
+        public HomeViewModel HomeViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<HomeViewModel>();
+            }
+        }
+
         public LoginViewModel LoginViewModel
         {
             get
@@ -86,6 +96,14 @@ namespace parent_bMedecine.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<PatientsViewModel>();
+            }
+        }
+
+        public ObservationsViewModel ObservationsViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ObservationsViewModel>();
             }
         }
 
@@ -129,8 +147,10 @@ namespace parent_bMedecine.ViewModel
 
             SimpleIoc.Default.Unregister<MainTabControlViewModel>();
 
+            SimpleIoc.Default.Unregister<HomeViewModel>();
             SimpleIoc.Default.Unregister<LoginViewModel>();
             SimpleIoc.Default.Unregister<PatientsViewModel>();
+            SimpleIoc.Default.Unregister<ObservationsViewModel>();
             SimpleIoc.Default.Unregister<UsersViewModel>();
 
             SimpleIoc.Default.Unregister<AddUserViewModel>();

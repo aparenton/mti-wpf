@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,18 +15,28 @@ namespace parent_bMedecine.ViewModel
     public class PatientsViewModel : ViewModelBase
     {
         #region Members
+        private ViewModelBase _currentViewModel = SimpleIoc.Default.GetInstance<HomeViewModel>();
         private string _searchText = String.Empty;
         private ObservableCollection<Dbo.Patient> _patients = new ObservableCollection<Dbo.Patient>();        
         private Dbo.Patient _selectedPatient;
-        private ObservableCollection<Dbo.Observation> _observations = new ObservableCollection<Dbo.Observation>();
-        private int _selectedObservationIndex;
-        private ObservableCollection<byte[]> _pictureList = new ObservableCollection<byte[]>();
-
-        private string _logoVisibility = "Visible";
-        private string _tabControlVisibility = "Collapsed";
         #endregion // Members
 
         #region Properties
+        public ViewModelBase CurrentViewModel
+        {
+            get
+            {
+                return _currentViewModel;
+            }
+            set
+            {
+                if (_currentViewModel == value)
+                    return;
+                _currentViewModel = value;
+                RaisePropertyChanged("CurrentViewModel");
+            }
+        }
+
         public string SearchText
         {
             get
@@ -63,56 +74,7 @@ namespace parent_bMedecine.ViewModel
                 _selectedPatient = value;
                 RaisePropertyChanged("SelectedPatient");
             }
-        }
-
-        public ObservableCollection<Dbo.Observation> Observations
-        {
-            get
-            {
-                return _observations;
-            }
-            set
-            {
-                _observations = value;
-            }
-        }
-
-        public ObservableCollection<byte[]> PictureList
-        {
-            get
-            {
-                return _pictureList;
-            }
-            set
-            {
-                _pictureList = value;
-            }
-        }
-
-        public int SelectedObservationIndex
-        {
-            get
-            {
-                return _selectedObservationIndex;
-            }
-            set
-            {
-                _selectedObservationIndex = value;
-                RaisePropertyChanged("SelectedObservationIndex");
-            }
-        }
-
-        public string LogoVisibility
-        {
-            get { return _logoVisibility; }
-            set { _logoVisibility = value; RaisePropertyChanged("LogoVisibility"); }
-        }
-
-        public string TabControlVisibility
-        {
-            get { return _tabControlVisibility; }
-            set { _tabControlVisibility = value; RaisePropertyChanged("TabControlVisibility"); }
-        }
+        }        
 
         public RelayCommand<Dbo.Patient> SelectPatientCommand { get; private set; }
         public RelayCommand DeletePatientCommand { get; private set; }
@@ -130,6 +92,7 @@ namespace parent_bMedecine.ViewModel
             // Messages
             MessengerInstance.Register<Message.OnLogoutMessage>(this, m => { Reset(); });
             MessengerInstance.Register<Message.OnAddPatientMessage>(this, m => { RetrievePatients(); });
+            MessengerInstance.Register<Message.WhenNoObservationMessage>(this, m => { CurrentViewModel = SimpleIoc.Default.GetInstance<HomeViewModel>(); });
         }
         #endregion // Constructors
 
@@ -139,32 +102,10 @@ namespace parent_bMedecine.ViewModel
             if (patient == null)
                 return;
 
-            LogoVisibility = "Collapsed";
-            TabControlVisibility = "Visible";
-
-            Observations.Clear();
-            PictureList.Clear();
             SelectedPatient = patient;
 
+            CurrentViewModel = SimpleIoc.Default.GetInstance<ObservationsViewModel>();
             MessengerInstance.Send<Message.OnPatientSelectionMessage>(new Message.OnPatientSelectionMessage(patient));
-
-            ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient();
-            try
-            {
-                List<Dbo.Observation> res = client.GetPatient(SelectedPatient.Id).Observations;
-                foreach (var observation in res)
-                {
-                    Observations.Add(observation);
-                    foreach (byte[] img in observation.Pictures)
-                        PictureList.Add(img);
-                }
-                RaisePropertyChanged("Observations");
-                SelectedObservationIndex = 0;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erreur lors de la récupération des observations, veuillez réessayer.", "Erreur");
-            }
         }
 
         private void SearchTextExecute(string searchText)
@@ -200,8 +141,6 @@ namespace parent_bMedecine.ViewModel
                 List<Dbo.Patient> res = client.GetListPatient();
                 foreach (var patient in res)
                     Patients.Add(patient);
-                if (Patients.Any())
-                    SelectPatientExecute(Patients.ElementAt(0));
                 client.Close();
             }
             catch (Exception ex)
@@ -231,8 +170,6 @@ namespace parent_bMedecine.ViewModel
         private void Reset()
         {
             Patients.Clear();
-            Observations.Clear();
-            PictureList.Clear();
         }
         #endregion // Methors
     }

@@ -76,6 +76,7 @@
     <Compile Include="Message\OnLoginMessage.cs" />
     <Compile Include="Message\OnLogoutMessage.cs" />
     <Compile Include="Message\OnPatientSelectionMessage.cs" />
+    <Compile Include="Message\WhenNoObservationMessage.cs" />
     <Compile Include="Resources\Images\Images.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -107,9 +108,11 @@
     <Compile Include="ViewModel\FlyoutViewModel\AddObservationViewModel.cs" />
     <Compile Include="ViewModel\FlyoutViewModel\AddPatientViewModel.cs" />
     <Compile Include="ViewModel\FlyoutViewModel\AddUserViewModel.cs" />
+    <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainTabControlViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\ObservationsViewModel.cs" />
     <Compile Include="ViewModel\PatientsViewModel.cs" />
     <Compile Include="ViewModel\UsersViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -129,6 +132,9 @@
     <Compile Include="View\Flyout\DeletePatientFlyout.xaml.cs">
       <DependentUpon>DeletePatientFlyout.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -137,6 +143,9 @@
     </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ObservationsView.xaml.cs">
+      <DependentUpon>ObservationsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PatientsView.xaml.cs">
       <DependentUpon>PatientsView.xaml</DependentUpon>
@@ -247,6 +256,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -256,6 +269,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ObservationsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

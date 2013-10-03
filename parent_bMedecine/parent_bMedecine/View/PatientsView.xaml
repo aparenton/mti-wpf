@@ -7,8 +7,19 @@
              xmlns:resx="clr-namespace:parent_bMedecine.Properties"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:img="clr-namespace:parent_bMedecine.Resources.Images"
+             xmlns:v="clr-namespace:parent_bMedecine.View"
+             xmlns:vm="clr-namespace:parent_bMedecine.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type vm:HomeViewModel}">
+            <v:HomeView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:ObservationsViewModel}">
+            <v:ObservationsView />
+        </DataTemplate>
+    </UserControl.Resources>
 
     <DockPanel DataContext="{Binding Source={StaticResource Locator}, Path=PatientsViewModel}">
         <Grid>
@@ -76,66 +87,7 @@
             </DockPanel>
         </Grid>
 
-        <ScrollViewer>
-            <!--<Image Source="{Binding Source={x:Static img:Images.MedicalSymbol}}" Width="500" Height="500" Visibility="{Binding LogoVisibility}" 
-               HorizontalAlignment="Center" VerticalAlignment="Center" />-->
-
-            <DockPanel Visibility="Visible" LastChildFill="True">
-                <!-- Patients TabControl-->
-                <Controls:MetroContentControl HorizontalAlignment="Stretch" Margin="5">
-                    <Controls:MetroAnimatedSingleRowTabControl>
-                        <!-- Observations TabItem -->
-                        <TabItem Header="{x:Static resx:Resources.Observations}">
-                            <DockPanel>
-                                <StackPanel Orientation="Horizontal" Grid.Row="0" DockPanel.Dock="Top">
-                                    <ComboBox x:Name="ObservationDates"
-                                              ItemsSource="{Binding Observations}"
-                                              DisplayMemberPath="Date"
-                                              SelectedValuePath="Date" 
-                                              SelectedIndex="{Binding SelectedObservationIndex, Mode=TwoWay}" />
-                                </StackPanel>                                
-
-                                <StackPanel DockPanel.Dock="Right">
-                                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Date}" Grid.Row="1" Margin="2">
-                                        <Label Content="{Binding Path=SelectedItem.Date, ElementName=ObservationDates}" />
-                                    </GroupBox>
-                                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Patient}" Grid.Row="2" Margin="2">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Label Content="{Binding SelectedPatient.Name}" />
-                                            <Label Content="{Binding SelectedPatient.Firstname}" />
-                                        </StackPanel>
-                                    </GroupBox>
-                                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Weight}" Grid.Row="3" Margin="2">
-                                        <Label Content="{Binding Path=SelectedItem.Weight, ElementName=ObservationDates}" />
-                                    </GroupBox>
-                                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.BloodPressure}" Grid.Row="4" Margin="2">
-                                        <Label Content="{Binding Path=SelectedItem.BloodPressure, ElementName=ObservationDates}" />
-                                    </GroupBox>
-                                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Comment}" Grid.Row="5" Margin="2">
-                                        <Label Content="{Binding Path=SelectedItem.Comment, ElementName=ObservationDates}" />
-                                    </GroupBox>
-                                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Prescription}" Grid.Row="6" Margin="2">
-                                        <ListView ItemsSource="{Binding Path=SelectedItem.Prescription, ElementName=ObservationDates}" BorderThickness="0" />
-                                    </GroupBox>
-                                    <Controls:FlipView DockPanel.Dock="Top" IsBannerEnabled="False" ItemsSource="{Binding Path=SelectedItem.Pictures, ElementName=ObservationDates}">
-                                        <Controls:FlipView.ItemTemplate>
-                                            <DataTemplate>
-                                                <Grid>
-                                                    <Image Source="{Binding }" Width="300" Height="300" />
-                                                </Grid>
-                                            </DataTemplate>
-                                        </Controls:FlipView.ItemTemplate>
-                                    </Controls:FlipView>
-                                </StackPanel>
-                            </DockPanel>                       
-                        </TabItem>
-                        <!-- Graphes TabItem -->
-                        <TabItem Header="{x:Static resx:Resources.Graphs}">
-                            <StackPanel Background="Blue" />
-                        </TabItem>
-                    </Controls:MetroAnimatedSingleRowTabControl>
-                </Controls:MetroContentControl>
-            </DockPanel>
-        </ScrollViewer>        
+        <!-- Main Content -->
+        <Controls:MetroContentControl HorizontalAlignment="Stretch" Margin="5" Content="{Binding CurrentViewModel}" />
     </DockPanel>
 </UserControl>
