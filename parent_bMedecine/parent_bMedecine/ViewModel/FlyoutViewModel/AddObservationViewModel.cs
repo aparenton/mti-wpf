@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,10 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
         private DateTime _date = DateTime.Now;
         private int _weight;
         private int _bloodpressure;
-        private string _comment;
-        private string[] _prescription;
+        private string _comment = string.Empty;
+        private string _prescription = string.Empty;
+        private ObservableCollection<string> _pictures = new ObservableCollection<string>();
+        private ObservableCollection<string> _prescriptions = new ObservableCollection<string>();
         #endregion // Members
 
         #region Properties
@@ -30,34 +33,50 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
         public DateTime Date
         {
             get { return _date; }
-            set { _date = value; }
+            set { _date = value; RaisePropertyChanged("Date"); }
         }
 
         public int Weight
         {
             get { return _weight; }
-            set { _weight = value; }
+            set { _weight = value; RaisePropertyChanged("Weight"); }
         }
 
         public int BloodPressure
         {
             get { return _bloodpressure; }
-            set { _bloodpressure = value; }
+            set { _bloodpressure = value; RaisePropertyChanged("BloodPressure"); }
         }
 
         public string Comment
         {
             get { return _comment; }
-            set { _comment = value; }
+            set { _comment = value; RaisePropertyChanged("Comment"); }
         }
 
-        public string[] Prescription
+        public string Prescription
         {
             get { return _prescription; }
-            set { _prescription = value; }
+            set { _prescription = value; RaisePropertyChanged("Prescription"); }
+        }
+
+        public ObservableCollection<string> Pictures
+        {
+            get { return _pictures; }
+            set { _pictures = value; }
+        }
+
+        public ObservableCollection<string> Prescriptions
+        {
+            get { return _prescriptions; }
+            set { _prescriptions = value; }
         }
 
         public RelayCommand AddObservationCommand { get; private set; }
+        public RelayCommand AddObservationPictureCommand { get; private set; }
+        public RelayCommand AddObservationPrescriptionCommand { get; private set; }
+        public RelayCommand<int> DeleteObservationPictureCommand { get; private set; }
+        public RelayCommand<int> DeleteObservationPrescriptionCommand { get; private set; }
         #endregion // Properties
 
         #region Constructors
@@ -68,19 +87,35 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
 
             // Commands
             AddObservationCommand = new RelayCommand(AddObservationExecute);
+            AddObservationPictureCommand = new RelayCommand(AddObservationPictureExecute);
+            AddObservationPrescriptionCommand = new RelayCommand(AddObservationPrescriptionExecute);
+            DeleteObservationPictureCommand = new RelayCommand<int>(i => DeleteObservationPictureExecute(i));
+            DeleteObservationPrescriptionCommand = new RelayCommand<int>(i => DeleteObservationPrescriptionExecute(i));
         }
         #endregion // Constructors
 
         #region Methods
         private void AddObservationExecute()
         {
+            Byte[][] pictures = new Byte[Pictures.Count][];
+            for (int i = 0; i < Pictures.Count(); i++)
+            {
+                pictures[i] = Utilities.ImageManager.GetBytesFromImage(Pictures.ElementAt(i));
+            }
+
+            string[] prescriptions = new string[Prescriptions.Count];
+            for (int i = 0; i < Prescriptions.Count(); i++)
+            {
+                prescriptions[i] = Prescriptions.ElementAt(i);
+            }
+
             Dbo.Observation newObservation = new Dbo.Observation()
             {
                 BloodPressure = _bloodpressure,
                 Comment = _comment,
                 Date = _date,
-                // Pictures = null, TODO
-                Prescription = _prescription,
+                Pictures = pictures,
+                Prescription = prescriptions,
                 Weight = _weight
             };
 
@@ -94,17 +129,51 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erreur lors de l'ajout, veuillez réessayer.", "Erreur");
+                MessageBox.Show("Erreur lors de l'ajout de l'observation, veuillez réessayer.", "Erreur");
             }
             finally
             {
                 BloodPressure = 0;
                 Weight = 0;
-                Comment = String.Empty;
-                Prescription = null;
+                Comment = string.Empty;
+                Prescription = string.Empty;
                 Date = DateTime.Now;
-                // Pictures to reset
+                Pictures.Clear();
+                Prescriptions.Clear();
             }
+        }
+
+        private void AddObservationPictureExecute()
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            
+            dlg.Filter = "Fichiers Image|*.jpg;*.jpeg;*.png";
+
+            // Show open file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process open file dialog box results
+            if (result == true)
+            {
+                Pictures.Add(dlg.FileName);
+            }
+        }
+
+        private void AddObservationPrescriptionExecute()
+        {
+            Prescriptions.Add(Prescription);
+            Prescription = string.Empty;
+            RaisePropertyChanged("Prescription");
+        }
+
+        private void DeleteObservationPrescriptionExecute(int index)
+        {
+            Prescriptions.RemoveAt(index);
+        }
+
+        private void DeleteObservationPictureExecute(int index)
+        {
+            Pictures.RemoveAt(index);
         }
 
         private void OnPatientSelectionExecute(Dbo.Patient patient)

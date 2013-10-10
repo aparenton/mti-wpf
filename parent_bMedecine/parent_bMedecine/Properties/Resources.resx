@@ -132,6 +132,12 @@
   <data name="AddPatient" xml:space="preserve">
     <value>Ajout d'un patient</value>
   </data>
+  <data name="AddPicture" xml:space="preserve">
+    <value>Ajouter une image</value>
+  </data>
+  <data name="AddPrescription" xml:space="preserve">
+    <value>Ajouter une prescription</value>
+  </data>
   <data name="AddUser" xml:space="preserve">
     <value>Ajout d'un utilisateur</value>
   </data>
@@ -158,6 +164,12 @@
   </data>
   <data name="DeletePatient" xml:space="preserve">
     <value>Supprimer le patient</value>
+  </data>
+  <data name="DeletePicture" xml:space="preserve">
+    <value>Supprimer l'image</value>
+  </data>
+  <data name="DeletePrescription" xml:space="preserve">
+    <value>Supprimer la prescription</value>
   </data>
   <data name="DeleteUser" xml:space="preserve">
     <value>Supprimer l'utilisateur</value>

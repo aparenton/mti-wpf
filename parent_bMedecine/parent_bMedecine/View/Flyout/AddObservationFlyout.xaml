@@ -21,10 +21,10 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition Height="150" />
             <RowDefinition />
             <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="150" />
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
@@ -120,20 +120,73 @@
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center" 
                    Foreground="White" />
-        <TextBox AcceptsReturn="True"
-                 MaxLines="15"
+        <TextBox Text="{Binding Prescription}"
                  Grid.Row="9" Grid.Column="1"
+                 AcceptsReturn="True"
+                 MaxLines="15"
                  Controls:TextboxHelper.ClearTextButton="False"
                  Margin="5"
                  VerticalAlignment="Center"
                  HorizontalAlignment="Left"
                  Width="250"
                  VerticalContentAlignment="Center" />
+        <Button Content="{x:Static resx:Resources.AddPrescription}" Grid.Row="10" Grid.Column="1"
+                Margin="5"
+                Command="{Binding AddObservationPrescriptionCommand}"/>
 
-        <Separator Grid.Row="10" Grid.Column="0" Background="White" />
-        <Separator Grid.Row="10" Grid.Column="1" Background="White" />
+        <ListView x:Name="PrescriptionsListView"
+                  Grid.Row="11" Grid.Column="1" 
+                  Margin="5"
+                  ItemsSource="{Binding Prescriptions}">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="{x:Static resx:Resources.DeletePrescription}"
+                              Command="{Binding DeleteObservationPrescriptionCommand}"
+                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedIndex}" />
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding }" Margin="2" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
-        <Button Content="{x:Static resx:Resources.Validate}" Grid.Row="11" Grid.Column="1" Width="200"
+        <Separator Grid.Row="12" Grid.Column="0" Background="White" />
+        <Separator Grid.Row="12" Grid.Column="1" Background="White" />
+
+        <TextBlock Text="{x:Static resx:Resources.Pictures}" Grid.Row="13" Grid.Column="0" 
+                   Margin="5"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center" 
+                   Foreground="White" />
+
+        <Button Content="{x:Static resx:Resources.AddPicture}" Grid.Row="13" Grid.Column="1"
+                Margin="5"
+                Command="{Binding AddObservationPictureCommand}"/>
+
+        <ListView x:Name="PicturesListView"
+                  Grid.Row="14" Grid.Column="1" 
+                  Margin="5"
+                  ItemsSource="{Binding Pictures}">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="{x:Static resx:Resources.DeletePicture}"
+                              Command="{Binding DeleteObservationPictureCommand}"
+                              CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedIndex}" />
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding }" Width="95" Height="95"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Separator Grid.Row="15" Grid.Column="0" Background="White" />
+        <Separator Grid.Row="15" Grid.Column="1" Background="White" />
+
+        <Button Content="{x:Static resx:Resources.Validate}" Grid.Row="16" Grid.Column="1" Width="200"
                 Command="{Binding AddObservationCommand}"
                 Click="AddObservation_Click"/>
 

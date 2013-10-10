@@ -106,6 +106,24 @@ namespace parent_bMedecine.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ajouter une image.
+        /// </summary>
+        public static string AddPicture {
+            get {
+                return ResourceManager.GetString("AddPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ajouter une prescription.
+        /// </summary>
+        public static string AddPrescription {
+            get {
+                return ResourceManager.GetString("AddPrescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Ajout d&apos;un utilisateur.
         /// </summary>
         public static string AddUser {
@@ -183,6 +201,24 @@ namespace parent_bMedecine.Properties {
         public static string DeletePatient {
             get {
                 return ResourceManager.GetString("DeletePatient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Supprimer l&apos;image.
+        /// </summary>
+        public static string DeletePicture {
+            get {
+                return ResourceManager.GetString("DeletePicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Supprimer la prescription.
+        /// </summary>
+        public static string DeletePrescription {
+            get {
+                return ResourceManager.GetString("DeletePrescription", resourceCulture);
             }
         }
         
