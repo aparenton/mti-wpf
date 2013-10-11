@@ -10,7 +10,7 @@ namespace parent_bMedecine.ViewModel
     {
         #region Members
         private ViewModelBase _currentViewModel = new LoginViewModel();
-        private string _userAccountName = String.Empty;
+        private string _userAccountName = string.Empty;
         private string _logoutButtonVisibility = "Collapsed";
         #endregion // Members
 

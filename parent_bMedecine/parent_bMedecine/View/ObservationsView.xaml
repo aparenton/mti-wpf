@@ -5,9 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:img="clr-namespace:parent_bMedecine.Resources.Images"
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart"
              xmlns:resx="clr-namespace:parent_bMedecine.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <Style x:Key="MinimalChartStyle" TargetType="chart:ChartBase">
+            <Setter Property="Width" Value="500"/>
+            <Setter Property="Height" Value="500"/>
+        </Style>
+    </UserControl.Resources>    
 
     <Controls:MetroAnimatedSingleRowTabControl DataContext="{Binding Source={StaticResource Locator}, Path=ObservationsViewModel}">
         <!-- Observations TabItem -->
@@ -61,7 +69,69 @@
         </TabItem>
         <!-- Graphes TabItem -->
         <TabItem Header="{x:Static resx:Resources.Graphs}">
-            <StackPanel Background="Blue" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                
+                <!-- Weight Chart-->
+                <chart:ClusteredBarChart    Grid.Row="0" Grid.Column="0"
+                                            ChartTitle="Evolution du poids"
+                                            ChartSubTitle="en kg"
+                                            IsRowColumnSwitched="True"
+                                            SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
+                    <chart:ClusteredBarChart.Series>
+                        <chart:ChartSeries  SeriesTitle="Weight"
+                                            DisplayMember="Category"
+                                            ValueMember="Number"
+                                            ItemsSource="{Binding Path=Weights}" />
+                    </chart:ClusteredBarChart.Series>
+                </chart:ClusteredBarChart>
+                <!-- Blood Pressure Chart-->
+                <chart:ClusteredBarChart    Grid.Row="0" Grid.Column="1"
+                                            ChartTitle="Evolution de la pression du sang"
+                                            ChartSubTitle=""
+                                            IsRowColumnSwitched="True"
+                                            SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
+                    <chart:ClusteredBarChart.Series>
+                        <chart:ChartSeries  SeriesTitle="Blood Pressure"
+                                            DisplayMember="Category"
+                                            ValueMember="Number"
+                                            ItemsSource="{Binding Path=BloodPressures}" />
+                    </chart:ClusteredBarChart.Series>
+                </chart:ClusteredBarChart>
+                <!-- Temperature Chart-->
+                <chart:ClusteredBarChart    Grid.Row="1" Grid.Column="0"
+                                            ChartTitle="Evolution de la température"
+                                            ChartSubTitle=""
+                                            IsRowColumnSwitched="True"
+                                            SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
+                    <chart:ClusteredBarChart.Series>
+                        <chart:ChartSeries  SeriesTitle="Température"
+                                            DisplayMember="Category"
+                                            ValueMember="Number"
+                                            ItemsSource="{Binding Path=Temperatures}" />
+                    </chart:ClusteredBarChart.Series>
+                </chart:ClusteredBarChart>
+                <!-- Heart Chart-->
+                <chart:ClusteredBarChart    Grid.Row="1" Grid.Column="1"
+                                            ChartTitle="Evolution du coeur"
+                                            ChartSubTitle=""
+                                            IsRowColumnSwitched="True"
+                                            SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
+                    <chart:ClusteredBarChart.Series>
+                        <chart:ChartSeries  SeriesTitle="Coeur"
+                                            DisplayMember="Category"
+                                            ValueMember="Number"
+                                            ItemsSource="{Binding Path=Hearts}" />
+                    </chart:ClusteredBarChart.Series>
+                </chart:ClusteredBarChart>
+            </Grid>        
         </TabItem>
     </Controls:MetroAnimatedSingleRowTabControl>
 </UserControl>

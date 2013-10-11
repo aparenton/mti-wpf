@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="De.TorstenMandelkow.MetroChart">
+      <HintPath>..\packages\De.TorstenMandelkow.MetroChart.1.0.0\lib\De.TorstenMandelkow.MetroChart.dll</HintPath>
+    </Reference>
     <Reference Include="GalaSoft.MvvmLight.Extras.WPF45">
       <HintPath>..\packages\MvvmLightLibs.4.1.27.1\lib\net45\GalaSoft.MvvmLight.Extras.WPF45.dll</HintPath>
     </Reference>
@@ -77,6 +80,7 @@
     <Compile Include="Message\OnLogoutMessage.cs" />
     <Compile Include="Message\OnPatientSelectionMessage.cs" />
     <Compile Include="Message\WhenNoObservationMessage.cs" />
+    <Compile Include="Model\ChartObject.cs" />
     <Compile Include="Resources\Images\Images.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -307,12 +311,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Dbo\Dbo.csproj">
-      <Project>{e251ea27-0be8-46df-9e11-5f86e2402e84}</Project>
-      <Name>Dbo</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\ServicePatient\ServicePatient.disco" />
   </ItemGroup>
   <ItemGroup>
@@ -376,6 +374,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\DeleteObservation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dbo\Dbo.csproj">
+      <Project>{e251ea27-0be8-46df-9e11-5f86e2402e84}</Project>
+      <Name>Dbo</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
