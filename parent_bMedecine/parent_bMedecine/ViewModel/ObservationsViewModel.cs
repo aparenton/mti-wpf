@@ -1,22 +1,25 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using parent_bMedecine.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
 namespace parent_bMedecine.ViewModel
 {
-    public class ObservationsViewModel : ViewModelBase
+    public class ObservationsViewModel : ViewModelBase, ServiceLive.IServiceLiveCallback
     {
         #region Members
         private Dbo.Patient _selectedPatient;
         private ObservableCollection<Dbo.Observation> _observations = new ObservableCollection<Dbo.Observation>();
         private int _selectedObservationIndex;
         private ObservableCollection<byte[]> _pictureList = new ObservableCollection<byte[]>();
+        private ServiceLive.ServiceLiveClient _client;
         #endregion // Members
 
         #region Properties
@@ -74,6 +77,9 @@ namespace parent_bMedecine.ViewModel
                 RaisePropertyChanged("SelectedObservationIndex");
             }
         }
+
+        public RelayCommand StartServiceLiveCommand { get; private set; }
+        public RelayCommand StopServiceLiveCommand { get; private set; }
         #endregion // Properties
 
         #region Constructors
@@ -99,6 +105,8 @@ namespace parent_bMedecine.ViewModel
             Temperatures = new ObservableCollection<ChartObject>();
 
             // Commands
+            StartServiceLiveCommand = new RelayCommand(StartServiceLiveExecute);
+            StopServiceLiveCommand = new RelayCommand(StopServiceLiveExecute);
 
             // Messages
             MessengerInstance.Register<Message.OnLogoutMessage>(this, m => { Reset(); });
@@ -116,7 +124,6 @@ namespace parent_bMedecine.ViewModel
             SelectedPatient = patient;
 
             ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient();
-            //ServiceLive.ServiceLiveClient client2 = new ServiceLive.ServiceLiveClient(null);
 
             try
             {
@@ -146,7 +153,66 @@ namespace parent_bMedecine.ViewModel
 
             Weights.Clear();
             BloodPressures.Clear();
+            Temperatures.Clear();
+            Hearts.Clear();
+
+            StopServiceLiveExecute();
         }
-        #endregion // Methors
+
+        private void StartServiceLiveExecute()
+        {
+            System.ServiceModel.InstanceContext context = new System.ServiceModel.InstanceContext(this);
+            _client =  new ServiceLive.ServiceLiveClient(context);
+
+            try
+            {
+                _client.SubscribeAsync();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de la récupération des données Live, veuillez réessayer.", "Erreur");
+            }
+        }
+
+        private void StopServiceLiveExecute()
+        {
+            if (_client != null)
+            {
+                _client.Abort();
+                _client.Close();
+            }
+        }
+
+        public void PushDataHeart(double requestData)
+        {
+            try
+            {
+                if (Hearts.Count >= 10)
+                    Hearts.RemoveAt(0);
+
+                Hearts.Add(new ChartObject() { Category = DateTime.Now.ToString(), Number = Convert.ToInt32(requestData * 100) });
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        public void PushDataTemp(double requestData)
+        {
+            try
+            {
+                if (Temperatures.Count >= 10)
+                    Temperatures.RemoveAt(0);
+
+                Temperatures.Add(new ChartObject() { Category = DateTime.Now.ToString(), Number = (int)requestData });
+            }
+            catch (Exception ex)
+            {
+            }
+
+        }
+        #endregion // Methods
+
+        
     }
 }

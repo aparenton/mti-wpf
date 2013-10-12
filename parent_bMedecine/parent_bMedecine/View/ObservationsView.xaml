@@ -15,6 +15,8 @@
             <Setter Property="Width" Value="500"/>
             <Setter Property="Height" Value="500"/>
         </Style>
+
+        
     </UserControl.Resources>    
 
     <Controls:MetroAnimatedSingleRowTabControl DataContext="{Binding Source={StaticResource Locator}, Path=ObservationsViewModel}">
@@ -70,23 +72,52 @@
         <!-- Graphes TabItem -->
         <TabItem Header="{x:Static resx:Resources.Graphs}">
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                
+                <Grid.Resources>
+                    <chart:ResourceDictionaryCollection x:Key="CustomColors1">
+                        <ResourceDictionary>
+                            <!-- Green -->
+                            <SolidColorBrush x:Key="Brush1" Color="#FF70AD47" />
+                        </ResourceDictionary>
+                        <ResourceDictionary>
+                            <SolidColorBrush x:Key="Brush2" Color="#FFED7D31" />
+                        </ResourceDictionary>
+                        <ResourceDictionary>
+                            <SolidColorBrush x:Key="Brush3" Color="#FFA5A5A5" />
+                        </ResourceDictionary>
+                        <ResourceDictionary>
+                            <SolidColorBrush x:Key="Brush4" Color="#FFFFC000" />
+                        </ResourceDictionary>
+                    </chart:ResourceDictionaryCollection>
+                    <chart:ResourceDictionaryCollection x:Key="CustomColors2">
+                        <ResourceDictionary>
+                            <!-- Orange -->
+                            <SolidColorBrush x:Key="Brush1" Color="#FFED7D31" />
+                        </ResourceDictionary>
+                        <ResourceDictionary>
+                            <SolidColorBrush x:Key="Brush2" Color="#FFED7D31" />
+                        </ResourceDictionary>
+                        <ResourceDictionary>
+                            <SolidColorBrush x:Key="Brush3" Color="#FFA5A5A5" />
+                        </ResourceDictionary>
+                        <ResourceDictionary>
+                            <SolidColorBrush x:Key="Brush4" Color="#FFFFC000" />
+                        </ResourceDictionary>
+                    </chart:ResourceDictionaryCollection>
+                </Grid.Resources>                
                 <!-- Weight Chart-->
                 <chart:ClusteredBarChart    Grid.Row="0" Grid.Column="0"
-                                            ChartTitle="Evolution du poids"
-                                            ChartSubTitle="en kg"
+                                            ChartTitle="{x:Static resx:Resources.WeightEvolution}"
+                                            ChartSubTitle=""
                                             IsRowColumnSwitched="True"
+                                            Palette="{StaticResource CustomColors1}"
+                                            
                                             SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
                     <chart:ClusteredBarChart.Series>
-                        <chart:ChartSeries  SeriesTitle="Weight"
+                        <chart:ChartSeries  SeriesTitle="{x:Static resx:Resources.Weight}"
                                             DisplayMember="Category"
                                             ValueMember="Number"
                                             ItemsSource="{Binding Path=Weights}" />
@@ -94,44 +125,67 @@
                 </chart:ClusteredBarChart>
                 <!-- Blood Pressure Chart-->
                 <chart:ClusteredBarChart    Grid.Row="0" Grid.Column="1"
-                                            ChartTitle="Evolution de la pression du sang"
+                                            ChartTitle="{x:Static resx:Resources.BloodPressureEvolution}"
                                             ChartSubTitle=""
                                             IsRowColumnSwitched="True"
+                                            Palette="{StaticResource CustomColors2}"
                                             SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
                     <chart:ClusteredBarChart.Series>
-                        <chart:ChartSeries  SeriesTitle="Blood Pressure"
+                        <chart:ChartSeries  SeriesTitle="{x:Static resx:Resources.BloodPressure}"
                                             DisplayMember="Category"
                                             ValueMember="Number"
                                             ItemsSource="{Binding Path=BloodPressures}" />
                     </chart:ClusteredBarChart.Series>
                 </chart:ClusteredBarChart>
-                <!-- Temperature Chart-->
-                <chart:ClusteredBarChart    Grid.Row="1" Grid.Column="0"
-                                            ChartTitle="Evolution de la température"
-                                            ChartSubTitle=""
+                
+            </Grid>        
+        </TabItem>
+        <TabItem Header="{x:Static resx:Resources.Live}">
+            <DockPanel>
+                <GroupBox Header="{x:Static resx:Resources.RetrieveLiveData}" DockPanel.Dock="Top">
+                    <Grid HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Content="{x:Static resx:Resources.StartLiveData}" Command="{Binding StartServiceLiveCommand}" Margin="2" />
+                        <Button Content="{x:Static resx:Resources.StopLiveData}" Command="{Binding StopServiceLiveCommand}" Grid.Column="1" Margin="2" />
+                    </Grid>                    
+                </GroupBox>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <!-- Temperature Chart-->
+                    <chart:ClusteredBarChart    Grid.Row="1" Grid.Column="0"
+                                            ChartTitle="{x:Static resx:Resources.TemperatureEvolution}"
+                                                ChartSubTitle=""
                                             IsRowColumnSwitched="True"
                                             SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
-                    <chart:ClusteredBarChart.Series>
-                        <chart:ChartSeries  SeriesTitle="Température"
+                        <chart:ClusteredBarChart.Series>
+                            <chart:ChartSeries  SeriesTitle="Température"
                                             DisplayMember="Category"
                                             ValueMember="Number"
                                             ItemsSource="{Binding Path=Temperatures}" />
-                    </chart:ClusteredBarChart.Series>
-                </chart:ClusteredBarChart>
-                <!-- Heart Chart-->
-                <chart:ClusteredBarChart    Grid.Row="1" Grid.Column="1"
-                                            ChartTitle="Evolution du coeur"
-                                            ChartSubTitle=""
+                        </chart:ClusteredBarChart.Series>
+                    </chart:ClusteredBarChart>
+                    <!-- Heart Chart-->
+                    <chart:ClusteredBarChart    Grid.Row="1" Grid.Column="1"
+                                            ChartTitle="{x:Static resx:Resources.HeartBeatsEvolution}"
+                                                ChartSubTitle=""
                                             IsRowColumnSwitched="True"
                                             SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
-                    <chart:ClusteredBarChart.Series>
-                        <chart:ChartSeries  SeriesTitle="Coeur"
+                        <chart:ClusteredBarChart.Series>
+                            <chart:ChartSeries  SeriesTitle="Rythme cardiaque"
                                             DisplayMember="Category"
                                             ValueMember="Number"
                                             ItemsSource="{Binding Path=Hearts}" />
-                    </chart:ClusteredBarChart.Series>
-                </chart:ClusteredBarChart>
-            </Grid>        
+                        </chart:ClusteredBarChart.Series>
+                    </chart:ClusteredBarChart>
+                </Grid>
+            </DockPanel>
+            
         </TabItem>
     </Controls:MetroAnimatedSingleRowTabControl>
 </UserControl>

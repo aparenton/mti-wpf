@@ -108,7 +108,9 @@
     </Compile>
     <Compile Include="Utilities\Converters\BoolToColorConverter.cs" />
     <Compile Include="Utilities\Converters\BoolToStringConverter.cs" />
+    <Compile Include="Utilities\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Utilities\ImageManager.cs" />
+    <Compile Include="Utilities\RoleManager.cs" />
     <Compile Include="ViewModel\FlyoutViewModel\AddObservationViewModel.cs" />
     <Compile Include="ViewModel\FlyoutViewModel\AddPatientViewModel.cs" />
     <Compile Include="ViewModel\FlyoutViewModel\AddUserViewModel.cs" />
@@ -341,21 +343,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceLive\ServiceLive.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceLive\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceLive\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceLive\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Entypo-license.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -380,6 +367,21 @@
       <Project>{e251ea27-0be8-46df-9e11-5f86e2402e84}</Project>
       <Name>Dbo</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceLive\ServiceLive.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceLive\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceLive\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceLive\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

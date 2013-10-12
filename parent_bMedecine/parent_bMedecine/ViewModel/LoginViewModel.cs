@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using parent_bMedecine.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +47,10 @@ namespace parent_bMedecine.ViewModel
             {
                 bool res = client.Connect(AccountName, accountPassword);
                 if (res)
-                    MessengerInstance.Send<Message.OnLoginMessage>(new Message.OnLoginMessage(AccountName));
+                {
+                    string role = client.GetRole(AccountName);
+                    MessengerInstance.Send<Message.OnLoginMessage>(new Message.OnLoginMessage(AccountName, RoleManager.IsReadOnlyRole(role)));
+                }
                 else
                     MessageBox.Show("Identifiant et/ou mot de passe incorrect.", "Alerte");
                 client.Close();

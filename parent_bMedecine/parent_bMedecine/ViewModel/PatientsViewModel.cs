@@ -19,6 +19,7 @@ namespace parent_bMedecine.ViewModel
         private string _searchText = String.Empty;
         private ObservableCollection<Dbo.Patient> _patients = new ObservableCollection<Dbo.Patient>();        
         private Dbo.Patient _selectedPatient;
+        private bool _readOnlyUserProfile = false;
         #endregion // Members
 
         #region Properties
@@ -74,7 +75,22 @@ namespace parent_bMedecine.ViewModel
                 _selectedPatient = value;
                 RaisePropertyChanged("SelectedPatient");
             }
-        }        
+        }
+
+        public bool ReadOnlyUserProfile 
+        {
+            get
+            {
+                return _readOnlyUserProfile;
+            }
+            set
+            {
+                _readOnlyUserProfile = value;
+                RaisePropertyChanged("ReadOnlyUserProfile");
+            }
+        }
+
+
 
         public RelayCommand<Dbo.Patient> SelectPatientCommand { get; private set; }
         public RelayCommand DeletePatientCommand { get; private set; }
@@ -90,7 +106,7 @@ namespace parent_bMedecine.ViewModel
             DeletePatientCommand = new RelayCommand(DeletePatientExecute);
 
             // Messages
-            MessengerInstance.Register<Message.OnLoginMessage>(this, m => { RetrievePatients(); });
+            MessengerInstance.Register<Message.OnLoginMessage>(this, m => { RetrievePatients(); ReadOnlyUserProfile = m.ReadOnlyUserProfile; });
             MessengerInstance.Register<Message.OnLogoutMessage>(this, m => { Reset(); });
             MessengerInstance.Register<Message.OnAddPatientMessage>(this, m => { RetrievePatients(); });
             MessengerInstance.Register<Message.WhenNoObservationMessage>(this, m => { CurrentViewModel = SimpleIoc.Default.GetInstance<HomeViewModel>(); });
@@ -171,6 +187,7 @@ namespace parent_bMedecine.ViewModel
         private void Reset()
         {
             Patients.Clear();
+            CurrentViewModel = SimpleIoc.Default.GetInstance<HomeViewModel>();
         }
         #endregion // Methors
     }

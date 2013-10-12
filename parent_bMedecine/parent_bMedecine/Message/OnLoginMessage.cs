@@ -13,10 +13,12 @@ namespace parent_bMedecine.Message
     public class OnLoginMessage : MessageBase
     {
         public string UserAccountName { get; set; }
+        public bool ReadOnlyUserProfile { get; set; }
 
-        public OnLoginMessage(string userAccountName)
+        public OnLoginMessage(string userAccountName, bool isReadOnlyUserProfile)
         {
             UserAccountName = userAccountName;
+            ReadOnlyUserProfile = isReadOnlyUserProfile;
         }
     }
 }

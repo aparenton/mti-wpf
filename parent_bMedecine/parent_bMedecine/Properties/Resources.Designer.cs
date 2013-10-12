@@ -151,6 +151,15 @@ namespace parent_bMedecine.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Évolution de la pression sanguine.
+        /// </summary>
+        public static string BloodPressureEvolution {
+            get {
+                return ResourceManager.GetString("BloodPressureEvolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Né(e) le : .
         /// </summary>
         public static string Born {
@@ -259,6 +268,24 @@ namespace parent_bMedecine.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Évolution du rythme cardiaque.
+        /// </summary>
+        public static string HeartBeatsEvolution {
+            get {
+                return ResourceManager.GetString("HeartBeatsEvolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Live.
+        /// </summary>
+        public static string Live {
+            get {
+                return ResourceManager.GetString("Live", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Connexion.
         /// </summary>
         public static string Login {
@@ -358,6 +385,15 @@ namespace parent_bMedecine.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Récupération des données Live.
+        /// </summary>
+        public static string RetrieveLiveData {
+            get {
+                return ResourceManager.GetString("RetrieveLiveData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Rôle.
         /// </summary>
         public static string Role {
@@ -385,11 +421,38 @@ namespace parent_bMedecine.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Lancement du service.
+        /// </summary>
+        public static string StartLiveData {
+            get {
+                return ResourceManager.GetString("StartLiveData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Statut.
         /// </summary>
         public static string Status {
             get {
                 return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Arrêt du service.
+        /// </summary>
+        public static string StopLiveData {
+            get {
+                return ResourceManager.GetString("StopLiveData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Évolution de la température corporelle.
+        /// </summary>
+        public static string TemperatureEvolution {
+            get {
+                return ResourceManager.GetString("TemperatureEvolution", resourceCulture);
             }
         }
         
@@ -435,6 +498,15 @@ namespace parent_bMedecine.Properties {
         public static string Weight {
             get {
                 return ResourceManager.GetString("Weight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Évolution du poids.
+        /// </summary>
+        public static string WeightEvolution {
+            get {
+                return ResourceManager.GetString("WeightEvolution", resourceCulture);
             }
         }
         

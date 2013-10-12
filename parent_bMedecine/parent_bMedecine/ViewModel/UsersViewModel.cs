@@ -14,6 +14,7 @@ namespace parent_bMedecine.ViewModel
     {
         #region Members
         private ObservableCollection<Dbo.User> _users = new ObservableCollection<Dbo.User>();
+        private bool _readOnlyUserProfile = false;
         #endregion // Members
 
         #region Properties
@@ -29,6 +30,19 @@ namespace parent_bMedecine.ViewModel
             }
         }
 
+        public bool ReadOnlyUserProfile
+        {
+            get
+            {
+                return _readOnlyUserProfile;
+            }
+            set
+            {
+                _readOnlyUserProfile = value;
+                RaisePropertyChanged("ReadOnlyUserProfile");
+            }
+        }
+
         public RelayCommand<Dbo.User> DeleteUserCommand { get; private set; }
         #endregion // Properties
 
@@ -41,7 +55,7 @@ namespace parent_bMedecine.ViewModel
             DeleteUserCommand = new RelayCommand<Dbo.User>(u => { DeleteUserExecute(u); });
 
             // Messages
-            MessengerInstance.Register<Message.OnLoginMessage>(this, m => { RetrieveUsers(); });
+            MessengerInstance.Register<Message.OnLoginMessage>(this, m => { RetrieveUsers(); ReadOnlyUserProfile = m.ReadOnlyUserProfile; });
             MessengerInstance.Register<Message.OnLogoutMessage>(this, m => { Reset(); });
             MessengerInstance.Register<Message.OnAddUserMessage>(this, m => { RetrieveUsers(); });
         }

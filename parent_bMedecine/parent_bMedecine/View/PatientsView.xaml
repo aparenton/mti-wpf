@@ -9,9 +9,10 @@
              xmlns:img="clr-namespace:parent_bMedecine.Resources.Images"
              xmlns:v="clr-namespace:parent_bMedecine.View"
              xmlns:vm="clr-namespace:parent_bMedecine.ViewModel"
+             xmlns:converters="clr-namespace:parent_bMedecine.Utilities.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    
+
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type vm:HomeViewModel}">
             <v:HomeView />
@@ -19,6 +20,8 @@
         <DataTemplate DataType="{x:Type vm:ObservationsViewModel}">
             <v:ObservationsView />
         </DataTemplate>
+
+        <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
     </UserControl.Resources>
 
     <DockPanel DataContext="{Binding Source={StaticResource Locator}, Path=PatientsViewModel}">
@@ -40,13 +43,16 @@
                 </TextBox>
 
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-                    <Button Margin="5" Click="AddPatient_Click" ToolTip="{x:Static resx:Resources.AddPatient}">
+                    <Button Margin="5" Click="AddPatient_Click" ToolTip="{x:Static resx:Resources.AddPatient}" 
+                            Visibility="{Binding ReadOnlyUserProfile, Converter={StaticResource boolToVisibilityConverter}}">
                         <Image Source="{Binding Source={x:Static img:Images.AddPatient}}" Width="64" Height="64" />
                     </Button>
-                    <Button Margin="5" Click="DeletePatient_Click" ToolTip="{x:Static resx:Resources.DeletePatient}">
+                    <Button Margin="5" Click="DeletePatient_Click" ToolTip="{x:Static resx:Resources.DeletePatient}" 
+                            Visibility="{Binding ReadOnlyUserProfile, Converter={StaticResource boolToVisibilityConverter}}">
                         <Image Source="{Binding Source={x:Static img:Images.DeletePatient}}" Width="64" Height="64" />
                     </Button>
-                    <Button Margin="5" Click="AddObservation_Click" ToolTip="{x:Static resx:Resources.AddObservation}" >
+                    <Button Margin="5" Click="AddObservation_Click" ToolTip="{x:Static resx:Resources.AddObservation}" 
+                            Visibility="{Binding ReadOnlyUserProfile, Converter={StaticResource boolToVisibilityConverter}}">
                         <Image Source="{Binding Source={x:Static img:Images.AddObservation}}" Width="64" Height="64" />
                     </Button>
                 </StackPanel>
@@ -65,8 +71,10 @@
                     </i:Interaction.Triggers>
                     <ListView.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="{x:Static resx:Resources.AddObservation}" Click="AddObservation_Click" />
-                            <MenuItem Header="{x:Static resx:Resources.DeletePatient}" Click="DeletePatient_Click" />
+                            <MenuItem Header="{x:Static resx:Resources.AddObservation}" Click="AddObservation_Click"
+                                      Visibility="{Binding ReadOnlyUserProfile, Converter={StaticResource boolToVisibilityConverter}}" />
+                            <MenuItem Header="{x:Static resx:Resources.DeletePatient}" Click="DeletePatient_Click"
+                                      Visibility="{Binding ReadOnlyUserProfile, Converter={StaticResource boolToVisibilityConverter}}" />
                         </ContextMenu>
                     </ListView.ContextMenu>
                     <ListView.ItemTemplate>

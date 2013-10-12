@@ -13,12 +13,14 @@
     <UserControl.Resources>
         <converters:BoolToColorConverter x:Key="boolToColorConverter" />
         <converters:BoolToStringConverter x:Key="boolToStringConverter" />
+        <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
     </UserControl.Resources>
 
     <DockPanel DataContext="{Binding Source={StaticResource Locator}, Path=UsersViewModel}" Margin="2">
 
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="2">
-            <Button Margin="5" Click="AddUser_Click" ToolTip="{x:Static resx:Resources.AddUser}">
+            <Button Margin="5" Click="AddUser_Click" ToolTip="{x:Static resx:Resources.AddUser}"
+                    Visibility="{Binding ReadOnlyUserProfile, Converter={StaticResource boolToVisibilityConverter}}">
                 <Image Source="{Binding Source={x:Static img:Images.AddUser}}" Width="64" Height="64" />
             </Button>
         </StackPanel>
@@ -52,9 +54,10 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button DataContext="{Binding Source={StaticResource Locator}, Path=UsersViewModel}"
+                                    Visibility="{Binding ReadOnlyUserProfile, Converter={StaticResource boolToVisibilityConverter}}"
                                     Content="{x:Static resx:Resources.Delete}" FontWeight="Normal"
                                     Command="{Binding DeleteUserCommand}"
-                                    CommandParameter="{Binding Path=SelectedItem, ElementName=UserDataGrid}"/>
+                                    CommandParameter="{Binding Path=SelectedItem, ElementName=UserDataGrid}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
