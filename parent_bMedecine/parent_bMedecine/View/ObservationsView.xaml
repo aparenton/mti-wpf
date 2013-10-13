@@ -158,7 +158,7 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <!-- Temperature Chart-->
-                    <chart:ClusteredBarChart    Grid.Row="1" Grid.Column="0"
+                    <chart:ClusteredBarChart Grid.Row="1" Grid.Column="0"
                                             ChartTitle="{x:Static resx:Resources.TemperatureEvolution}"
                                                 ChartSubTitle=""
                                             IsRowColumnSwitched="True"
@@ -166,12 +166,12 @@
                         <chart:ClusteredBarChart.Series>
                             <chart:ChartSeries  SeriesTitle="Température"
                                             DisplayMember="Category"
-                                            ValueMember="Number"
+                                            ValueMember="NumberDouble"
                                             ItemsSource="{Binding Path=Temperatures}" />
                         </chart:ClusteredBarChart.Series>
                     </chart:ClusteredBarChart>
                     <!-- Heart Chart-->
-                    <chart:ClusteredBarChart    Grid.Row="1" Grid.Column="1"
+                    <!--<chart:ClusteredBarChart    Grid.Row="1" Grid.Column="1"
                                             ChartTitle="{x:Static resx:Resources.HeartBeatsEvolution}"
                                                 ChartSubTitle=""
                                             IsRowColumnSwitched="True"
@@ -182,7 +182,17 @@
                                             ValueMember="Number"
                                             ItemsSource="{Binding Path=Hearts}" />
                         </chart:ClusteredBarChart.Series>
-                    </chart:ClusteredBarChart>
+                    </chart:ClusteredBarChart>-->
+                    <DataGrid ItemsSource="{Binding Path=Hearts}" Grid.Column="1"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="{x:Static resx:Resources.Date}" Binding="{Binding Category}" />
+                            <DataGridTextColumn Header="{x:Static resx:Resources.Value}" Binding="{Binding NumberDouble}" />
+                        </DataGrid.Columns>
+                        
+                    </DataGrid>
                 </Grid>
             </DockPanel>
             

@@ -261,6 +261,9 @@
   <data name="Validate" xml:space="preserve">
     <value>Valider</value>
   </data>
+  <data name="Value" xml:space="preserve">
+    <value>Valeur</value>
+  </data>
   <data name="Weight" xml:space="preserve">
     <value>Poids (en kg)</value>
   </data>

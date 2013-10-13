@@ -493,6 +493,15 @@ namespace parent_bMedecine.Properties {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Valeur.
+        /// </summary>
+        public static string Value {
+            get {
+                return ResourceManager.GetString("Value", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Poids (en kg).
         /// </summary>
         public static string Weight {

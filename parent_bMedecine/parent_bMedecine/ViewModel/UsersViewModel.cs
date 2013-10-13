@@ -69,8 +69,6 @@ namespace parent_bMedecine.ViewModel
 
         private void RetrieveUsers()
         {
-            Users.Clear();
-
             ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient();
             try
             {
@@ -82,7 +80,7 @@ namespace parent_bMedecine.ViewModel
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur lors de la récupération des utilisateurs, veuillez réessayer.", "Erreur");
-            }       
+            }
         }
 
         private void DeleteUserExecute(Dbo.User user)

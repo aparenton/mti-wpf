@@ -187,10 +187,10 @@ namespace parent_bMedecine.ViewModel
         {
             try
             {
-                if (Hearts.Count >= 10)
+                if (Hearts.Count >= 30)
                     Hearts.RemoveAt(0);
 
-                Hearts.Add(new ChartObject() { Category = DateTime.Now.ToString(), Number = Convert.ToInt32(requestData * 100) });
+                Hearts.Add(new ChartObject() { Category = DateTime.Now.ToString(), NumberDouble = requestData });
             }
             catch (Exception ex)
             {
@@ -204,12 +204,11 @@ namespace parent_bMedecine.ViewModel
                 if (Temperatures.Count >= 10)
                     Temperatures.RemoveAt(0);
 
-                Temperatures.Add(new ChartObject() { Category = DateTime.Now.ToString(), Number = (int)requestData });
+                Temperatures.Add(new ChartObject() { Category = DateTime.Now.ToString(), NumberDouble = requestData });
             }
             catch (Exception ex)
             {
             }
-
         }
         #endregion // Methods
 

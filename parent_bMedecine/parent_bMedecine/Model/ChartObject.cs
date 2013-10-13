@@ -11,5 +11,6 @@ namespace parent_bMedecine.Model
         public string Category { get; set; }
 
         public int Number { get; set; }
+        public double NumberDouble { get; set; }
     }
 }
