@@ -67,7 +67,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
         #region Methods
         private void AddUserExecute(string password)
         {
-            Dbo.User newUser = new Dbo.User()
+            ServiceUser.User newUser = new ServiceUser.User()
             {
                 Connected = false,
                 Picture = Utilities.ImageManager.GetBytesFromImage(_photo),

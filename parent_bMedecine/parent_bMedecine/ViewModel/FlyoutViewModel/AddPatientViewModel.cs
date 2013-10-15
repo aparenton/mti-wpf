@@ -50,12 +50,12 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
         #region Methods
         private void AddPatientExecute()
         {
-            Dbo.Patient newPatient = new Dbo.Patient()
+            ServicePatient.Patient newPatient = new ServicePatient.Patient()
             {
                 Name = _name,
                 Firstname = _firstname,
                 Birthday = _birthday,
-                Observations = new List<Dbo.Observation>()
+                Observations = new List<ServicePatient.Observation>()
             };
 
             ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient();

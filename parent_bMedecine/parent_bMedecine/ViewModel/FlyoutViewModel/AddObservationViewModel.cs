@@ -13,7 +13,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
     public class AddObservationViewModel : ViewModelBase
     {
         #region Members
-        private Dbo.Patient _selectedPatient;
+        private ServicePatient.Patient _selectedPatient;
         private DateTime _date = DateTime.Now;
         private int _weight;
         private int _bloodpressure;
@@ -24,7 +24,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
         #endregion // Members
 
         #region Properties
-        public Dbo.Patient SelectedPatient
+        public ServicePatient.Patient SelectedPatient
         {
             get { return _selectedPatient; }
             set { _selectedPatient = value; RaisePropertyChanged("SelectedPatient"); }
@@ -97,19 +97,23 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
         #region Methods
         private void AddObservationExecute()
         {
-            Byte[][] pictures = new Byte[Pictures.Count][];
-            for (int i = 0; i < Pictures.Count(); i++)
+            List<Byte[]> pictures = new List<Byte[]>();
+            foreach (string picture in Pictures)
             {
-                pictures[i] = Utilities.ImageManager.GetBytesFromImage(Pictures.ElementAt(i));
+                pictures.Add(Utilities.ImageManager.GetBytesFromImage(picture));
             }
 
-            string[] prescriptions = new string[Prescriptions.Count];
+            List<string> prescriptions = new List<string>();
+            foreach (string prescription in Prescriptions)
+            {
+                prescriptions.Add(prescription);
+            }
             for (int i = 0; i < Prescriptions.Count(); i++)
             {
                 prescriptions[i] = Prescriptions.ElementAt(i);
             }
 
-            Dbo.Observation newObservation = new Dbo.Observation()
+            ServiceObservation.Observation newObservation = new ServiceObservation.Observation()
             {
                 BloodPressure = _bloodpressure,
                 Comment = _comment,
@@ -176,7 +180,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
             Pictures.RemoveAt(index);
         }
 
-        private void OnPatientSelectionExecute(Dbo.Patient patient)
+        private void OnPatientSelectionExecute(ServicePatient.Patient patient)
         {
             SelectedPatient = patient;
         }

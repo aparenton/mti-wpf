@@ -17,8 +17,8 @@ namespace parent_bMedecine.ViewModel
         #region Members
         private ViewModelBase _currentViewModel = SimpleIoc.Default.GetInstance<HomeViewModel>();
         private string _searchText = String.Empty;
-        private ObservableCollection<Dbo.Patient> _patients = new ObservableCollection<Dbo.Patient>();        
-        private Dbo.Patient _selectedPatient;
+        private ObservableCollection<ServicePatient.Patient> _patients = new ObservableCollection<ServicePatient.Patient>();
+        private ServicePatient.Patient _selectedPatient;
         private bool _readOnlyUserProfile = false;
         #endregion // Members
 
@@ -52,7 +52,7 @@ namespace parent_bMedecine.ViewModel
             }
         }
 
-        public ObservableCollection<Dbo.Patient> Patients
+        public ObservableCollection<ServicePatient.Patient> Patients
         {
             get
             {
@@ -64,7 +64,7 @@ namespace parent_bMedecine.ViewModel
             }
         }
 
-        public Dbo.Patient SelectedPatient
+        public ServicePatient.Patient SelectedPatient
         {
             get
             {
@@ -92,7 +92,7 @@ namespace parent_bMedecine.ViewModel
 
 
 
-        public RelayCommand<Dbo.Patient> SelectPatientCommand { get; private set; }
+        public RelayCommand<ServicePatient.Patient> SelectPatientCommand { get; private set; }
         public RelayCommand DeletePatientCommand { get; private set; }
         #endregion // Properties
 
@@ -102,7 +102,7 @@ namespace parent_bMedecine.ViewModel
             RetrievePatients();
 
             // Commands
-            SelectPatientCommand = new RelayCommand<Dbo.Patient>(p => this.SelectPatientExecute(p));
+            SelectPatientCommand = new RelayCommand<ServicePatient.Patient>(p => this.SelectPatientExecute(p));
             DeletePatientCommand = new RelayCommand(DeletePatientExecute);
 
             // Messages
@@ -114,7 +114,7 @@ namespace parent_bMedecine.ViewModel
         #endregion // Constructors
 
         #region Methods
-        private void SelectPatientExecute(Dbo.Patient patient)
+        private void SelectPatientExecute(ServicePatient.Patient patient)
         {
             if (patient == null)
                 return;
@@ -132,7 +132,7 @@ namespace parent_bMedecine.ViewModel
             ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient();
             try
             {
-                List<Dbo.Patient> res = client.GetListPatient();
+                List<ServicePatient.Patient> res = client.GetListPatient();
                 foreach (var patient in res)
                 {
                     if (patient.Firstname.ToLower().Contains(searchText.ToLower()) ||
@@ -155,7 +155,7 @@ namespace parent_bMedecine.ViewModel
             ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient();
             try
             {
-                List<Dbo.Patient> res = client.GetListPatient();
+                List<ServicePatient.Patient> res = client.GetListPatient();
                 foreach (var patient in res)
                     Patients.Add(patient);
                 client.Close();

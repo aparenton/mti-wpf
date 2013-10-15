@@ -9,29 +9,172 @@
 //------------------------------------------------------------------------------
 
 namespace parent_bMedecine.ServiceUser {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/Dbo")]
+    [System.SerializableAttribute()]
+    public partial class User : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool ConnectedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FirstnameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LoginField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private byte[] PictureField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PwdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RoleField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool Connected {
+            get {
+                return this.ConnectedField;
+            }
+            set {
+                if ((this.ConnectedField.Equals(value) != true)) {
+                    this.ConnectedField = value;
+                    this.RaisePropertyChanged("Connected");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Firstname {
+            get {
+                return this.FirstnameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FirstnameField, value) != true)) {
+                    this.FirstnameField = value;
+                    this.RaisePropertyChanged("Firstname");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Login {
+            get {
+                return this.LoginField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LoginField, value) != true)) {
+                    this.LoginField = value;
+                    this.RaisePropertyChanged("Login");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte[] Picture {
+            get {
+                return this.PictureField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PictureField, value) != true)) {
+                    this.PictureField = value;
+                    this.RaisePropertyChanged("Picture");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Pwd {
+            get {
+                return this.PwdField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PwdField, value) != true)) {
+                    this.PwdField = value;
+                    this.RaisePropertyChanged("Pwd");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Role {
+            get {
+                return this.RoleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RoleField, value) != true)) {
+                    this.RoleField = value;
+                    this.RaisePropertyChanged("Role");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceUser.IServiceUser")]
     public interface IServiceUser {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUser/GetListUser", ReplyAction="http://tempuri.org/IServiceUser/GetListUserResponse")]
-        System.Collections.Generic.List<Dbo.User> GetListUser();
+        System.Collections.Generic.List<parent_bMedecine.ServiceUser.User> GetListUser();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUser/GetListUser", ReplyAction="http://tempuri.org/IServiceUser/GetListUserResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Dbo.User>> GetListUserAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<parent_bMedecine.ServiceUser.User>> GetListUserAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUser/GetUser", ReplyAction="http://tempuri.org/IServiceUser/GetUserResponse")]
-        Dbo.User GetUser(string login);
+        parent_bMedecine.ServiceUser.User GetUser(string login);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUser/GetUser", ReplyAction="http://tempuri.org/IServiceUser/GetUserResponse")]
-        System.Threading.Tasks.Task<Dbo.User> GetUserAsync(string login);
+        System.Threading.Tasks.Task<parent_bMedecine.ServiceUser.User> GetUserAsync(string login);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUser/AddUser", ReplyAction="http://tempuri.org/IServiceUser/AddUserResponse")]
-        bool AddUser(Dbo.User user);
+        bool AddUser(parent_bMedecine.ServiceUser.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUser/AddUser", ReplyAction="http://tempuri.org/IServiceUser/AddUserResponse")]
-        System.Threading.Tasks.Task<bool> AddUserAsync(Dbo.User user);
+        System.Threading.Tasks.Task<bool> AddUserAsync(parent_bMedecine.ServiceUser.User user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceUser/DeleteUser", ReplyAction="http://tempuri.org/IServiceUser/DeleteUserResponse")]
         bool DeleteUser(string login);
@@ -85,27 +228,27 @@ namespace parent_bMedecine.ServiceUser {
                 base(binding, remoteAddress) {
         }
         
-        public System.Collections.Generic.List<Dbo.User> GetListUser() {
+        public System.Collections.Generic.List<parent_bMedecine.ServiceUser.User> GetListUser() {
             return base.Channel.GetListUser();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Dbo.User>> GetListUserAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<parent_bMedecine.ServiceUser.User>> GetListUserAsync() {
             return base.Channel.GetListUserAsync();
         }
         
-        public Dbo.User GetUser(string login) {
+        public parent_bMedecine.ServiceUser.User GetUser(string login) {
             return base.Channel.GetUser(login);
         }
         
-        public System.Threading.Tasks.Task<Dbo.User> GetUserAsync(string login) {
+        public System.Threading.Tasks.Task<parent_bMedecine.ServiceUser.User> GetUserAsync(string login) {
             return base.Channel.GetUserAsync(login);
         }
         
-        public bool AddUser(Dbo.User user) {
+        public bool AddUser(parent_bMedecine.ServiceUser.User user) {
             return base.Channel.AddUser(user);
         }
         
-        public System.Threading.Tasks.Task<bool> AddUserAsync(Dbo.User user) {
+        public System.Threading.Tasks.Task<bool> AddUserAsync(parent_bMedecine.ServiceUser.User user) {
             return base.Channel.AddUserAsync(user);
         }
         

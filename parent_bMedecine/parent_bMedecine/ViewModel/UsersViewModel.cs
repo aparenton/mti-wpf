@@ -13,12 +13,12 @@ namespace parent_bMedecine.ViewModel
     public class UsersViewModel : ViewModelBase
     {
         #region Members
-        private ObservableCollection<Dbo.User> _users = new ObservableCollection<Dbo.User>();
+        private ObservableCollection<ServiceUser.User> _users = new ObservableCollection<ServiceUser.User>();
         private bool _readOnlyUserProfile = false;
         #endregion // Members
 
         #region Properties
-        public ObservableCollection<Dbo.User> Users
+        public ObservableCollection<ServiceUser.User> Users
         {
             get
             {
@@ -43,7 +43,7 @@ namespace parent_bMedecine.ViewModel
             }
         }
 
-        public RelayCommand<Dbo.User> DeleteUserCommand { get; private set; }
+        public RelayCommand<ServiceUser.User> DeleteUserCommand { get; private set; }
         #endregion // Properties
 
         #region Constructors
@@ -52,7 +52,7 @@ namespace parent_bMedecine.ViewModel
             RetrieveUsers();
 
             // Commands
-            DeleteUserCommand = new RelayCommand<Dbo.User>(u => { DeleteUserExecute(u); });
+            DeleteUserCommand = new RelayCommand<ServiceUser.User>(u => { DeleteUserExecute(u); });
 
             // Messages
             MessengerInstance.Register<Message.OnLoginMessage>(this, m => { RetrieveUsers(); ReadOnlyUserProfile = m.ReadOnlyUserProfile; });
@@ -72,7 +72,7 @@ namespace parent_bMedecine.ViewModel
             ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient();
             try
             {
-                List<Dbo.User> res = client.GetListUser();
+                List<ServiceUser.User> res = client.GetListUser();
                 foreach (var user in res)
                     Users.Add(user);
                 client.Close();
@@ -83,7 +83,7 @@ namespace parent_bMedecine.ViewModel
             }
         }
 
-        private void DeleteUserExecute(Dbo.User user)
+        private void DeleteUserExecute(ServiceUser.User user)
         {
             ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient();
             try

@@ -9,29 +9,265 @@
 //------------------------------------------------------------------------------
 
 namespace parent_bMedecine.ServicePatient {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Patient", Namespace="http://schemas.datacontract.org/2004/07/Dbo")]
+    [System.SerializableAttribute()]
+    public partial class Patient : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime BirthdayField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FirstnameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<parent_bMedecine.ServicePatient.Observation> ObservationsField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Birthday {
+            get {
+                return this.BirthdayField;
+            }
+            set {
+                if ((this.BirthdayField.Equals(value) != true)) {
+                    this.BirthdayField = value;
+                    this.RaisePropertyChanged("Birthday");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Firstname {
+            get {
+                return this.FirstnameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FirstnameField, value) != true)) {
+                    this.FirstnameField = value;
+                    this.RaisePropertyChanged("Firstname");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<parent_bMedecine.ServicePatient.Observation> Observations {
+            get {
+                return this.ObservationsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ObservationsField, value) != true)) {
+                    this.ObservationsField = value;
+                    this.RaisePropertyChanged("Observations");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Observation", Namespace="http://schemas.datacontract.org/2004/07/Dbo")]
+    [System.SerializableAttribute()]
+    public partial class Observation : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int BloodPressureField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CommentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<byte[]> PicturesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Collections.Generic.List<string> PrescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int WeightField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int BloodPressure {
+            get {
+                return this.BloodPressureField;
+            }
+            set {
+                if ((this.BloodPressureField.Equals(value) != true)) {
+                    this.BloodPressureField = value;
+                    this.RaisePropertyChanged("BloodPressure");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Comment {
+            get {
+                return this.CommentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CommentField, value) != true)) {
+                    this.CommentField = value;
+                    this.RaisePropertyChanged("Comment");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Date {
+            get {
+                return this.DateField;
+            }
+            set {
+                if ((this.DateField.Equals(value) != true)) {
+                    this.DateField = value;
+                    this.RaisePropertyChanged("Date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<byte[]> Pictures {
+            get {
+                return this.PicturesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PicturesField, value) != true)) {
+                    this.PicturesField = value;
+                    this.RaisePropertyChanged("Pictures");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Collections.Generic.List<string> Prescription {
+            get {
+                return this.PrescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PrescriptionField, value) != true)) {
+                    this.PrescriptionField = value;
+                    this.RaisePropertyChanged("Prescription");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Weight {
+            get {
+                return this.WeightField;
+            }
+            set {
+                if ((this.WeightField.Equals(value) != true)) {
+                    this.WeightField = value;
+                    this.RaisePropertyChanged("Weight");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicePatient.IServicePatient")]
     public interface IServicePatient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicePatient/GetListPatient", ReplyAction="http://tempuri.org/IServicePatient/GetListPatientResponse")]
-        System.Collections.Generic.List<Dbo.Patient> GetListPatient();
+        System.Collections.Generic.List<parent_bMedecine.ServicePatient.Patient> GetListPatient();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicePatient/GetListPatient", ReplyAction="http://tempuri.org/IServicePatient/GetListPatientResponse")]
-        System.Threading.Tasks.Task<System.Collections.Generic.List<Dbo.Patient>> GetListPatientAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<parent_bMedecine.ServicePatient.Patient>> GetListPatientAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicePatient/GetPatient", ReplyAction="http://tempuri.org/IServicePatient/GetPatientResponse")]
-        Dbo.Patient GetPatient(int id);
+        parent_bMedecine.ServicePatient.Patient GetPatient(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicePatient/GetPatient", ReplyAction="http://tempuri.org/IServicePatient/GetPatientResponse")]
-        System.Threading.Tasks.Task<Dbo.Patient> GetPatientAsync(int id);
+        System.Threading.Tasks.Task<parent_bMedecine.ServicePatient.Patient> GetPatientAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicePatient/AddPatient", ReplyAction="http://tempuri.org/IServicePatient/AddPatientResponse")]
-        bool AddPatient(Dbo.Patient user);
+        bool AddPatient(parent_bMedecine.ServicePatient.Patient user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicePatient/AddPatient", ReplyAction="http://tempuri.org/IServicePatient/AddPatientResponse")]
-        System.Threading.Tasks.Task<bool> AddPatientAsync(Dbo.Patient user);
+        System.Threading.Tasks.Task<bool> AddPatientAsync(parent_bMedecine.ServicePatient.Patient user);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServicePatient/DeletePatient", ReplyAction="http://tempuri.org/IServicePatient/DeletePatientResponse")]
         bool DeletePatient(int id);
@@ -67,27 +303,27 @@ namespace parent_bMedecine.ServicePatient {
                 base(binding, remoteAddress) {
         }
         
-        public System.Collections.Generic.List<Dbo.Patient> GetListPatient() {
+        public System.Collections.Generic.List<parent_bMedecine.ServicePatient.Patient> GetListPatient() {
             return base.Channel.GetListPatient();
         }
         
-        public System.Threading.Tasks.Task<System.Collections.Generic.List<Dbo.Patient>> GetListPatientAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<parent_bMedecine.ServicePatient.Patient>> GetListPatientAsync() {
             return base.Channel.GetListPatientAsync();
         }
         
-        public Dbo.Patient GetPatient(int id) {
+        public parent_bMedecine.ServicePatient.Patient GetPatient(int id) {
             return base.Channel.GetPatient(id);
         }
         
-        public System.Threading.Tasks.Task<Dbo.Patient> GetPatientAsync(int id) {
+        public System.Threading.Tasks.Task<parent_bMedecine.ServicePatient.Patient> GetPatientAsync(int id) {
             return base.Channel.GetPatientAsync(id);
         }
         
-        public bool AddPatient(Dbo.Patient user) {
+        public bool AddPatient(parent_bMedecine.ServicePatient.Patient user) {
             return base.Channel.AddPatient(user);
         }
         
-        public System.Threading.Tasks.Task<bool> AddPatientAsync(Dbo.Patient user) {
+        public System.Threading.Tasks.Task<bool> AddPatientAsync(parent_bMedecine.ServicePatient.Patient user) {
             return base.Channel.AddPatientAsync(user);
         }
         

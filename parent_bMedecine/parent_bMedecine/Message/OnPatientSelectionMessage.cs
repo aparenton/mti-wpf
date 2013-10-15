@@ -9,9 +9,9 @@ namespace parent_bMedecine.Message
 {
     public class OnPatientSelectionMessage : MessageBase
     {
-        public Dbo.Patient SelectedPatient { get; set; }
+        public ServicePatient.Patient SelectedPatient { get; set; }
 
-        public OnPatientSelectionMessage(Dbo.Patient selectedPatient)
+        public OnPatientSelectionMessage(ServicePatient.Patient selectedPatient)
         {
             SelectedPatient = selectedPatient;
         }

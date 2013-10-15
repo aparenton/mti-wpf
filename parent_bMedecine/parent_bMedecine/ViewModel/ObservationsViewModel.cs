@@ -15,8 +15,8 @@ namespace parent_bMedecine.ViewModel
     public class ObservationsViewModel : ViewModelBase, ServiceLive.IServiceLiveCallback
     {
         #region Members
-        private Dbo.Patient _selectedPatient;
-        private ObservableCollection<Dbo.Observation> _observations = new ObservableCollection<Dbo.Observation>();
+        private ServicePatient.Patient _selectedPatient;
+        private ObservableCollection<ServicePatient.Observation> _observations = new ObservableCollection<ServicePatient.Observation>();
         private int _selectedObservationIndex;
         private ObservableCollection<byte[]> _pictureList = new ObservableCollection<byte[]>();
         private ServiceLive.ServiceLiveClient _client;
@@ -28,7 +28,7 @@ namespace parent_bMedecine.ViewModel
         public ObservableCollection<ChartObject> Temperatures { get; private set; }
         public ObservableCollection<ChartObject> Hearts { get; private set; }
 
-        public Dbo.Patient SelectedPatient
+        public ServicePatient.Patient SelectedPatient
         {
             get
             {
@@ -41,7 +41,7 @@ namespace parent_bMedecine.ViewModel
             }
         }
 
-        public ObservableCollection<Dbo.Observation> Observations
+        public ObservableCollection<ServicePatient.Observation> Observations
         {
             get
             {
@@ -115,7 +115,7 @@ namespace parent_bMedecine.ViewModel
         #endregion // Constructors
 
         #region Methods
-        private void OnPatientSelectionExecute(Dbo.Patient patient)
+        private void OnPatientSelectionExecute(ServicePatient.Patient patient)
         {
             if (patient == null)
                 return;
@@ -127,7 +127,7 @@ namespace parent_bMedecine.ViewModel
 
             try
             {
-                List<Dbo.Observation> res = client.GetPatient(SelectedPatient.Id).Observations;
+                List<ServicePatient.Observation> res = client.GetPatient(SelectedPatient.Id).Observations;
                 if (!res.Any())
                     MessengerInstance.Send<Message.WhenNoObservationMessage>(new Message.WhenNoObservationMessage());
                 foreach (var observation in res)
