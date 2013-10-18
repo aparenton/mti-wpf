@@ -20,6 +20,7 @@ namespace parent_bMedecine.ViewModel
         private int _selectedObservationIndex;
         private ObservableCollection<byte[]> _pictureList = new ObservableCollection<byte[]>();
         private ServiceLive.ServiceLiveClient _client;
+        private object selectedItem = null;
         #endregion // Members
 
         #region Properties
@@ -78,12 +79,6 @@ namespace parent_bMedecine.ViewModel
             }
         }
 
-        public RelayCommand StartServiceLiveCommand { get; private set; }
-        public RelayCommand StopServiceLiveCommand { get; private set; }
-        #endregion // Properties
-
-        #region Constructors
-        private object selectedItem = null;
         public object SelectedItem
         {
             get
@@ -97,6 +92,11 @@ namespace parent_bMedecine.ViewModel
             }
         }
 
+        public RelayCommand StartServiceLiveCommand { get; private set; }
+        public RelayCommand StopServiceLiveCommand { get; private set; }
+        #endregion // Properties
+
+        #region Constructors
         public ObservationsViewModel()
         {
             Weights = new ObservableCollection<ChartObject>();
@@ -211,7 +211,5 @@ namespace parent_bMedecine.ViewModel
             }
         }
         #endregion // Methods
-
-        
     }
 }

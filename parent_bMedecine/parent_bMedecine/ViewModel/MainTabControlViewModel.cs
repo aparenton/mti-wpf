@@ -9,16 +9,5 @@ namespace parent_bMedecine.ViewModel
 {
     public class MainTabControlViewModel : ViewModelBase
     {
-        #region Members
-        #endregion // Members
-
-        #region Properties
-        #endregion // Properties
-
-        #region Constructors
-        #endregion // Constructors
-
-        #region Methods
-        #endregion // Methors
     }
 }

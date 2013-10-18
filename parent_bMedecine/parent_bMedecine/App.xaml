@@ -6,6 +6,8 @@
              d1p1:Ignorable="d" 
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
   <Application.Resources>
-    <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:parent_bMedecine.ViewModel" />
+    <!-- Had to move it in code-behind for navigation issue, check out App.xaml.cs
+      <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:parent_bMedecine.ViewModel" />
+      -->
   </Application.Resources>
 </Application>

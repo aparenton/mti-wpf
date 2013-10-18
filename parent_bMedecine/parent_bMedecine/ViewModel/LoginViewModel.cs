@@ -58,7 +58,7 @@ namespace parent_bMedecine.ViewModel
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur lors de l'authentification, veuillez réessayer.", "Erreur");
-            }            
+            }
         }
         #endregion // Methors
     }

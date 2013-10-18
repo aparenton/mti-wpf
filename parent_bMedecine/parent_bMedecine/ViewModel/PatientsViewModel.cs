@@ -99,7 +99,7 @@ namespace parent_bMedecine.ViewModel
         #region Constructors
         public PatientsViewModel()
         {
-            RetrievePatients();
+            //RetrievePatients();
 
             // Commands
             SelectPatientCommand = new RelayCommand<ServicePatient.Patient>(p => this.SelectPatientExecute(p));

@@ -49,7 +49,7 @@ namespace parent_bMedecine.ViewModel
         #region Constructors
         public UsersViewModel()
         {
-            RetrieveUsers();
+            //RetrieveUsers();
 
             // Commands
             DeleteUserCommand = new RelayCommand<ServiceUser.User>(u => { DeleteUserExecute(u); });
@@ -96,7 +96,7 @@ namespace parent_bMedecine.ViewModel
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur lors de la suppression de l'utilisateur, veuillez réessayer.", "Erreur");
-            }       
+            }
         }
         #endregion // Methors
     }
