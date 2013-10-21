@@ -24,14 +24,16 @@
         <TabItem Header="{x:Static resx:Resources.Observations}">
             <DockPanel>
                 <StackPanel DockPanel.Dock="Right">
-                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Date}">
-                        <ComboBox x:Name="ObservationDates"
-                                              ItemsSource="{Binding Observations}"
-                                              DisplayMemberPath="Date"
-                                              SelectedValuePath="Date" 
-                                              SelectedIndex="{Binding SelectedObservationIndex, Mode=TwoWay}" />
+                    <GroupBox DockPanel.Dock="Top"
+                              Header="{x:Static resx:Resources.Date}">
+                        <ComboBox   x:Name="ObservationDates"
+                                    ItemsSource="{Binding Observations}"
+                                    DisplayMemberPath="Date"
+                                    SelectedValuePath="Date" 
+                                    SelectedIndex="{Binding SelectedObservationIndex, Mode=TwoWay}" />
                     </GroupBox>
-                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Patient}">
+                    <GroupBox DockPanel.Dock="Top"
+                              Header="{x:Static resx:Resources.Patient}">
                         <StackPanel Orientation="Horizontal">
                             <Label Content="{Binding SelectedPatient.Name}" />
                             <Label Content="{Binding SelectedPatient.Firstname}" />
@@ -42,26 +44,35 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <GroupBox Header="{x:Static resx:Resources.Weight}" Grid.Column="0">
+                        <GroupBox Header="{x:Static resx:Resources.Weight}"
+                                  Grid.Column="0">
                             <Label Content="{Binding Path=SelectedItem.Weight, ElementName=ObservationDates}" />
                         </GroupBox>
-                        <GroupBox Header="{x:Static resx:Resources.BloodPressure}" Grid.Column="1">
+                        <GroupBox Header="{x:Static resx:Resources.BloodPressure}"
+                                  Grid.Column="1">
                             <Label Content="{Binding Path=SelectedItem.BloodPressure, ElementName=ObservationDates}" />
                         </GroupBox>
                     </Grid>
-                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Comment}">
+                    <GroupBox DockPanel.Dock="Top"
+                              Header="{x:Static resx:Resources.Comment}">
                         <TextBlock Text="{Binding Path=SelectedItem.Comment, ElementName=ObservationDates}" 
                                    TextWrapping="Wrap"
-                                   ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                   ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                     </GroupBox>
-                    <GroupBox DockPanel.Dock="Top" Header="{x:Static resx:Resources.Prescription}">
-                        <ListView ItemsSource="{Binding Path=SelectedItem.Prescription, ElementName=ObservationDates}" BorderThickness="0" />
+                    <GroupBox DockPanel.Dock="Top"
+                              Header="{x:Static resx:Resources.Prescription}">
+                        <ListView ItemsSource="{Binding Path=SelectedItem.Prescription, ElementName=ObservationDates}"
+                                  BorderThickness="0" />
                     </GroupBox>
-                    <Controls:FlipView DockPanel.Dock="Top" IsBannerEnabled="False" ItemsSource="{Binding Path=SelectedItem.Pictures, ElementName=ObservationDates}">
+                    <Controls:FlipView DockPanel.Dock="Top"
+                                       IsBannerEnabled="False"
+                                       ItemsSource="{Binding Path=SelectedItem.Pictures, ElementName=ObservationDates}">
                         <Controls:FlipView.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
-                                    <Image Source="{Binding }" Width="300" Height="300" />
+                                    <Image Source="{Binding }"
+                                           Width="300" Height="300" />
                                 </Grid>
                             </DataTemplate>
                         </Controls:FlipView.ItemTemplate>
@@ -107,7 +118,7 @@
                             <SolidColorBrush x:Key="Brush4" Color="#FFFFC000" />
                         </ResourceDictionary>
                     </chart:ResourceDictionaryCollection>
-                </Grid.Resources>                
+                </Grid.Resources>
                 <!-- Weight Chart-->
                 <chart:ClusteredBarChart    Grid.Row="0" Grid.Column="0"
                                             ChartTitle="{x:Static resx:Resources.WeightEvolution}"
@@ -137,20 +148,25 @@
                                             ItemsSource="{Binding Path=BloodPressures}" />
                     </chart:ClusteredBarChart.Series>
                 </chart:ClusteredBarChart>
-                
-            </Grid>        
+            </Grid>
         </TabItem>
         <TabItem Header="{x:Static resx:Resources.Live}">
             <DockPanel>
-                <GroupBox Header="{x:Static resx:Resources.RetrieveLiveData}" DockPanel.Dock="Top">
+                <GroupBox Header="{x:Static resx:Resources.RetrieveLiveData}"
+                          DockPanel.Dock="Top">
                     <Grid HorizontalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Button Content="{x:Static resx:Resources.StartLiveData}" Command="{Binding StartServiceLiveCommand}" Margin="2" />
-                        <Button Content="{x:Static resx:Resources.StopLiveData}" Command="{Binding StopServiceLiveCommand}" Grid.Column="1" Margin="2" />
-                    </Grid>                    
+                        <Button Content="{x:Static resx:Resources.StartLiveData}"
+                                Command="{Binding StartServiceLiveCommand}"
+                                Margin="2" />
+                        <Button Content="{x:Static resx:Resources.StopLiveData}"
+                                Command="{Binding StopServiceLiveCommand}"
+                                Grid.Column="1"
+                                Margin="2" />
+                    </Grid>
                 </GroupBox>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -160,14 +176,14 @@
                     <!-- Temperature Chart-->
                     <chart:ClusteredBarChart Grid.Row="1" Grid.Column="0"
                                             ChartTitle="{x:Static resx:Resources.TemperatureEvolution}"
-                                                ChartSubTitle=""
+                                            ChartSubTitle=""
                                             IsRowColumnSwitched="True"
                                             SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
                         <chart:ClusteredBarChart.Series>
                             <chart:ChartSeries  SeriesTitle="Température"
-                                            DisplayMember="Category"
-                                            ValueMember="NumberDouble"
-                                            ItemsSource="{Binding Path=Temperatures}" />
+                                                DisplayMember="Category"
+                                                ValueMember="NumberDouble"
+                                                ItemsSource="{Binding Path=Temperatures}" />
                         </chart:ClusteredBarChart.Series>
                     </chart:ClusteredBarChart>
                     <!-- Heart Chart-->
@@ -183,19 +199,20 @@
                                             ItemsSource="{Binding Path=Hearts}" />
                         </chart:ClusteredBarChart.Series>
                     </chart:ClusteredBarChart>-->
-                    <DataGrid ItemsSource="{Binding Path=Hearts}" Grid.Column="1"
+                    <DataGrid ItemsSource="{Binding Path=Hearts}"
+                              Grid.Column="1"
                               AutoGenerateColumns="False"
                               CanUserAddRows="False"
                               IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="{x:Static resx:Resources.Date}" Binding="{Binding Category}" />
-                            <DataGridTextColumn Header="{x:Static resx:Resources.Value}" Binding="{Binding NumberDouble}" />
+                            <DataGridTextColumn Header="{x:Static resx:Resources.Date}"
+                                                Binding="{Binding Category}" />
+                            <DataGridTextColumn Header="{x:Static resx:Resources.Value}"
+                                                Binding="{Binding NumberDouble}" />
                         </DataGrid.Columns>
-                        
                     </DataGrid>
                 </Grid>
             </DockPanel>
-            
         </TabItem>
     </Controls:MetroAnimatedSingleRowTabControl>
 </UserControl>

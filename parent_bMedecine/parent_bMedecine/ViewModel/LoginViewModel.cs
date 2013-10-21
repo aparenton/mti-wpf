@@ -11,6 +11,9 @@ using System.Windows.Controls;
 
 namespace parent_bMedecine.ViewModel
 {
+    /// <summary>
+    /// LoginViewModel class for LoginView
+    /// </summary>
     public class LoginViewModel : ViewModelBase
     {
         #region Members
@@ -18,6 +21,9 @@ namespace parent_bMedecine.ViewModel
         #endregion // Members
 
         #region Properties
+        /// <summary>
+        /// User account name
+        /// </summary>
         public string AccountName
         {
             get { return _accountName; }
@@ -32,13 +38,21 @@ namespace parent_bMedecine.ViewModel
         #endregion // Properties
 
         #region Constructors
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public LoginViewModel()
         {
+            // Command
             LoginCommand = new RelayCommand<object>(s => LoginExecute(((PasswordBox)s).Password));
         }
         #endregion // Constructors
 
         #region Methods
+        /// <summary>
+        /// Call web service to authenticate user
+        /// </summary>
+        /// <param name="accountPassword">user password</param>
         private void LoginExecute(string accountPassword)
         {
             ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient();
@@ -55,7 +69,7 @@ namespace parent_bMedecine.ViewModel
                     MessageBox.Show("Identifiant et/ou mot de passe incorrect.", "Alerte");
                 client.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Erreur lors de l'authentification, veuillez réessayer.", "Erreur");
             }

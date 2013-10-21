@@ -12,15 +12,18 @@ using System.Windows;
 
 namespace parent_bMedecine.ViewModel
 {
+    /// <summary>
+    /// ObservationsViewModel class for ObservationsView
+    /// </summary>
     public class ObservationsViewModel : ViewModelBase, ServiceLive.IServiceLiveCallback
     {
         #region Members
         private ServicePatient.Patient _selectedPatient;
         private ObservableCollection<ServicePatient.Observation> _observations = new ObservableCollection<ServicePatient.Observation>();
         private int _selectedObservationIndex;
-        private ObservableCollection<byte[]> _pictureList = new ObservableCollection<byte[]>();
+        private ObservableCollection<byte[]> _pictureList                      = new ObservableCollection<byte[]>();
         private ServiceLive.ServiceLiveClient _client;
-        private object selectedItem = null;
+        private object selectedItem                                            = null;
         #endregion // Members
 
         #region Properties
@@ -29,6 +32,9 @@ namespace parent_bMedecine.ViewModel
         public ObservableCollection<ChartObject> Temperatures { get; private set; }
         public ObservableCollection<ChartObject> Hearts { get; private set; }
 
+        /// <summary>
+        /// Selected patient by user
+        /// </summary>
         public ServicePatient.Patient SelectedPatient
         {
             get
@@ -41,31 +47,28 @@ namespace parent_bMedecine.ViewModel
                 RaisePropertyChanged("SelectedPatient");
             }
         }
-
+        
+        /// <summary>
+        /// Patient observation list
+        /// </summary>
         public ObservableCollection<ServicePatient.Observation> Observations
         {
-            get
-            {
-                return _observations;
-            }
-            set
-            {
-                _observations = value;
-            }
+            get { return _observations; }
+            set { _observations = value; }
         }
 
+        /// <summary>
+        /// Patient observations picture list
+        /// </summary>
         public ObservableCollection<byte[]> PictureList
         {
-            get
-            {
-                return _pictureList;
-            }
-            set
-            {
-                _pictureList = value;
-            }
+            get { return _pictureList; }
+            set { _pictureList = value; }
         }
 
+        /// <summary>
+        /// Selected observation index by user
+        /// </summary>
         public int SelectedObservationIndex
         {
             get
@@ -79,17 +82,13 @@ namespace parent_bMedecine.ViewModel
             }
         }
 
+        /// <summary>
+        /// Selected chart object by user for highlight
+        /// </summary>
         public object SelectedItem
         {
-            get
-            {
-                return selectedItem;
-            }
-            set
-            {
-                // selected item has changed
-                selectedItem = value;
-            }
+            get { return selectedItem; }
+            set { selectedItem = value; }
         }
 
         public RelayCommand StartServiceLiveCommand { get; private set; }
@@ -97,16 +96,20 @@ namespace parent_bMedecine.ViewModel
         #endregion // Properties
 
         #region Constructors
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public ObservationsViewModel()
         {
-            Weights = new ObservableCollection<ChartObject>();
-            BloodPressures = new ObservableCollection<ChartObject>();
-            Hearts = new ObservableCollection<ChartObject>();
-            Temperatures = new ObservableCollection<ChartObject>();
+            // ChartObjects
+            Weights                 = new ObservableCollection<ChartObject>();
+            BloodPressures          = new ObservableCollection<ChartObject>();
+            Hearts                  = new ObservableCollection<ChartObject>();
+            Temperatures            = new ObservableCollection<ChartObject>();
 
             // Commands
             StartServiceLiveCommand = new RelayCommand(StartServiceLiveExecute);
-            StopServiceLiveCommand = new RelayCommand(StopServiceLiveExecute);
+            StopServiceLiveCommand  = new RelayCommand(StopServiceLiveExecute);
 
             // Messages
             MessengerInstance.Register<Message.OnLogoutMessage>(this, m => { Reset(); });
@@ -115,6 +118,10 @@ namespace parent_bMedecine.ViewModel
         #endregion // Constructors
 
         #region Methods
+        /// <summary>
+        /// Retrieve patient observations data on selection by user
+        /// </summary>
+        /// <param name="patient"></param>
         private void OnPatientSelectionExecute(ServicePatient.Patient patient)
         {
             if (patient == null)
@@ -140,12 +147,15 @@ namespace parent_bMedecine.ViewModel
                 }
                 SelectedObservationIndex = 0;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Erreur lors de la récupération des observations, veuillez réessayer.", "Erreur");
             }
         }
 
+        /// <summary>
+        /// Reset the view model properties
+        /// </summary>
         private void Reset()
         {
             Observations.Clear();
@@ -159,6 +169,9 @@ namespace parent_bMedecine.ViewModel
             StopServiceLiveExecute();
         }
 
+        /// <summary>
+        /// Retrieve live data from duplex web service
+        /// </summary>
         private void StartServiceLiveExecute()
         {
             System.ServiceModel.InstanceContext context = new System.ServiceModel.InstanceContext(this);
@@ -168,12 +181,15 @@ namespace parent_bMedecine.ViewModel
             {
                 _client.SubscribeAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Erreur lors de la récupération des données Live, veuillez réessayer.", "Erreur");
             }
         }
 
+        /// <summary>
+        /// Stop live service data push
+        /// </summary>
         private void StopServiceLiveExecute()
         {
             if (_client != null)
@@ -183,6 +199,10 @@ namespace parent_bMedecine.ViewModel
             }
         }
 
+        /// <summary>
+        /// Handle heart data from duplex web service
+        /// </summary>
+        /// <param name="requestData"></param>
         public void PushDataHeart(double requestData)
         {
             try
@@ -192,11 +212,15 @@ namespace parent_bMedecine.ViewModel
 
                 Hearts.Add(new ChartObject() { Category = DateTime.Now.ToString(), NumberDouble = requestData });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
 
+        /// <summary>
+        /// Handle temperature data from duplex web service
+        /// </summary>
+        /// <param name="requestData"></param>
         public void PushDataTemp(double requestData)
         {
             try
@@ -206,7 +230,7 @@ namespace parent_bMedecine.ViewModel
 
                 Temperatures.Add(new ChartObject() { Category = DateTime.Now.ToString(), NumberDouble = requestData });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }

@@ -25,6 +25,11 @@ namespace parent_bMedecine.View.Flyout
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Open observation panel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddObservation_Click(object sender, RoutedEventArgs e)
         {
             MainWindow parentWindow = (MainWindow)Window.GetWindow(this);

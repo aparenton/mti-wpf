@@ -25,6 +25,11 @@ namespace parent_bMedecine.View.Flyout
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Open patient panel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddPatient_Click(object sender, RoutedEventArgs e)
         {
             MainWindow parentWindow = (MainWindow)Window.GetWindow(this);

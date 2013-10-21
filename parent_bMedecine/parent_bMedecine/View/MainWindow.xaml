@@ -36,10 +36,14 @@
                             <SolidColorBrush x:Key="BlackBrush" Color="White" />
                         </Rectangle.Resources>
                         <Rectangle.Fill>
-                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_door_leave}" />
+                            <VisualBrush Stretch="Fill"
+                                         Visual="{StaticResource appbar_door_leave}" />
                         </Rectangle.Fill>
                     </Rectangle>
-                    <TextBlock Text="{Binding UserAccountName}" Foreground="White" VerticalAlignment="Center" Padding="7, 0, 0, 0"/>
+                    <TextBlock Text="{Binding UserAccountName}"
+                               Foreground="White"
+                               VerticalAlignment="Center"
+                               Padding="7, 0, 0, 0" />
                 </StackPanel>
             </Button>
         </Controls:WindowCommands>

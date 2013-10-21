@@ -25,6 +25,11 @@ namespace parent_bMedecine.View
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Open user panel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddUser_Click(object sender, RoutedEventArgs e)
         {
             MainWindow parentWindow = (MainWindow)Window.GetWindow(this);

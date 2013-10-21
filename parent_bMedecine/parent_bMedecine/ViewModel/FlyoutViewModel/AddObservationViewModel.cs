@@ -10,91 +10,148 @@ using System.Windows;
 
 namespace parent_bMedecine.ViewModel.FlyoutViewModel
 {
+    /// <summary>
+    /// AddObservationViewModel class for AddObservationFlyout
+    /// </summary>
     public class AddObservationViewModel : ViewModelBase
     {
         #region Members
-        private ServicePatient.Patient _selectedPatient;
-        private DateTime _date = DateTime.Now;
-        private int _weight;
-        private int _bloodpressure;
-        private string _comment = string.Empty;
-        private string _prescription = string.Empty;
-        private ObservableCollection<string> _pictures = new ObservableCollection<string>();
+        private ServicePatient.Patient       _selectedPatient;
+        private DateTime                     _date          = DateTime.Now;
+        private int                          _weight;
+        private int                          _bloodpressure;
+        private string                       _comment       = string.Empty;
+        private string                       _prescription  = string.Empty;
+        private ObservableCollection<string> _pictures      = new ObservableCollection<string>();
         private ObservableCollection<string> _prescriptions = new ObservableCollection<string>();
         #endregion // Members
 
         #region Properties
+        /// <summary>
+        /// Selected patient by user
+        /// </summary>
         public ServicePatient.Patient SelectedPatient
         {
             get { return _selectedPatient; }
-            set { _selectedPatient = value; RaisePropertyChanged("SelectedPatient"); }
+            set
+            {
+                _selectedPatient = value;
+                RaisePropertyChanged("SelectedPatient"); 
+            }
         }
 
+        /// <summary>
+        /// Observation date
+        /// </summary>
         public DateTime Date
         {
             get { return _date; }
-            set { _date = value; RaisePropertyChanged("Date"); }
+            set
+            {
+                _date = value;
+                RaisePropertyChanged("Date");
+            }
         }
 
+        /// <summary>
+        /// Patient weight
+        /// </summary>
         public int Weight
         {
             get { return _weight; }
-            set { _weight = value; RaisePropertyChanged("Weight"); }
+            set
+            {
+                _weight = value;
+                RaisePropertyChanged("Weight");
+            }
         }
 
+        /// <summary>
+        /// Patient blood pressure
+        /// </summary>
         public int BloodPressure
         {
             get { return _bloodpressure; }
-            set { _bloodpressure = value; RaisePropertyChanged("BloodPressure"); }
+            set
+            {
+                _bloodpressure = value;
+                RaisePropertyChanged("BloodPressure");
+            }
         }
 
+        /// <summary>
+        /// Observation comment
+        /// </summary>
         public string Comment
         {
             get { return _comment; }
-            set { _comment = value; RaisePropertyChanged("Comment"); }
+            set
+            {
+                _comment = value;
+                RaisePropertyChanged("Comment");
+            }
         }
 
+        /// <summary>
+        /// Observation prescription
+        /// </summary>
         public string Prescription
         {
             get { return _prescription; }
-            set { _prescription = value; RaisePropertyChanged("Prescription"); }
+            set
+            {
+                _prescription = value;
+                RaisePropertyChanged("Prescription");
+            }
         }
 
+        /// <summary>
+        /// Observation pictures
+        /// </summary>
         public ObservableCollection<string> Pictures
         {
             get { return _pictures; }
             set { _pictures = value; }
         }
 
+        /// <summary>
+        /// Observation prescriptions
+        /// </summary>
         public ObservableCollection<string> Prescriptions
         {
             get { return _prescriptions; }
             set { _prescriptions = value; }
         }
 
-        public RelayCommand AddObservationCommand { get; private set; }
-        public RelayCommand AddObservationPictureCommand { get; private set; }
-        public RelayCommand AddObservationPrescriptionCommand { get; private set; }
-        public RelayCommand<int> DeleteObservationPictureCommand { get; private set; }
-        public RelayCommand<int> DeleteObservationPrescriptionCommand { get; private set; }
+        public RelayCommand         AddObservationCommand { get; private set; }
+        public RelayCommand         AddObservationPictureCommand { get; private set; }
+        public RelayCommand         AddObservationPrescriptionCommand { get; private set; }
+        public RelayCommand<int>    DeleteObservationPictureCommand { get; private set; }
+        public RelayCommand<int>    DeleteObservationPrescriptionCommand { get; private set; }
         #endregion // Properties
 
         #region Constructors
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public AddObservationViewModel()
         {
             // Messages
             MessengerInstance.Register<Message.OnPatientSelectionMessage>(this, m => { OnPatientSelectionExecute(m.SelectedPatient); });
 
             // Commands
-            AddObservationCommand = new RelayCommand(AddObservationExecute);
-            AddObservationPictureCommand = new RelayCommand(AddObservationPictureExecute);
-            AddObservationPrescriptionCommand = new RelayCommand(AddObservationPrescriptionExecute);
-            DeleteObservationPictureCommand = new RelayCommand<int>(i => DeleteObservationPictureExecute(i));
+            AddObservationCommand                = new RelayCommand(AddObservationExecute);
+            AddObservationPictureCommand         = new RelayCommand(AddObservationPictureExecute);
+            AddObservationPrescriptionCommand    = new RelayCommand(AddObservationPrescriptionExecute);
+            DeleteObservationPictureCommand      = new RelayCommand<int>(i => DeleteObservationPictureExecute(i));
             DeleteObservationPrescriptionCommand = new RelayCommand<int>(i => DeleteObservationPrescriptionExecute(i));
         }
         #endregion // Constructors
 
         #region Methods
+        /// <summary>
+        /// Create observation object and call web service to add it
+        /// </summary>
         private void AddObservationExecute()
         {
             List<Byte[]> pictures = new List<Byte[]>();
@@ -108,19 +165,15 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
             {
                 prescriptions.Add(prescription);
             }
-            for (int i = 0; i < Prescriptions.Count(); i++)
-            {
-                prescriptions[i] = Prescriptions.ElementAt(i);
-            }
 
             ServiceObservation.Observation newObservation = new ServiceObservation.Observation()
             {
                 BloodPressure = _bloodpressure,
-                Comment = _comment,
-                Date = _date,
-                Pictures = pictures,
-                Prescription = prescriptions,
-                Weight = _weight
+                Comment       = _comment,
+                Date          = _date,
+                Pictures      = pictures,
+                Prescription  = prescriptions,
+                Weight        = _weight
             };
 
             ServiceObservation.ServiceObservationClient client = new ServiceObservation.ServiceObservationClient();
@@ -131,22 +184,25 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
                 if (res)
                     MessengerInstance.Send<Message.OnAddObservationMessage>(new Message.OnAddObservationMessage());
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Erreur lors de l'ajout de l'observation, veuillez réessayer.", "Erreur");
             }
             finally
             {
                 BloodPressure = 0;
-                Weight = 0;
-                Comment = string.Empty;
-                Prescription = string.Empty;
-                Date = DateTime.Now;
+                Weight        = 0;
+                Comment       = string.Empty;
+                Prescription  = string.Empty;
+                Date          = DateTime.Now;
                 Pictures.Clear();
                 Prescriptions.Clear();
             }
         }
 
+        /// <summary>
+        /// Open file dialog box to pick pictures for observation
+        /// </summary>
         private void AddObservationPictureExecute()
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
@@ -163,6 +219,9 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
             }
         }
 
+        /// <summary>
+        /// Add the prescription to the observation prescription list
+        /// </summary>
         private void AddObservationPrescriptionExecute()
         {
             Prescriptions.Add(Prescription);
@@ -170,16 +229,28 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
             RaisePropertyChanged("Prescription");
         }
 
+        /// <summary>
+        /// Remove observation prescription from the list
+        /// </summary>
+        /// <param name="index"></param>
         private void DeleteObservationPrescriptionExecute(int index)
         {
             Prescriptions.RemoveAt(index);
         }
 
+        /// <summary>
+        /// Remove observation picture from the list
+        /// </summary>
+        /// <param name="index"></param>
         private void DeleteObservationPictureExecute(int index)
         {
             Pictures.RemoveAt(index);
         }
 
+        /// <summary>
+        /// Set selected patient on selection by the user
+        /// </summary>
+        /// <param name="patient"></param>
         private void OnPatientSelectionExecute(ServicePatient.Patient patient)
         {
             SelectedPatient = patient;

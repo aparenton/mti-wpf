@@ -36,10 +36,13 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <Separator Grid.Row="0" Grid.Column="0" Background="White" />
-        <Separator Grid.Row="0" Grid.Column="1" Background="White" />
+        <Separator Grid.Row="0" Grid.Column="0"
+                   Background="White" />
+        <Separator Grid.Row="0" Grid.Column="1"
+                   Background="White" />
 
-        <TextBlock Text="{x:Static resx:Resources.Name}" Grid.Row="1" Grid.Column="0"
+        <TextBlock Text="{x:Static resx:Resources.Name}"
+                   Grid.Row="1" Grid.Column="0"
                    Margin="5"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
@@ -53,7 +56,8 @@
                  Width="250"
                  VerticalContentAlignment="Center" />
 
-        <TextBlock Text="{x:Static resx:Resources.Firstname}" Grid.Row="2" Grid.Column="0"
+        <TextBlock Text="{x:Static resx:Resources.Firstname}"
+                   Grid.Row="2" Grid.Column="0"
                    Margin="5"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
@@ -67,12 +71,14 @@
                  Width="250"
                  VerticalContentAlignment="Center" />
 
-        <TextBlock Text="{x:Static resx:Resources.Birthday}" Grid.Row="3" Grid.Column="0" 
+        <TextBlock Text="{x:Static resx:Resources.Birthday}"
+                   Grid.Row="3" Grid.Column="0" 
                    Margin="5"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
                    Foreground="White" />
-        <DatePicker Grid.Row="3" Grid.Column="1" Margin="5" 
+        <DatePicker Grid.Row="3" Grid.Column="1"
+                    Margin="5" 
                     Controls:TextboxHelper.Watermark="{x:Static resx:Resources.SelectDate}" 
                     SelectedDate="{Binding Birthday}"
                     VerticalAlignment="Center"
@@ -80,12 +86,15 @@
                     Width="250"
                     VerticalContentAlignment="Center" />
 
-        <Separator Grid.Row="4" Grid.Column="0" Background="White" />
-        <Separator Grid.Row="4" Grid.Column="1" Background="White" />
+        <Separator Grid.Row="4" Grid.Column="0"
+                   Background="White" />
+        <Separator Grid.Row="4" Grid.Column="1"
+                   Background="White" />
 
-        <Button Content="{x:Static resx:Resources.Validate}" Grid.Row="5" Grid.Column="1" Width="200"
+        <Button Content="{x:Static resx:Resources.Validate}"
+                Grid.Row="5" Grid.Column="1"
+                Width="200"
                 Command="{Binding AddPatientCommand}"
-                Click="AddPatient_Click"/>
-
+                Click="AddPatient_Click" />
     </Grid>
 </UserControl>

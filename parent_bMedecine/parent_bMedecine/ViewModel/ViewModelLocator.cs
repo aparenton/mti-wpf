@@ -1,17 +1,3 @@
-/*
-  In App.xaml:
-  <Application.Resources>
-      <vm:ViewModelLocator xmlns:vm="clr-namespace:parent_bMedecine"
-                           x:Key="Locator" />
-  </Application.Resources>
-  
-  In the View:
-  DataContext="{Binding Source={StaticResource Locator}, Path=ViewModelName}"
-
-  You can also use Blend to do all this with the tool's support.
-  See http://www.galasoft.ch/mvvm
-*/
-
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
@@ -32,27 +18,18 @@ namespace parent_bMedecine.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            ////if (ViewModelBase.IsInDesignModeStatic)
-            ////{
-            ////    // Create design time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-            ////}
-            ////else
-            ////{
-            ////    // Create run time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DataService>();
-            ////}
-
+            // Window ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
 
+            // UserControl ViewModels
             SimpleIoc.Default.Register<MainTabControlViewModel>();
-
             SimpleIoc.Default.Register<HomeViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<PatientsViewModel>();
             SimpleIoc.Default.Register<ObservationsViewModel>();
             SimpleIoc.Default.Register<UsersViewModel>();
 
+            // Flyouts ViewModels
             SimpleIoc.Default.Register<AddUserViewModel>();
             SimpleIoc.Default.Register<AddPatientViewModel>();
             SimpleIoc.Default.Register<AddObservationViewModel>();
@@ -142,17 +119,13 @@ namespace parent_bMedecine.ViewModel
 
         public static void Cleanup()
         {
-            // TODO Clear the ViewModels
             SimpleIoc.Default.Unregister<MainViewModel>();
-
             SimpleIoc.Default.Unregister<MainTabControlViewModel>();
-
             SimpleIoc.Default.Unregister<HomeViewModel>();
             SimpleIoc.Default.Unregister<LoginViewModel>();
             SimpleIoc.Default.Unregister<PatientsViewModel>();
             SimpleIoc.Default.Unregister<ObservationsViewModel>();
             SimpleIoc.Default.Unregister<UsersViewModel>();
-
             SimpleIoc.Default.Unregister<AddUserViewModel>();
             SimpleIoc.Default.Unregister<AddPatientViewModel>();
             SimpleIoc.Default.Unregister<AddObservationViewModel>();

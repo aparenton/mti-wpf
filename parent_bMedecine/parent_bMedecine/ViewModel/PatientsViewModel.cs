@@ -12,17 +12,23 @@ using System.Windows.Controls;
 
 namespace parent_bMedecine.ViewModel
 {
+    /// <summary>
+    /// PatientsViewModel class for PatientsView
+    /// </summary>
     public class PatientsViewModel : ViewModelBase
     {
         #region Members
-        private ViewModelBase _currentViewModel = SimpleIoc.Default.GetInstance<HomeViewModel>();
-        private string _searchText = String.Empty;
+        private ViewModelBase _currentViewModel                        = SimpleIoc.Default.GetInstance<HomeViewModel>();
+        private string _searchText                                     = String.Empty;
         private ObservableCollection<ServicePatient.Patient> _patients = new ObservableCollection<ServicePatient.Patient>();
         private ServicePatient.Patient _selectedPatient;
-        private bool _readOnlyUserProfile = false;
+        private bool _readOnlyUserProfile                              = false;
         #endregion // Members
 
         #region Properties
+        /// <summary>
+        /// Current view model used with DataTemplate in PatientsView
+        /// </summary>
         public ViewModelBase CurrentViewModel
         {
             get
@@ -38,6 +44,9 @@ namespace parent_bMedecine.ViewModel
             }
         }
 
+        /// <summary>
+        /// Patient search text
+        /// </summary>
         public string SearchText
         {
             get
@@ -52,18 +61,18 @@ namespace parent_bMedecine.ViewModel
             }
         }
 
+        /// <summary>
+        /// Patient list
+        /// </summary>
         public ObservableCollection<ServicePatient.Patient> Patients
         {
-            get
-            {
-                return _patients;
-            }
-            set
-            {
-                _patients = value;
-            }
+            get { return _patients; }
+            set { _patients = value; }
         }
 
+        /// <summary>
+        /// Selected patient by user
+        /// </summary>
         public ServicePatient.Patient SelectedPatient
         {
             get
@@ -77,6 +86,9 @@ namespace parent_bMedecine.ViewModel
             }
         }
 
+        /// <summary>
+        /// Boolean value to know if current user is readonly or not
+        /// </summary>
         public bool ReadOnlyUserProfile 
         {
             get
@@ -90,17 +102,16 @@ namespace parent_bMedecine.ViewModel
             }
         }
 
-
-
         public RelayCommand<ServicePatient.Patient> SelectPatientCommand { get; private set; }
         public RelayCommand DeletePatientCommand { get; private set; }
         #endregion // Properties
 
         #region Constructors
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public PatientsViewModel()
         {
-            //RetrievePatients();
-
             // Commands
             SelectPatientCommand = new RelayCommand<ServicePatient.Patient>(p => this.SelectPatientExecute(p));
             DeletePatientCommand = new RelayCommand(DeletePatientExecute);
@@ -114,6 +125,10 @@ namespace parent_bMedecine.ViewModel
         #endregion // Constructors
 
         #region Methods
+        /// <summary>
+        /// On patient selection by user
+        /// </summary>
+        /// <param name="patient">selected patient</param>
         private void SelectPatientExecute(ServicePatient.Patient patient)
         {
             if (patient == null)
@@ -125,9 +140,13 @@ namespace parent_bMedecine.ViewModel
             MessengerInstance.Send<Message.OnPatientSelectionMessage>(new Message.OnPatientSelectionMessage(patient));
         }
 
+        /// <summary>
+        /// On text search, retrieve matching patients
+        /// </summary>
+        /// <param name="searchText">searched text</param>
         private void SearchTextExecute(string searchText)
         {
-            _patients.Clear();            
+            _patients.Clear();
 
             ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient();
             try
@@ -141,13 +160,16 @@ namespace parent_bMedecine.ViewModel
                 }
                 client.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Erreur lors de la recherche du patient, veuillez réessayer.", "Erreur");
             }
             RaisePropertyChanged("Patients");
         }
 
+        /// <summary>
+        /// Retrieve patients data from web service
+        /// </summary>
         private void RetrievePatients()
         {
             Patients.Clear();
@@ -160,12 +182,15 @@ namespace parent_bMedecine.ViewModel
                     Patients.Add(patient);
                 client.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Erreur lors de la récupération des patients, veuillez réessayer.", "Erreur");
             }
         }
 
+        /// <summary>
+        /// Call web service to delete a patient
+        /// </summary>
         private void DeletePatientExecute()
         {
             ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient();
@@ -178,12 +203,15 @@ namespace parent_bMedecine.ViewModel
                 else
                     MessageBox.Show("Le patient n'a pas pu être supprimé, veuillez réessayer.", "Alerte");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Erreur lors de la suppression du patient, veuillez réessayer.", "Erreur");
             }
         }
 
+        /// <summary>
+        /// Reset view model properties
+        /// </summary>
         private void Reset()
         {
             Patients.Clear();

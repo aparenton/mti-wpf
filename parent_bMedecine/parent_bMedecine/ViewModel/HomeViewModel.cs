@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace parent_bMedecine.ViewModel
 {
+    /// <summary>
+    /// HomeViewModel class for HomeView
+    /// </summary>
     public class HomeViewModel : ViewModelBase
     {
     }

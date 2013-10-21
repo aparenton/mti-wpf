@@ -25,6 +25,10 @@ namespace parent_bMedecine.View
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Simple method to toggle panel
+        /// </summary>
+        /// <param name="index">panel index</param>
         public void ToggleFlyout(int index)
         {
             var flyout = this.Flyouts.Items[index] as MahApps.Metro.Controls.Flyout;

@@ -25,6 +25,11 @@ namespace parent_bMedecine.View.Flyout
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Close user panel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NoButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow parentWindow = (MainWindow)Window.GetWindow(this);

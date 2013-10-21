@@ -41,22 +41,30 @@
                          Width="auto"
                          DockPanel.Dock="Top">
                 </TextBox>
-
-                <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
-                    <Button Margin="5" Click="AddPatient_Click" ToolTip="{x:Static resx:Resources.AddPatient}" 
+                <StackPanel Orientation="Horizontal"
+                            DockPanel.Dock="Bottom">
+                    <Button Margin="5"
+                            Click="AddPatient_Click"
+                            ToolTip="{x:Static resx:Resources.AddPatient}" 
                             Visibility="{Binding ReadOnlyUserProfile, Converter={StaticResource boolToVisibilityConverter}}">
-                        <Image Source="{Binding Source={x:Static img:Images.AddPatient}}" Width="64" Height="64" />
+                        <Image Source="{Binding Source={x:Static img:Images.AddPatient}}"
+                               Width="64" Height="64" />
                     </Button>
-                    <Button Margin="5" Click="DeletePatient_Click" ToolTip="{x:Static resx:Resources.DeletePatient}" 
+                    <Button Margin="5"
+                            Click="DeletePatient_Click"
+                            ToolTip="{x:Static resx:Resources.DeletePatient}" 
                             Visibility="{Binding ReadOnlyUserProfile, Converter={StaticResource boolToVisibilityConverter}}">
-                        <Image Source="{Binding Source={x:Static img:Images.DeletePatient}}" Width="64" Height="64" />
+                        <Image Source="{Binding Source={x:Static img:Images.DeletePatient}}"
+                               Width="64" Height="64" />
                     </Button>
-                    <Button Margin="5" Click="AddObservation_Click" ToolTip="{x:Static resx:Resources.AddObservation}" 
+                    <Button Margin="5"
+                            Click="AddObservation_Click"
+                            ToolTip="{x:Static resx:Resources.AddObservation}"
                             Visibility="{Binding ReadOnlyUserProfile, Converter={StaticResource boolToVisibilityConverter}}">
-                        <Image Source="{Binding Source={x:Static img:Images.AddObservation}}" Width="64" Height="64" />
+                        <Image Source="{Binding Source={x:Static img:Images.AddObservation}}"
+                               Width="64" Height="64" />
                     </Button>
                 </StackPanel>
-
                 <!-- Patient ListView -->
                 <ListView   x:Name="PatientListView"
                             DockPanel.Dock="Top"
@@ -66,25 +74,33 @@
                             ItemsSource="{Binding Patients}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseLeftButtonUp">
-                            <i:InvokeCommandAction Command="{Binding SelectPatientCommand}" CommandParameter="{Binding SelectedItem, ElementName=PatientListView}"/>
+                            <i:InvokeCommandAction Command="{Binding SelectPatientCommand}"
+                                                   CommandParameter="{Binding SelectedItem, ElementName=PatientListView}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <ListView.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="{x:Static resx:Resources.AddObservation}" Click="AddObservation_Click"
+                            <MenuItem Header="{x:Static resx:Resources.AddObservation}"
+                                      Click="AddObservation_Click"
                                       Visibility="{Binding ReadOnlyUserProfile, Converter={StaticResource boolToVisibilityConverter}}" />
-                            <MenuItem Header="{x:Static resx:Resources.DeletePatient}" Click="DeletePatient_Click"
+                            <MenuItem Header="{x:Static resx:Resources.DeletePatient}"
+                                      Click="DeletePatient_Click"
                                       Visibility="{Binding ReadOnlyUserProfile, Converter={StaticResource boolToVisibilityConverter}}" />
                         </ContextMenu>
                     </ListView.ContextMenu>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="2">
-                                <StackPanel Orientation="Horizontal" TextBlock.FontWeight="Bold" Margin="2">
+                                <StackPanel Orientation="Horizontal"
+                                            TextBlock.FontWeight="Bold"
+                                            Margin="2">
                                     <TextBlock Text="{Binding Path=Name}" />
-                                    <TextBlock Text="{Binding Path=Firstname}" Padding="3,0,0,0"/>
+                                    <TextBlock Text="{Binding Path=Firstname}"
+                                               Padding="3,0,0,0"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal" TextBlock.FontWeight="Light" Margin="2">
+                                <StackPanel Orientation="Horizontal"
+                                            TextBlock.FontWeight="Light"
+                                            Margin="2">
                                     <TextBlock Text="{x:Static resx:Resources.Born}" />
                                     <TextBlock Text="{Binding Path=Birthday, StringFormat=dd-MM-yyyy}" />
                                 </StackPanel>
@@ -94,8 +110,9 @@
                 </ListView>
             </DockPanel>
         </Grid>
-
         <!-- Main Content -->
-        <Controls:MetroContentControl HorizontalAlignment="Stretch" Margin="5" Content="{Binding CurrentViewModel}" />
+        <Controls:MetroContentControl HorizontalAlignment="Stretch"
+                                      Margin="5"
+                                      Content="{Binding CurrentViewModel}" />
     </DockPanel>
 </UserControl>

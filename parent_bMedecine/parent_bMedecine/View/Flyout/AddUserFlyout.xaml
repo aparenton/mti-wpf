@@ -21,15 +21,15 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Border x:Name="Border"
-                        CornerRadius="0"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        Background="{TemplateBinding Background}"
-                        TextBlock.Foreground="{TemplateBinding Foreground}"
-                        BorderBrush="#FF404040">
-                            <ContentPresenter Margin="2"
-                                      HorizontalAlignment="Center"
-                                      VerticalAlignment="Center"
-                                      RecognizesAccessKey="True" />
+                                CornerRadius="0"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                TextBlock.Foreground="{TemplateBinding Foreground}"
+                                BorderBrush="#FF404040">
+                            <ContentPresenter   Margin="2"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"
+                                                RecognizesAccessKey="True" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
@@ -43,7 +43,8 @@
         </Style>
     </UserControl.Resources>
 
-    <Grid DataContext="{Binding Source={StaticResource Locator}, Path=AddUserViewModel}" Margin="10,10,10,10">
+    <Grid DataContext="{Binding Source={StaticResource Locator}, Path=AddUserViewModel}"
+          Margin="10,10,10,10">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="115" />
@@ -71,25 +72,32 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <Separator Grid.Row="0" Grid.Column="0" Background="White" />
-        <Separator Grid.Row="0" Grid.Column="1" Background="White" />
+        <Separator Grid.Row="0" Grid.Column="0"
+                   Background="White" />
+        <Separator Grid.Row="0" Grid.Column="1"
+                   Background="White" />
 
-        <TextBlock Text="{x:Static resx:Resources.Picture}" 
-                   Grid.Row="1" Grid.Column="0" 
+        <TextBlock Text="{x:Static resx:Resources.Picture}"
+                   Grid.Row="1" Grid.Column="0"
                    Margin="2"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
                    Foreground="White" />
-        <Button Width="95" Height="95" Grid.Row="1" Grid.Column="1"
+        <Button Width="95" Height="95"
+                Grid.Row="1" Grid.Column="1"
                 Style="{StaticResource AvatarButtonStyle}"
                 Command="{Binding SelectPictureCommand}">
-            <Image Source="{Binding Photo}" Width="95" Height="95" />
+            <Image Source="{Binding Photo}"
+                   Width="95" Height="95" />
         </Button>
 
-        <Separator Grid.Row="2" Grid.Column="0" Background="White" />
-        <Separator Grid.Row="2" Grid.Column="1" Background="White" />
+        <Separator Grid.Row="2" Grid.Column="0"
+                   Background="White" />
+        <Separator Grid.Row="2" Grid.Column="1"
+                   Background="White" />
 
-        <TextBlock Text="{x:Static resx:Resources.Name}" Grid.Row="3" Grid.Column="0"
+        <TextBlock Text="{x:Static resx:Resources.Name}"
+                   Grid.Row="3" Grid.Column="0"
                    Margin="2"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
@@ -103,7 +111,8 @@
                  Width="250"
                  VerticalContentAlignment="Center" />
 
-        <TextBlock Text="{x:Static resx:Resources.Firstname}" Grid.Row="4" Grid.Column="0"
+        <TextBlock Text="{x:Static resx:Resources.Firstname}"
+                   Grid.Row="4" Grid.Column="0"
                    Margin="2"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
@@ -117,10 +126,13 @@
                  Width="250"
                  VerticalContentAlignment="Center" />
 
-        <Separator Grid.Row="5" Grid.Column="0" Background="White" />
-        <Separator Grid.Row="5" Grid.Column="1" Background="White" />
+        <Separator Grid.Row="5" Grid.Column="0"
+                   Background="White" />
+        <Separator Grid.Row="5" Grid.Column="1"
+                   Background="White" />
 
-        <TextBlock Text="{x:Static resx:Resources.Role}" Grid.Row="6" Grid.Column="0" 
+        <TextBlock Text="{x:Static resx:Resources.Role}"
+                   Grid.Row="6" Grid.Column="0"
                    Margin="2"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
@@ -134,10 +146,13 @@
                  Width="250"
                  VerticalContentAlignment="Center" />
 
-        <Separator Grid.Row="7" Grid.Column="0" Background="White" />
-        <Separator Grid.Row="7" Grid.Column="1" Background="White" />
+        <Separator Grid.Row="7" Grid.Column="0"
+                   Background="White" />
+        <Separator Grid.Row="7" Grid.Column="1"
+                   Background="White" />
 
-        <TextBlock Text="{x:Static resx:Resources.AccountName}" Grid.Row="8" Grid.Column="0" 
+        <TextBlock Text="{x:Static resx:Resources.AccountName}"
+                   Grid.Row="8" Grid.Column="0"
                    Margin="2"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
@@ -151,24 +166,29 @@
                  Width="250"
                  VerticalContentAlignment="Center" />
 
-        <TextBlock Text="{x:Static resx:Resources.Password}" Grid.Row="9" Grid.Column="0" 
+        <TextBlock Text="{x:Static resx:Resources.Password}"
+                   Grid.Row="9" Grid.Column="0"
                    Margin="2"
                    HorizontalAlignment="Right"
-                   VerticalAlignment="Center" 
+                   VerticalAlignment="Center"
                    Foreground="White" />
-        <PasswordBox x:Name="PasswordBox"
-                 Grid.Row="9" Grid.Column="1"
-                 Controls:TextboxHelper.ClearTextButton="True"
-                 Margin="2"
-                 VerticalAlignment="Center"
-                 HorizontalAlignment="Left"
-                 Width="250"
-                 VerticalContentAlignment="Center" />
+        <PasswordBox    x:Name="PasswordBox"
+                        Grid.Row="9" Grid.Column="1"
+                        Controls:TextboxHelper.ClearTextButton="True"
+                        Margin="2"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Width="250"
+                        VerticalContentAlignment="Center" />
 
-        <Separator Grid.Row="10" Grid.Column="0" Background="White" />
-        <Separator Grid.Row="10" Grid.Column="1" Background="White" />
+        <Separator Grid.Row="10" Grid.Column="0"
+                   Background="White" />
+        <Separator Grid.Row="10" Grid.Column="1"
+                   Background="White" />
 
-        <Button Content="{x:Static resx:Resources.Validate}" Grid.Row="11" Grid.Column="1" Width="200"
+        <Button Content="{x:Static resx:Resources.Validate}"
+                Grid.Row="11" Grid.Column="1"
+                Width="200"
                 Command="{Binding AddUserCommand}"
                 CommandParameter="{Binding ElementName=PasswordBox}"
                 Click="AddUser_Click"/>

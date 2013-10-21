@@ -8,6 +8,10 @@ using System.Windows.Data;
 
 namespace parent_bMedecine.Utilities.Converters
 {
+    /// <summary>
+    /// Class to convert boolean value to status string "Connecté" or "Déconnecté".
+    /// Used for tooltips in User DataGrid
+    /// </summary>
     [ValueConversion(typeof(bool), typeof(string))]
     public class BoolToStringConverter : IValueConverter
     {

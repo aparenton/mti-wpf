@@ -16,15 +16,19 @@
         <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
     </UserControl.Resources>
 
-    <DockPanel DataContext="{Binding Source={StaticResource Locator}, Path=UsersViewModel}" Margin="2">
-
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" Margin="2">
-            <Button Margin="5" Click="AddUser_Click" ToolTip="{x:Static resx:Resources.AddUser}"
+    <DockPanel DataContext="{Binding Source={StaticResource Locator}, Path=UsersViewModel}"
+               Margin="2">
+        <StackPanel Orientation="Horizontal"
+                    DockPanel.Dock="Bottom"
+                    Margin="2">
+            <Button Margin="5"
+                    Click="AddUser_Click"
+                    ToolTip="{x:Static resx:Resources.AddUser}"
                     Visibility="{Binding ReadOnlyUserProfile, Converter={StaticResource boolToVisibilityConverter}}">
-                <Image Source="{Binding Source={x:Static img:Images.AddUser}}" Width="64" Height="64" />
+                <Image Source="{Binding Source={x:Static img:Images.AddUser}}"
+                       Width="64" Height="64" />
             </Button>
         </StackPanel>
-
         <DataGrid x:Name="UserDataGrid"
                   DockPanel.Dock="Top"
                   ItemsSource="{Binding Path=Users}"
@@ -35,27 +39,35 @@
                 <DataGridTemplateColumn Header="{x:Static resx:Resources.Status}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel Background="{Binding Connected, Converter={StaticResource boolToColorConverter}}" Width="15" Height="15" ToolTip="{Binding Connected, Converter={StaticResource boolToStringConverter}}"/>
+                            <StackPanel Background="{Binding Connected, Converter={StaticResource boolToColorConverter}}"
+                                        Width="15" Height="15"
+                                        ToolTip="{Binding Connected, Converter={StaticResource boolToStringConverter}}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="{x:Static resx:Resources.Picture}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding Picture}" Width="64" Height="64" />
+                            <Image Source="{Binding Picture}"
+                                   Width="64" Height="64" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="{x:Static resx:Resources.Name}" Binding="{Binding Name}" />
-                <DataGridTextColumn Header="{x:Static resx:Resources.Firstname}" Binding="{Binding Firstname}" />
-                <DataGridTextColumn Header="{x:Static resx:Resources.AccountName}" Binding="{Binding Login}" />
-                <DataGridTextColumn Header="{x:Static resx:Resources.Role}" Binding="{Binding Role}" />
+                <DataGridTextColumn Header="{x:Static resx:Resources.Name}"
+                                    Binding="{Binding Name}" />
+                <DataGridTextColumn Header="{x:Static resx:Resources.Firstname}"
+                                    Binding="{Binding Firstname}" />
+                <DataGridTextColumn Header="{x:Static resx:Resources.AccountName}"
+                                    Binding="{Binding Login}" />
+                <DataGridTextColumn Header="{x:Static resx:Resources.Role}"
+                                    Binding="{Binding Role}" />
                 <DataGridTemplateColumn Header="{x:Static resx:Resources.Action}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button DataContext="{Binding Source={StaticResource Locator}, Path=UsersViewModel}"
                                     Visibility="{Binding ReadOnlyUserProfile, Converter={StaticResource boolToVisibilityConverter}}"
-                                    Content="{x:Static resx:Resources.Delete}" FontWeight="Normal"
+                                    Content="{x:Static resx:Resources.Delete}"
+                                    FontWeight="Normal"
                                     Command="{Binding DeleteUserCommand}"
                                     CommandParameter="{Binding Path=SelectedItem, ElementName=UserDataGrid}" />
                         </DataTemplate>

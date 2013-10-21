@@ -6,15 +6,21 @@ using System.Windows;
 
 namespace parent_bMedecine.ViewModel
 {
+    /// <summary>
+    /// MainViewModel class for MainWindow
+    /// </summary>
     public class MainViewModel : ViewModelBase
     {
         #region Members
         private ViewModelBase _currentViewModel = new LoginViewModel();
-        private string _userAccountName = string.Empty;
-        private string _logoutButtonVisibility = "Collapsed";
+        private string _userAccountName         = string.Empty;
+        private string _logoutButtonVisibility  = "Collapsed";
         #endregion // Members
 
         #region Properties
+        /// <summary>
+        /// MainViewModel currentViewModel used with DataTemplate in the MainWindow
+        /// </summary>
         public ViewModelBase CurrentViewModel
         {
             get
@@ -30,6 +36,9 @@ namespace parent_bMedecine.ViewModel
             }
         }
 
+        /// <summary>
+        /// Current user account name
+        /// </summary>
         public string UserAccountName
         {
             get
@@ -43,6 +52,9 @@ namespace parent_bMedecine.ViewModel
             }
         }
 
+        /// <summary>
+        /// Logout button visibility
+        /// </summary>
         public string LogoutButtonVisibility
         {
             get
@@ -59,6 +71,7 @@ namespace parent_bMedecine.ViewModel
         public RelayCommand LogoutCommand { get; private set; }
         #endregion // Properties
 
+        #region Constructors
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
@@ -70,8 +83,13 @@ namespace parent_bMedecine.ViewModel
             // Messages
             MessengerInstance.Register<Message.OnLoginMessage>(this, e => { OnLoginExecute(e.UserAccountName); });
         }
+        #endregion // Constructors
 
         #region Methods
+        /// <summary>
+        /// Set properties on user login
+        /// </summary>
+        /// <param name="userAccountName"></param>
         private void OnLoginExecute(string userAccountName)
         {
             this.CurrentViewModel = SimpleIoc.Default.GetInstance<MainTabControlViewModel>();
@@ -80,6 +98,9 @@ namespace parent_bMedecine.ViewModel
             LogoutButtonVisibility = "Visible";
         }
 
+        /// <summary>
+        /// Call web service to disconnect current user and reset properties
+        /// </summary>
         private void OnLogoutExecute()
         {
             ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient();
@@ -88,16 +109,16 @@ namespace parent_bMedecine.ViewModel
             {
                 client.Disconnect(UserAccountName);
 
-                this.CurrentViewModel = SimpleIoc.Default.GetInstance<LoginViewModel>();
+                this.CurrentViewModel  = SimpleIoc.Default.GetInstance<LoginViewModel>();
 
-                UserAccountName = String.Empty;
+                UserAccountName        = String.Empty;
                 LogoutButtonVisibility = "Collapsed";
 
                 MessengerInstance.Send<Message.OnLogoutMessage>(new Message.OnLogoutMessage());
 
                 client.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Erreur lors de la déconnexion, veuillez réessayer.", "Erreur");
             }

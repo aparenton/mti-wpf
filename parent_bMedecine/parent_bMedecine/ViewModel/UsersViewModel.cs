@@ -10,26 +10,29 @@ using System.Windows;
 
 namespace parent_bMedecine.ViewModel
 {
+    /// <summary>
+    /// UsersViewModel class for UsersView
+    /// </summary>
     public class UsersViewModel : ViewModelBase
     {
         #region Members
         private ObservableCollection<ServiceUser.User> _users = new ObservableCollection<ServiceUser.User>();
-        private bool _readOnlyUserProfile = false;
+        private bool _readOnlyUserProfile                     = false;
         #endregion // Members
 
         #region Properties
+        /// <summary>
+        /// User list
+        /// </summary>
         public ObservableCollection<ServiceUser.User> Users
         {
-            get
-            {
-                return _users;
-            }
-            set
-            {
-                _users = value;
-            }
+            get { return _users; }
+            set { _users = value; }
         }
 
+        /// <summary>
+        /// Boolean value to know if current user is readonly or not
+        /// </summary>
         public bool ReadOnlyUserProfile
         {
             get
@@ -47,10 +50,11 @@ namespace parent_bMedecine.ViewModel
         #endregion // Properties
 
         #region Constructors
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public UsersViewModel()
         {
-            //RetrieveUsers();
-
             // Commands
             DeleteUserCommand = new RelayCommand<ServiceUser.User>(u => { DeleteUserExecute(u); });
 
@@ -62,11 +66,17 @@ namespace parent_bMedecine.ViewModel
         #endregion // Constructors
 
         #region Methods
+        /// <summary>
+        /// Reset view model properties
+        /// </summary>
         private void Reset()
         {
             Users.Clear();
         }
 
+        /// <summary>
+        /// Retrieve users data from web service
+        /// </summary>
         private void RetrieveUsers()
         {
             ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient();
@@ -77,12 +87,16 @@ namespace parent_bMedecine.ViewModel
                     Users.Add(user);
                 client.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Erreur lors de la récupération des utilisateurs, veuillez réessayer.", "Erreur");
             }
         }
 
+        /// <summary>
+        /// Call web service to delete user
+        /// </summary>
+        /// <param name="user">user to delete</param>
         private void DeleteUserExecute(ServiceUser.User user)
         {
             ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient();
@@ -93,7 +107,7 @@ namespace parent_bMedecine.ViewModel
                     Users.Remove(user);
                 client.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Erreur lors de la suppression de l'utilisateur, veuillez réessayer.", "Erreur");
             }
