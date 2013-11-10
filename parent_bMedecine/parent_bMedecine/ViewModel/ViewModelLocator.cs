@@ -1,7 +1,11 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using parent_bMedecine.BusinessManagement.Observation;
+using parent_bMedecine.BusinessManagement.Patient;
 using parent_bMedecine.BusinessManagement.User;
+using parent_bMedecine.DataAccess.Observation;
+using parent_bMedecine.DataAccess.Patient;
 using parent_bMedecine.DataAccess.User;
 using parent_bMedecine.ViewModel.FlyoutViewModel;
 
@@ -25,6 +29,12 @@ namespace parent_bMedecine.ViewModel
             {
                 SimpleIoc.Default.Register<IUserDataAccess, UserDataAccess>();
                 SimpleIoc.Default.Register<IUserDataService, UserDataService>();
+
+                SimpleIoc.Default.Register<IPatientDataAccess, PatientDataAccess>();
+                SimpleIoc.Default.Register<IPatientDataService, PatientDataService>();
+
+                SimpleIoc.Default.Register<IObservationDataAccess, ObservationDataAccess>();
+                SimpleIoc.Default.Register<IObservationDataService, ObservationDataService>();
             }
 
             // Window ViewModel
@@ -128,6 +138,14 @@ namespace parent_bMedecine.ViewModel
 
         public static void Cleanup()
         {
+            SimpleIoc.Default.Unregister<IUserDataAccess>();
+            SimpleIoc.Default.Unregister<IUserDataService>();
+            SimpleIoc.Default.Unregister<IPatientDataAccess>();
+            SimpleIoc.Default.Unregister<IPatientDataService>();
+            SimpleIoc.Default.Unregister<IObservationDataAccess>();
+            SimpleIoc.Default.Unregister<IObservationDataService>();
+
+
             SimpleIoc.Default.Unregister<MainViewModel>();
             SimpleIoc.Default.Unregister<MainTabControlViewModel>();
             SimpleIoc.Default.Unregister<HomeViewModel>();

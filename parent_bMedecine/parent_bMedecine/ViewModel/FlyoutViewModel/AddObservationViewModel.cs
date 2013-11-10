@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using parent_bMedecine.BusinessManagement.Observation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,6 +17,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
     public class AddObservationViewModel : ViewModelBase
     {
         #region Members
+        private readonly IObservationDataService _observationDataService;
         private ServicePatient.Patient       _selectedPatient;
         private DateTime                     _date          = DateTime.Now;
         private int                          _weight;
@@ -134,8 +136,11 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
         /// <summary>
         /// Constructor
         /// </summary>
-        public AddObservationViewModel()
+        public AddObservationViewModel(IObservationDataService observationDataService)
         {
+            // DataService
+            _observationDataService = observationDataService;
+
             // Messages
             MessengerInstance.Register<Message.OnPatientSelectionMessage>(this, m => { OnPatientSelectionExecute(m.SelectedPatient); });
 
@@ -176,29 +181,17 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
                 Weight        = _weight
             };
 
-            ServiceObservation.ServiceObservationClient client = new ServiceObservation.ServiceObservationClient();
+            bool res = _observationDataService.AddObservation(_selectedPatient.Id, newObservation);
+            if (res)
+                MessengerInstance.Send<Message.OnAddObservationMessage>(new Message.OnAddObservationMessage());
 
-            try
-            {
-                bool res = client.AddObservation(_selectedPatient.Id, newObservation);
-                if (res)
-                    MessengerInstance.Send<Message.OnAddObservationMessage>(new Message.OnAddObservationMessage());
-                client.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Erreur lors de l'ajout de l'observation, veuillez réessayer.", "Erreur");
-            }
-            finally
-            {
-                BloodPressure = 0;
-                Weight        = 0;
-                Comment       = string.Empty;
-                Prescription  = string.Empty;
-                Date          = DateTime.Now;
-                Pictures.Clear();
-                Prescriptions.Clear();
-            }
+            BloodPressure = 0;
+            Weight = 0;
+            Comment = string.Empty;
+            Prescription = string.Empty;
+            Date = DateTime.Now;
+            Pictures.Clear();
+            Prescriptions.Clear();
         }
 
         /// <summary>

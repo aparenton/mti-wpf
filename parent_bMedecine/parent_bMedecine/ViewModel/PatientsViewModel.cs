@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
+using parent_bMedecine.BusinessManagement.Patient;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,6 +19,7 @@ namespace parent_bMedecine.ViewModel
     public class PatientsViewModel : ViewModelBase
     {
         #region Members
+        private readonly IPatientDataService _patientDataService;
         private ViewModelBase _currentViewModel                        = SimpleIoc.Default.GetInstance<HomeViewModel>();
         private string _searchText                                     = String.Empty;
         private ObservableCollection<ServicePatient.Patient> _patients = new ObservableCollection<ServicePatient.Patient>();
@@ -110,8 +112,11 @@ namespace parent_bMedecine.ViewModel
         /// <summary>
         /// Constructor
         /// </summary>
-        public PatientsViewModel()
+        public PatientsViewModel(IPatientDataService patientDataService)
         {
+            // DataService
+            _patientDataService = patientDataService;
+
             // Commands
             SelectPatientCommand = new RelayCommand<ServicePatient.Patient>(p => this.SelectPatientExecute(p));
             DeletePatientCommand = new RelayCommand(DeletePatientExecute);
@@ -148,21 +153,12 @@ namespace parent_bMedecine.ViewModel
         {
             _patients.Clear();
 
-            ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient();
-            try
+            List<ServicePatient.Patient> res = _patientDataService.GetListPatient();
+            foreach (var patient in res)
             {
-                List<ServicePatient.Patient> res = client.GetListPatient();
-                foreach (var patient in res)
-                {
-                    if (patient.Firstname.ToLower().Contains(searchText.ToLower()) ||
-                        patient.Name.ToLower().Contains(searchText.ToLower()))
-                        Patients.Add(patient);
-                }
-                client.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Erreur lors de la recherche du patient, veuillez réessayer.", "Erreur");
+                if (patient.Firstname.ToLower().Contains(searchText.ToLower()) ||
+                    patient.Name.ToLower().Contains(searchText.ToLower()))
+                    Patients.Add(patient);
             }
             RaisePropertyChanged("Patients");
         }
@@ -174,18 +170,9 @@ namespace parent_bMedecine.ViewModel
         {
             Patients.Clear();
 
-            ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient();
-            try
-            {
-                List<ServicePatient.Patient> res = client.GetListPatient();
-                foreach (var patient in res)
-                    Patients.Add(patient);
-                client.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Erreur lors de la récupération des patients, veuillez réessayer.", "Erreur");
-            }
+            List<ServicePatient.Patient> res = _patientDataService.GetListPatient();
+            foreach (var patient in res)
+                Patients.Add(patient);
         }
 
         /// <summary>
@@ -193,21 +180,11 @@ namespace parent_bMedecine.ViewModel
         /// </summary>
         private void DeletePatientExecute()
         {
-            ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient();
-            try
-            {
-                bool res = client.DeletePatient(SelectedPatient.Id);
-
-                if (res)
-                    RetrievePatients();
-                else
-                    MessageBox.Show("Le patient n'a pas pu être supprimé, veuillez réessayer.", "Alerte");
-                client.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Erreur lors de la suppression du patient, veuillez réessayer.", "Erreur");
-            }
+            bool res = _patientDataService.DeletePatient(SelectedPatient.Id);
+            if (res)
+                RetrievePatients();
+            else
+                MessageBox.Show("Le patient n'a pas pu être supprimé, veuillez réessayer.", "Alerte");
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using parent_bMedecine.BusinessManagement.Patient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
     public class AddPatientViewModel : ViewModelBase
     {
         #region Members
+        private readonly IPatientDataService _patientDataService;
         private string _name       = String.Empty;
         private string _firstname  = String.Empty;
         private DateTime _birthday = DateTime.Now;
@@ -67,8 +69,11 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
         /// <summary>
         /// Constructor
         /// </summary>
-        public AddPatientViewModel()
+        public AddPatientViewModel(IPatientDataService patientDataService)
         {
+            // DataService
+            _patientDataService = patientDataService;
+
             // Commands
             AddPatientCommand = new RelayCommand(AddPatientExecute);
         }
@@ -88,25 +93,15 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
                 Observations = new List<ServicePatient.Observation>()
             };
 
-            ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient();
+            bool res = _patientDataService.AddPatient(newPatient);
+            if (res)
+                MessengerInstance.Send<Message.OnAddPatientMessage>(new Message.OnAddPatientMessage());
 
-            try
-            {
-                bool res = client.AddPatient(newPatient);
-                if (res)
-                    MessengerInstance.Send<Message.OnAddPatientMessage>(new Message.OnAddPatientMessage());
-                client.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Erreur lors de l'ajout du patient, veuillez réessayer.", "Erreur");
-            }
-            finally
-            {
-                Birthday  = DateTime.Now;
-                Name      = String.Empty;
-                Firstname = String.Empty;
-            }
+            Birthday = DateTime.Now;
+            Name = String.Empty;
+            Firstname = String.Empty;
+
+            ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient();
         }
         #endregion // Methods
     }

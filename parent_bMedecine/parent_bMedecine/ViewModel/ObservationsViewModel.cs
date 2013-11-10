@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using parent_bMedecine.BusinessManagement.Patient;
 using parent_bMedecine.Model;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace parent_bMedecine.ViewModel
     public class ObservationsViewModel : ViewModelBase, ServiceLive.IServiceLiveCallback
     {
         #region Members
+        private readonly IPatientDataService _patientDataService;
         private ServicePatient.Patient _selectedPatient;
         private ObservableCollection<ServicePatient.Observation> _observations = new ObservableCollection<ServicePatient.Observation>();
         private int _selectedObservationIndex;
@@ -99,8 +101,11 @@ namespace parent_bMedecine.ViewModel
         /// <summary>
         /// Constructor
         /// </summary>
-        public ObservationsViewModel()
+        public ObservationsViewModel(IPatientDataService patientDataService)
         {
+            // DataService
+            _patientDataService = patientDataService;
+
             // ChartObjects
             Weights                 = new ObservableCollection<ChartObject>();
             BloodPressures          = new ObservableCollection<ChartObject>();
@@ -130,23 +135,24 @@ namespace parent_bMedecine.ViewModel
             Reset();
             SelectedPatient = patient;
 
-            ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient();
-
             try
             {
-                List<ServicePatient.Observation> res = client.GetPatient(SelectedPatient.Id).Observations;
+
+                List<ServicePatient.Observation> res = _patientDataService.GetPatient(SelectedPatient.Id).Observations;
                 if (!res.Any())
                     MessengerInstance.Send<Message.WhenNoObservationMessage>(new Message.WhenNoObservationMessage());
+
                 foreach (var observation in res)
                 {
                     Observations.Add(observation);
+
                     foreach (byte[] img in observation.Pictures)
                         PictureList.Add(img);
+
                     Weights.Add(new ChartObject() { Category = observation.Date.ToString(), Number = observation.Weight });
-                    BloodPressures.Add(new ChartObject() { Category = observation.Date.ToString(), Number = observation.BloodPressure });                       
+                    BloodPressures.Add(new ChartObject() { Category = observation.Date.ToString(), Number = observation.BloodPressure });
                 }
                 SelectedObservationIndex = 0;
-                client.Close();
             }
             catch (Exception)
             {
