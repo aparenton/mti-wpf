@@ -21,15 +21,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:3055/ServiceObservation.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:23402/ServiceObservation.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ServiceObservation.disco" MetadataType="Disco" ID="7f2d489d-f87b-4405-afeb-6cdfccc1872b" SourceId="1" SourceUrl="http://localhost:3055/ServiceObservation.svc?disco" />
-    <MetadataFile FileName="ServiceObservation.wsdl" MetadataType="Wsdl" ID="78530da7-5a88-44ef-97b6-d3f8af440054" SourceId="1" SourceUrl="http://localhost:3055/ServiceObservation.svc?wsdl" />
-    <MetadataFile FileName="ServiceObservation.xsd" MetadataType="Schema" ID="7dfc553a-9961-468a-bc0f-9b9eb10ef5c3" SourceId="1" SourceUrl="http://localhost:3055/ServiceObservation.svc?xsd=xsd2" />
-    <MetadataFile FileName="ServiceObservation1.xsd" MetadataType="Schema" ID="a0a4d876-a184-4a8a-b690-65211642aded" SourceId="1" SourceUrl="http://localhost:3055/ServiceObservation.svc?xsd=xsd3" />
-    <MetadataFile FileName="ServiceObservation2.xsd" MetadataType="Schema" ID="000c6d95-e5d5-4fc8-b016-76ff40053a0b" SourceId="1" SourceUrl="http://localhost:3055/ServiceObservation.svc?xsd=xsd0" />
-    <MetadataFile FileName="ServiceObservation3.xsd" MetadataType="Schema" ID="ec6e37d2-404a-45b4-b7a6-2c04e39e9236" SourceId="1" SourceUrl="http://localhost:3055/ServiceObservation.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceObservation1.wsdl" MetadataType="Wsdl" ID="bbd76f40-cca0-4d2a-bf0d-9e883ebdbf6c" SourceId="1" SourceUrl="http://localhost:23402/ServiceObservation.svc?wsdl" />
+    <MetadataFile FileName="ServiceObservation1.disco" MetadataType="Disco" ID="aeb90e66-3290-4e51-8000-571f070606f1" SourceId="1" SourceUrl="http://localhost:23402/ServiceObservation.svc?disco" />
+    <MetadataFile FileName="ServiceObservation4.xsd" MetadataType="Schema" ID="0d2747f4-44f0-4e26-b7d6-9a2007825753" SourceId="1" SourceUrl="http://localhost:23402/ServiceObservation.svc?xsd=xsd1" />
+    <MetadataFile FileName="ServiceObservation41.xsd" MetadataType="Schema" ID="e153726a-45b3-4245-bb65-5224d1a8cba3" SourceId="1" SourceUrl="http://localhost:23402/ServiceObservation.svc?xsd=xsd0" />
+    <MetadataFile FileName="ServiceObservation42.xsd" MetadataType="Schema" ID="31cc5d49-3775-4de3-8cc7-c1bfdf2fe15c" SourceId="1" SourceUrl="http://localhost:23402/ServiceObservation.svc?xsd=xsd3" />
+    <MetadataFile FileName="ServiceObservation43.xsd" MetadataType="Schema" ID="271c67b4-2b45-4229-9301-713e1d7ffb00" SourceId="1" SourceUrl="http://localhost:23402/ServiceObservation.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -192,6 +192,42 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\ServiceObservation\ServiceObservation1.wsdl" />
+    <None Include="Service References\ServiceObservation\ServiceObservation4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceObservation\ServiceObservation41.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceObservation\ServiceObservation42.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceObservation\ServiceObservation43.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicePatient\ServicePatient1.wsdl" />
+    <None Include="Service References\ServicePatient\ServicePatient4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicePatient\ServicePatient41.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicePatient\ServicePatient42.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServicePatient\ServicePatient43.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceUser\ServiceUser1.wsdl" />
+    <None Include="Service References\ServiceUser\ServiceUser3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceUser\ServiceUser31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceUser\ServiceUser32.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <Resource Include="Resources\Entypo.ttf" />
     <None Include="Service References\ServiceLive\ServiceLive.wsdl" />
     <None Include="Service References\ServiceLive\ServiceLive.xsd">
@@ -200,47 +236,11 @@
     <None Include="Service References\ServiceLive\ServiceLive1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceObservation\ServiceObservation.wsdl" />
-    <None Include="Service References\ServiceObservation\ServiceObservation.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceObservation\ServiceObservation1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceObservation\ServiceObservation2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceObservation\ServiceObservation3.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\ServicePatient\parent_bMedecine.ServicePatient.Patient.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServicePatient\ServicePatient.wsdl" />
-    <None Include="Service References\ServicePatient\ServicePatient.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServicePatient\ServicePatient1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServicePatient\ServicePatient2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServicePatient\ServicePatient3.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\ServiceUser\parent_bMedecine.ServiceUser.User.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\ServiceUser\ServiceUser.wsdl" />
-    <None Include="Service References\ServiceUser\ServiceUser.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceUser\ServiceUser1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceUser\ServiceUser2.xsd">
-      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -306,9 +306,6 @@
     <WCFMetadataStorage Include="Service References\ServiceUser\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceUser\ServiceUser.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\ServiceUser\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -321,9 +318,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServicePatient\ServicePatient.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\ServicePatient\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -334,9 +328,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ServiceObservation\ServiceObservation.disco" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ServiceObservation\configuration91.svcinfo" />
@@ -384,6 +375,15 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceUser\ServiceUser1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServicePatient\ServicePatient1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceObservation\ServiceObservation1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="VKoq5mltqtcinwH71vL2tsgHtp0=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="JMs0FUl8mLp47DClcJFSFm9CRso=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IServiceObservation">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IServiceObservation" contract="ServiceObservation.IServiceObservation" bindingType="basicHttpBinding" address="http://localhost:3055/ServiceObservation.svc" bindingConfiguration="BasicHttpBinding_IServiceObservation">
+    <endpoint name="BasicHttpBinding_IServiceObservation" contract="ServiceObservation.IServiceObservation" bindingType="basicHttpBinding" address="http://localhost:23402/ServiceObservation.svc" bindingConfiguration="BasicHttpBinding_IServiceObservation">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:3055/ServiceObservation.svc</serializedValue>
+          <serializedValue>http://localhost:23402/ServiceObservation.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
