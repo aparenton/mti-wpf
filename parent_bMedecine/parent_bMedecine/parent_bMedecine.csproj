@@ -75,8 +75,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BusinessManagement\Observation\IObservationDataService.cs" />
+    <Compile Include="BusinessManagement\Observation\ObservationDataService.cs" />
+    <Compile Include="BusinessManagement\Patient\IPatientDataService.cs" />
+    <Compile Include="BusinessManagement\Patient\PatientDataService.cs" />
     <Compile Include="BusinessManagement\User\IUserDataService.cs" />
     <Compile Include="BusinessManagement\User\UserDataService.cs" />
+    <Compile Include="DataAccess\Observation\IObservationDataAccess.cs" />
+    <Compile Include="DataAccess\Observation\ObservationDataAccess.cs" />
+    <Compile Include="DataAccess\Patient\IPatientDataAccess.cs" />
+    <Compile Include="DataAccess\Patient\PatientDataAccess.cs" />
     <Compile Include="DataAccess\User\IUserDataAccess.cs" />
     <Compile Include="DataAccess\User\UserDataAccess.cs" />
     <Compile Include="Message\OnAddObservationMessage.cs" />
