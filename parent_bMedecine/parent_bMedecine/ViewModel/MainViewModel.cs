@@ -1,6 +1,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
+using parent_bMedecine.BusinessManagement.User;
 using System;
 using System.Windows;
 
@@ -12,7 +13,8 @@ namespace parent_bMedecine.ViewModel
     public class MainViewModel : ViewModelBase
     {
         #region Members
-        private ViewModelBase _currentViewModel = new LoginViewModel();
+        private readonly IUserDataService _userDataService;
+        private ViewModelBase _currentViewModel = SimpleIoc.Default.GetInstance<LoginViewModel>();
         private string _userAccountName         = string.Empty;
         private string _logoutButtonVisibility  = "Collapsed";
         #endregion // Members
@@ -75,8 +77,11 @@ namespace parent_bMedecine.ViewModel
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public MainViewModel()
+        public MainViewModel(IUserDataService userDataService)
         {
+            // DataService
+            _userDataService = userDataService;
+
             // Commands
             LogoutCommand = new RelayCommand(OnLogoutExecute);
 
@@ -103,26 +108,14 @@ namespace parent_bMedecine.ViewModel
         /// </summary>
         private void OnLogoutExecute()
         {
-            ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient();
+            _userDataService.Disconnect(UserAccountName);
 
-            try
-            {
-                client.Disconnect(UserAccountName);
+            this.CurrentViewModel = SimpleIoc.Default.GetInstance<LoginViewModel>();
 
-                this.CurrentViewModel  = SimpleIoc.Default.GetInstance<LoginViewModel>();
+            UserAccountName = String.Empty;
+            LogoutButtonVisibility = "Collapsed";
 
-                UserAccountName        = String.Empty;
-                LogoutButtonVisibility = "Collapsed";
-
-                MessengerInstance.Send<Message.OnLogoutMessage>(new Message.OnLogoutMessage());
-
-                client.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Erreur lors de la déconnexion, veuillez réessayer.", "Erreur");
-            }
-
+            MessengerInstance.Send<Message.OnLogoutMessage>(new Message.OnLogoutMessage());
         }
         #endregion // Methods
     }

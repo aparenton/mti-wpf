@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using parent_bMedecine.BusinessManagement.User;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,6 +17,7 @@ namespace parent_bMedecine.ViewModel
     public class UsersViewModel : ViewModelBase
     {
         #region Members
+        private readonly IUserDataService _userDataService;
         private ObservableCollection<ServiceUser.User> _users = new ObservableCollection<ServiceUser.User>();
         private bool _readOnlyUserProfile                     = false;
         #endregion // Members
@@ -53,8 +55,11 @@ namespace parent_bMedecine.ViewModel
         /// <summary>
         /// Constructor
         /// </summary>
-        public UsersViewModel()
+        public UsersViewModel(IUserDataService userDataService)
         {
+            // DataService
+            _userDataService = userDataService;
+
             // Commands
             DeleteUserCommand = new RelayCommand<ServiceUser.User>(u => { DeleteUserExecute(u); });
 
@@ -79,18 +84,9 @@ namespace parent_bMedecine.ViewModel
         /// </summary>
         private void RetrieveUsers()
         {
-            ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient();
-            try
-            {
-                List<ServiceUser.User> res = client.GetListUser();
-                foreach (var user in res)
-                    Users.Add(user);
-                client.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Erreur lors de la récupération des utilisateurs, veuillez réessayer.", "Erreur");
-            }
+            List<ServiceUser.User> res = _userDataService.GetListUser();
+            foreach (var user in res)
+                Users.Add(user);
         }
 
         /// <summary>
@@ -99,18 +95,9 @@ namespace parent_bMedecine.ViewModel
         /// <param name="user">user to delete</param>
         private void DeleteUserExecute(ServiceUser.User user)
         {
-            ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient();
-            try
-            {
-                bool res = client.DeleteUser(user.Login);
-                if (res)
-                    Users.Remove(user);
-                client.Close();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Erreur lors de la suppression de l'utilisateur, veuillez réessayer.", "Erreur");
-            }
+            bool res = _userDataService.DeleteUser(user.Login);
+            if (res)
+                Users.Remove(user);
         }
         #endregion // Methors
     }

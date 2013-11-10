@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using parent_bMedecine.BusinessManagement.User;
 using parent_bMedecine.Utilities;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace parent_bMedecine.ViewModel
     public class LoginViewModel : ViewModelBase
     {
         #region Members
+        private readonly IUserDataService _userDataService;
         private string _accountName;
         #endregion // Members
 
@@ -41,8 +43,11 @@ namespace parent_bMedecine.ViewModel
         /// <summary>
         /// Constructor
         /// </summary>
-        public LoginViewModel()
+        public LoginViewModel(IUserDataService userDataService)
         {
+            // DataService
+            _userDataService = userDataService;
+
             // Command
             LoginCommand = new RelayCommand<object>(s => LoginExecute(((PasswordBox)s).Password));
         }
@@ -55,21 +60,13 @@ namespace parent_bMedecine.ViewModel
         /// <param name="accountPassword">user password</param>
         private void LoginExecute(string accountPassword)
         {
-            ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient();
-
-            try
+            bool res = _userDataService.Connect(AccountName, accountPassword);
+            if (res)
             {
-                bool res = client.Connect(AccountName, accountPassword);
-                if (res)
-                {
-                    string role = client.GetRole(AccountName);
-                    MessengerInstance.Send<Message.OnLoginMessage>(new Message.OnLoginMessage(AccountName, RoleManager.IsReadOnlyRole(role)));
-                }
-                else
-                    MessageBox.Show("Identifiant et/ou mot de passe incorrect.", "Alerte");
-                client.Close();
+                string role = _userDataService.GetRole(AccountName);
+                MessengerInstance.Send<Message.OnLoginMessage>(new Message.OnLoginMessage(AccountName, RoleManager.IsReadOnlyRole(role)));
             }
-            catch (Exception)
+            else
             {
                 MessageBox.Show("Erreur lors de l'authentification, veuillez réessayer.", "Erreur");
             }

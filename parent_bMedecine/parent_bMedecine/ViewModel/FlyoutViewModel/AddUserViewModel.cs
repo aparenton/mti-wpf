@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using parent_bMedecine.BusinessManagement.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
     public class AddUserViewModel : ViewModelBase
     {
         #region Members
+        private readonly IUserDataService _userDataService;
         private string _name      = String.Empty;
         private string _firstname = String.Empty;
         private string _login     = String.Empty;
@@ -25,7 +27,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
 
         #region Properties
         /// <summary>
-        /// User name
+        /// User's name
         /// </summary>
         public string Name
         {
@@ -34,7 +36,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
         }
 
         /// <summary>
-        /// User firstname
+        /// User's firstname
         /// </summary>
         public string Firstname
         {
@@ -43,7 +45,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
         }
 
         /// <summary>
-        /// User login
+        /// User's login
         /// </summary>
         public string Login
         {
@@ -52,7 +54,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
         }
 
         /// <summary>
-        /// User role
+        /// User's role
         /// </summary>
         public string Role
         {
@@ -61,7 +63,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
         }
 
         /// <summary>
-        /// User photo
+        /// User's photo
         /// </summary>
         public string Photo
         {
@@ -81,8 +83,11 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
         /// <summary>
         /// Constructor
         /// </summary>
-        public AddUserViewModel()
+        public AddUserViewModel(IUserDataService userDataService)
         {
+            // DataService
+            _userDataService = userDataService;
+
             // Commands
             AddUserCommand       = new RelayCommand<object>(p => AddUserExecute(((PasswordBox)p).Password));
             SelectPictureCommand = new RelayCommand(SelectPictureExecute);
@@ -107,27 +112,18 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
                 Pwd       = password
             };
 
-            ServiceUser.ServiceUserClient client = new ServiceUser.ServiceUserClient();
+            bool res = _userDataService.AddUser(newUser);
 
-            try
-            {
-                bool res = client.AddUser(newUser);
-                if (res)
-                    MessengerInstance.Send<Message.OnAddUserMessage>(new Message.OnAddUserMessage());
-                client.Close();
-            }
-            catch (Exception)
-            {
+            if (res)
+                MessengerInstance.Send<Message.OnAddUserMessage>(new Message.OnAddUserMessage());
+            else
                 MessageBox.Show("Erreur lors de l'ajout, veuillez réessayer.", "Erreur");
-            }
-            finally
-            {
-                Photo     = String.Empty;
-                Name      = String.Empty;
-                Firstname = String.Empty;
-                Login     = String.Empty;
-                Role      = String.Empty;
-            }
+
+            Photo = String.Empty;
+            Name = String.Empty;
+            Firstname = String.Empty;
+            Login = String.Empty;
+            Role = String.Empty;
         }
 
         /// <summary>

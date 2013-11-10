@@ -1,6 +1,8 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using parent_bMedecine.BusinessManagement.User;
+using parent_bMedecine.DataAccess.User;
 using parent_bMedecine.ViewModel.FlyoutViewModel;
 
 namespace parent_bMedecine.ViewModel
@@ -17,6 +19,13 @@ namespace parent_bMedecine.ViewModel
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+
+            // NOT IN DESIGN MODE
+            if (!ViewModelBase.IsInDesignModeStatic)
+            {
+                SimpleIoc.Default.Register<IUserDataAccess, UserDataAccess>();
+                SimpleIoc.Default.Register<IUserDataService, UserDataService>();
+            }
 
             // Window ViewModel
             SimpleIoc.Default.Register<MainViewModel>();

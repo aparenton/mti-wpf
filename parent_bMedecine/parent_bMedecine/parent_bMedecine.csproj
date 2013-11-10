@@ -75,6 +75,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BusinessManagement\User\IUserDataService.cs" />
+    <Compile Include="BusinessManagement\User\UserDataService.cs" />
+    <Compile Include="DataAccess\User\IUserDataAccess.cs" />
+    <Compile Include="DataAccess\User\UserDataAccess.cs" />
     <Compile Include="Message\OnAddObservationMessage.cs" />
     <Compile Include="Message\OnAddPatientMessage.cs" />
     <Compile Include="Message\OnAddUserMessage.cs" />
@@ -385,6 +389,7 @@
   <ItemGroup>
     <None Include="Service References\ServiceObservation\ServiceObservation1.disco" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
