@@ -2,11 +2,6 @@
 using GalaSoft.MvvmLight.Command;
 using parent_bMedecine.BusinessManagement.User;
 using parent_bMedecine.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -18,11 +13,14 @@ namespace parent_bMedecine.ViewModel
     public class LoginViewModel : ViewModelBase
     {
         #region Members
+
         private readonly IUserDataService _userDataService;
         private string _accountName;
-        #endregion // Members
+
+        #endregion Members
 
         #region Properties
+
         /// <summary>
         /// User account name
         /// </summary>
@@ -37,9 +35,11 @@ namespace parent_bMedecine.ViewModel
         }
 
         public RelayCommand<object> LoginCommand { get; private set; }
-        #endregion // Properties
+
+        #endregion Properties
 
         #region Constructors
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -51,9 +51,11 @@ namespace parent_bMedecine.ViewModel
             // Command
             LoginCommand = new RelayCommand<object>(s => LoginExecute(((PasswordBox)s).Password));
         }
-        #endregion // Constructors
+
+        #endregion Constructors
 
         #region Methods
+
         /// <summary>
         /// Call web service to authenticate user
         /// </summary>
@@ -71,6 +73,7 @@ namespace parent_bMedecine.ViewModel
                 MessageBox.Show("Erreur lors de l'authentification, veuillez réessayer.", "Erreur");
             }
         }
-        #endregion // Methors
+
+        #endregion Methods
     }
 }

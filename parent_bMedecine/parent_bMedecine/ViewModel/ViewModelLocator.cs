@@ -24,18 +24,23 @@ namespace parent_bMedecine.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            // NOT IN DESIGN MODE
-            if (!ViewModelBase.IsInDesignModeStatic)
+            if (ViewModelBase.IsInDesignModeStatic)
             {
                 SimpleIoc.Default.Register<IUserDataAccess, UserDataAccess>();
-                SimpleIoc.Default.Register<IUserDataService, UserDataService>();
-
                 SimpleIoc.Default.Register<IPatientDataAccess, PatientDataAccess>();
-                SimpleIoc.Default.Register<IPatientDataService, PatientDataService>();
-
                 SimpleIoc.Default.Register<IObservationDataAccess, ObservationDataAccess>();
-                SimpleIoc.Default.Register<IObservationDataService, ObservationDataService>();
             }
+            else
+            {
+                SimpleIoc.Default.Register<IUserDataAccess, UserDataAccess>();
+                SimpleIoc.Default.Register<IPatientDataAccess, PatientDataAccess>();
+                SimpleIoc.Default.Register<IObservationDataAccess, ObservationDataAccess>();
+            }
+
+            // DataServices
+            SimpleIoc.Default.Register<IUserDataService, UserDataService>();
+            SimpleIoc.Default.Register<IPatientDataService, PatientDataService>();
+            SimpleIoc.Default.Register<IObservationDataService, ObservationDataService>();
 
             // Window ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
@@ -55,6 +60,7 @@ namespace parent_bMedecine.ViewModel
         }
 
         #region Properties
+
         public MainViewModel MainViewModel
         {
             get
@@ -134,18 +140,22 @@ namespace parent_bMedecine.ViewModel
                 return ServiceLocator.Current.GetInstance<AddObservationViewModel>();
             }
         }
-        #endregion // Properties
+
+        #endregion Properties
 
         public static void Cleanup()
         {
+            // DataAccess
             SimpleIoc.Default.Unregister<IUserDataAccess>();
-            SimpleIoc.Default.Unregister<IUserDataService>();
             SimpleIoc.Default.Unregister<IPatientDataAccess>();
-            SimpleIoc.Default.Unregister<IPatientDataService>();
             SimpleIoc.Default.Unregister<IObservationDataAccess>();
+
+            // DataServices
+            SimpleIoc.Default.Unregister<IUserDataService>();
+            SimpleIoc.Default.Unregister<IPatientDataService>();
             SimpleIoc.Default.Unregister<IObservationDataService>();
 
-
+            // ViewModels
             SimpleIoc.Default.Unregister<MainViewModel>();
             SimpleIoc.Default.Unregister<MainTabControlViewModel>();
             SimpleIoc.Default.Unregister<HomeViewModel>();

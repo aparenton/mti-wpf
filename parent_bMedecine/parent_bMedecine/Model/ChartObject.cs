@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace parent_bMedecine.Model
+﻿namespace parent_bMedecine.Model
 {
     /// <summary>
     /// Class to represent chart data for 'MetroChart' library

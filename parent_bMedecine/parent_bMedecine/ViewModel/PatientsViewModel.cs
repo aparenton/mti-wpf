@@ -5,11 +5,7 @@ using parent_bMedecine.BusinessManagement.Patient;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace parent_bMedecine.ViewModel
 {
@@ -19,15 +15,18 @@ namespace parent_bMedecine.ViewModel
     public class PatientsViewModel : ViewModelBase
     {
         #region Members
+
         private readonly IPatientDataService _patientDataService;
-        private ViewModelBase _currentViewModel                        = SimpleIoc.Default.GetInstance<HomeViewModel>();
-        private string _searchText                                     = String.Empty;
+        private ViewModelBase _currentViewModel = SimpleIoc.Default.GetInstance<HomeViewModel>();
+        private string _searchText = String.Empty;
         private ObservableCollection<ServicePatient.Patient> _patients = new ObservableCollection<ServicePatient.Patient>();
         private ServicePatient.Patient _selectedPatient;
-        private bool _readOnlyUserProfile                              = false;
-        #endregion // Members
+        private bool _readOnlyUserProfile = false;
+
+        #endregion Members
 
         #region Properties
+
         /// <summary>
         /// Current view model used with DataTemplate in PatientsView
         /// </summary>
@@ -91,7 +90,7 @@ namespace parent_bMedecine.ViewModel
         /// <summary>
         /// Boolean value to know if current user is readonly or not
         /// </summary>
-        public bool ReadOnlyUserProfile 
+        public bool ReadOnlyUserProfile
         {
             get
             {
@@ -105,10 +104,13 @@ namespace parent_bMedecine.ViewModel
         }
 
         public RelayCommand<ServicePatient.Patient> SelectPatientCommand { get; private set; }
+
         public RelayCommand DeletePatientCommand { get; private set; }
-        #endregion // Properties
+
+        #endregion Properties
 
         #region Constructors
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -127,9 +129,11 @@ namespace parent_bMedecine.ViewModel
             MessengerInstance.Register<Message.OnAddPatientMessage>(this, m => { RetrievePatients(); });
             MessengerInstance.Register<Message.WhenNoObservationMessage>(this, m => { CurrentViewModel = SimpleIoc.Default.GetInstance<HomeViewModel>(); });
         }
-        #endregion // Constructors
+
+        #endregion Constructors
 
         #region Methods
+
         /// <summary>
         /// On patient selection by user
         /// </summary>
@@ -195,6 +199,7 @@ namespace parent_bMedecine.ViewModel
             Patients.Clear();
             CurrentViewModel = SimpleIoc.Default.GetInstance<HomeViewModel>();
         }
-        #endregion // Methors
+
+        #endregion Methods
     }
 }

@@ -3,7 +3,6 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using parent_bMedecine.BusinessManagement.User;
 using System;
-using System.Windows;
 
 namespace parent_bMedecine.ViewModel
 {
@@ -13,13 +12,16 @@ namespace parent_bMedecine.ViewModel
     public class MainViewModel : ViewModelBase
     {
         #region Members
+
         private readonly IUserDataService _userDataService;
         private ViewModelBase _currentViewModel = SimpleIoc.Default.GetInstance<LoginViewModel>();
-        private string _userAccountName         = string.Empty;
-        private string _logoutButtonVisibility  = "Collapsed";
-        #endregion // Members
+        private string _userAccountName = string.Empty;
+        private string _logoutButtonVisibility = "Collapsed";
+
+        #endregion Members
 
         #region Properties
+
         /// <summary>
         /// MainViewModel currentViewModel used with DataTemplate in the MainWindow
         /// </summary>
@@ -71,9 +73,11 @@ namespace parent_bMedecine.ViewModel
         }
 
         public RelayCommand LogoutCommand { get; private set; }
-        #endregion // Properties
+
+        #endregion Properties
 
         #region Constructors
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
@@ -88,9 +92,11 @@ namespace parent_bMedecine.ViewModel
             // Messages
             MessengerInstance.Register<Message.OnLoginMessage>(this, e => { OnLoginExecute(e.UserAccountName); });
         }
-        #endregion // Constructors
+
+        #endregion Constructors
 
         #region Methods
+
         /// <summary>
         /// Set properties on user login
         /// </summary>
@@ -117,6 +123,7 @@ namespace parent_bMedecine.ViewModel
 
             MessengerInstance.Send<Message.OnLogoutMessage>(new Message.OnLogoutMessage());
         }
-        #endregion // Methods
+
+        #endregion Methods
     }
 }

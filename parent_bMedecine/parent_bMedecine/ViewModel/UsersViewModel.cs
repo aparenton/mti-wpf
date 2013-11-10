@@ -1,13 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using parent_bMedecine.BusinessManagement.User;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace parent_bMedecine.ViewModel
 {
@@ -17,12 +12,15 @@ namespace parent_bMedecine.ViewModel
     public class UsersViewModel : ViewModelBase
     {
         #region Members
+
         private readonly IUserDataService _userDataService;
         private ObservableCollection<ServiceUser.User> _users = new ObservableCollection<ServiceUser.User>();
-        private bool _readOnlyUserProfile                     = false;
-        #endregion // Members
+        private bool _readOnlyUserProfile = false;
+
+        #endregion Members
 
         #region Properties
+
         /// <summary>
         /// User list
         /// </summary>
@@ -49,9 +47,11 @@ namespace parent_bMedecine.ViewModel
         }
 
         public RelayCommand<ServiceUser.User> DeleteUserCommand { get; private set; }
-        #endregion // Properties
+
+        #endregion Properties
 
         #region Constructors
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -68,9 +68,11 @@ namespace parent_bMedecine.ViewModel
             MessengerInstance.Register<Message.OnLogoutMessage>(this, m => { Reset(); });
             MessengerInstance.Register<Message.OnAddUserMessage>(this, m => { RetrieveUsers(); });
         }
-        #endregion // Constructors
+
+        #endregion Constructors
 
         #region Methods
+
         /// <summary>
         /// Reset view model properties
         /// </summary>
@@ -99,6 +101,7 @@ namespace parent_bMedecine.ViewModel
             if (res)
                 Users.Remove(user);
         }
-        #endregion // Methors
+
+        #endregion Methods
     }
 }

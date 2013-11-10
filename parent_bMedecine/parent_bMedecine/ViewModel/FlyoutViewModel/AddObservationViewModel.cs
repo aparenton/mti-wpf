@@ -4,10 +4,6 @@ using parent_bMedecine.BusinessManagement.Observation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace parent_bMedecine.ViewModel.FlyoutViewModel
 {
@@ -17,18 +13,21 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
     public class AddObservationViewModel : ViewModelBase
     {
         #region Members
+
         private readonly IObservationDataService _observationDataService;
-        private ServicePatient.Patient       _selectedPatient;
-        private DateTime                     _date          = DateTime.Now;
-        private int                          _weight;
-        private int                          _bloodpressure;
-        private string                       _comment       = string.Empty;
-        private string                       _prescription  = string.Empty;
-        private ObservableCollection<string> _pictures      = new ObservableCollection<string>();
+        private ServicePatient.Patient _selectedPatient;
+        private DateTime _date = DateTime.Now;
+        private int _weight;
+        private int _bloodpressure;
+        private string _comment = string.Empty;
+        private string _prescription = string.Empty;
+        private ObservableCollection<string> _pictures = new ObservableCollection<string>();
         private ObservableCollection<string> _prescriptions = new ObservableCollection<string>();
-        #endregion // Members
+
+        #endregion Members
 
         #region Properties
+
         /// <summary>
         /// Selected patient by user
         /// </summary>
@@ -38,7 +37,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
             set
             {
                 _selectedPatient = value;
-                RaisePropertyChanged("SelectedPatient"); 
+                RaisePropertyChanged("SelectedPatient");
             }
         }
 
@@ -125,14 +124,20 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
             set { _prescriptions = value; }
         }
 
-        public RelayCommand         AddObservationCommand { get; private set; }
-        public RelayCommand         AddObservationPictureCommand { get; private set; }
-        public RelayCommand         AddObservationPrescriptionCommand { get; private set; }
-        public RelayCommand<int>    DeleteObservationPictureCommand { get; private set; }
-        public RelayCommand<int>    DeleteObservationPrescriptionCommand { get; private set; }
-        #endregion // Properties
+        public RelayCommand AddObservationCommand { get; private set; }
+
+        public RelayCommand AddObservationPictureCommand { get; private set; }
+
+        public RelayCommand AddObservationPrescriptionCommand { get; private set; }
+
+        public RelayCommand<int> DeleteObservationPictureCommand { get; private set; }
+
+        public RelayCommand<int> DeleteObservationPrescriptionCommand { get; private set; }
+
+        #endregion Properties
 
         #region Constructors
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -145,15 +150,17 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
             MessengerInstance.Register<Message.OnPatientSelectionMessage>(this, m => { OnPatientSelectionExecute(m.SelectedPatient); });
 
             // Commands
-            AddObservationCommand                = new RelayCommand(AddObservationExecute);
-            AddObservationPictureCommand         = new RelayCommand(AddObservationPictureExecute);
-            AddObservationPrescriptionCommand    = new RelayCommand(AddObservationPrescriptionExecute);
-            DeleteObservationPictureCommand      = new RelayCommand<int>(i => DeleteObservationPictureExecute(i));
+            AddObservationCommand = new RelayCommand(AddObservationExecute);
+            AddObservationPictureCommand = new RelayCommand(AddObservationPictureExecute);
+            AddObservationPrescriptionCommand = new RelayCommand(AddObservationPrescriptionExecute);
+            DeleteObservationPictureCommand = new RelayCommand<int>(i => DeleteObservationPictureExecute(i));
             DeleteObservationPrescriptionCommand = new RelayCommand<int>(i => DeleteObservationPrescriptionExecute(i));
         }
-        #endregion // Constructors
+
+        #endregion Constructors
 
         #region Methods
+
         /// <summary>
         /// Create observation object and call web service to add it
         /// </summary>
@@ -174,11 +181,11 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
             ServiceObservation.Observation newObservation = new ServiceObservation.Observation()
             {
                 BloodPressure = _bloodpressure,
-                Comment       = _comment,
-                Date          = _date,
-                Pictures      = pictures,
-                Prescription  = prescriptions,
-                Weight        = _weight
+                Comment = _comment,
+                Date = _date,
+                Pictures = pictures,
+                Prescription = prescriptions,
+                Weight = _weight
             };
 
             bool res = _observationDataService.AddObservation(_selectedPatient.Id, newObservation);
@@ -200,7 +207,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
         private void AddObservationPictureExecute()
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-            
+
             dlg.Filter = "Fichiers Image|*.jpg;*.jpeg;*.png";
 
             // Show open file dialog box
@@ -249,6 +256,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
         {
             SelectedPatient = patient;
         }
-        #endregion // Methods
+
+        #endregion Methods
     }
 }

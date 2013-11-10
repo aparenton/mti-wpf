@@ -6,9 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace parent_bMedecine.ViewModel
@@ -19,19 +16,25 @@ namespace parent_bMedecine.ViewModel
     public class ObservationsViewModel : ViewModelBase, ServiceLive.IServiceLiveCallback
     {
         #region Members
+
         private readonly IPatientDataService _patientDataService;
         private ServicePatient.Patient _selectedPatient;
         private ObservableCollection<ServicePatient.Observation> _observations = new ObservableCollection<ServicePatient.Observation>();
         private int _selectedObservationIndex;
-        private ObservableCollection<byte[]> _pictureList                      = new ObservableCollection<byte[]>();
+        private ObservableCollection<byte[]> _pictureList = new ObservableCollection<byte[]>();
         private ServiceLive.ServiceLiveClient _client;
-        private object selectedItem                                            = null;
-        #endregion // Members
+        private object selectedItem = null;
+
+        #endregion Members
 
         #region Properties
+
         public ObservableCollection<ChartObject> Weights { get; private set; }
+
         public ObservableCollection<ChartObject> BloodPressures { get; private set; }
+
         public ObservableCollection<ChartObject> Temperatures { get; private set; }
+
         public ObservableCollection<ChartObject> Hearts { get; private set; }
 
         /// <summary>
@@ -49,7 +52,7 @@ namespace parent_bMedecine.ViewModel
                 RaisePropertyChanged("SelectedPatient");
             }
         }
-        
+
         /// <summary>
         /// Patient observation list
         /// </summary>
@@ -94,10 +97,13 @@ namespace parent_bMedecine.ViewModel
         }
 
         public RelayCommand StartServiceLiveCommand { get; private set; }
+
         public RelayCommand StopServiceLiveCommand { get; private set; }
-        #endregion // Properties
+
+        #endregion Properties
 
         #region Constructors
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -107,22 +113,24 @@ namespace parent_bMedecine.ViewModel
             _patientDataService = patientDataService;
 
             // ChartObjects
-            Weights                 = new ObservableCollection<ChartObject>();
-            BloodPressures          = new ObservableCollection<ChartObject>();
-            Hearts                  = new ObservableCollection<ChartObject>();
-            Temperatures            = new ObservableCollection<ChartObject>();
+            Weights = new ObservableCollection<ChartObject>();
+            BloodPressures = new ObservableCollection<ChartObject>();
+            Hearts = new ObservableCollection<ChartObject>();
+            Temperatures = new ObservableCollection<ChartObject>();
 
             // Commands
             StartServiceLiveCommand = new RelayCommand(StartServiceLiveExecute);
-            StopServiceLiveCommand  = new RelayCommand(StopServiceLiveExecute);
+            StopServiceLiveCommand = new RelayCommand(StopServiceLiveExecute);
 
             // Messages
             MessengerInstance.Register<Message.OnLogoutMessage>(this, m => { Reset(); });
             MessengerInstance.Register<Message.OnPatientSelectionMessage>(this, m => { OnPatientSelectionExecute(m.SelectedPatient); });
         }
-        #endregion // Constructors
+
+        #endregion Constructors
 
         #region Methods
+
         /// <summary>
         /// Retrieve patient observations data on selection by user
         /// </summary>
@@ -137,7 +145,6 @@ namespace parent_bMedecine.ViewModel
 
             try
             {
-
                 List<ServicePatient.Observation> res = _patientDataService.GetPatient(SelectedPatient.Id).Observations;
                 if (!res.Any())
                     MessengerInstance.Send<Message.WhenNoObservationMessage>(new Message.WhenNoObservationMessage());
@@ -182,7 +189,7 @@ namespace parent_bMedecine.ViewModel
         private void StartServiceLiveExecute()
         {
             System.ServiceModel.InstanceContext context = new System.ServiceModel.InstanceContext(this);
-            _client =  new ServiceLive.ServiceLiveClient(context);
+            _client = new ServiceLive.ServiceLiveClient(context);
 
             try
             {
@@ -241,6 +248,7 @@ namespace parent_bMedecine.ViewModel
             {
             }
         }
-        #endregion // Methods
+
+        #endregion Methods
     }
 }

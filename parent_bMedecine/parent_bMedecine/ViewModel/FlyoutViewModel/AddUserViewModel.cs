@@ -2,10 +2,6 @@
 using GalaSoft.MvvmLight.Command;
 using parent_bMedecine.BusinessManagement.User;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -17,15 +13,18 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
     public class AddUserViewModel : ViewModelBase
     {
         #region Members
+
         private readonly IUserDataService _userDataService;
-        private string _name      = String.Empty;
+        private string _name = String.Empty;
         private string _firstname = String.Empty;
-        private string _login     = String.Empty;
-        private string _role      = String.Empty;
-        private string _photo     = String.Empty;
-        #endregion // Members
+        private string _login = String.Empty;
+        private string _role = String.Empty;
+        private string _photo = String.Empty;
+
+        #endregion Members
 
         #region Properties
+
         /// <summary>
         /// User's name
         /// </summary>
@@ -68,18 +67,21 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
         public string Photo
         {
             get { return _photo; }
-            set 
+            set
             {
-                _photo = value; 
+                _photo = value;
                 RaisePropertyChanged("Photo");
             }
         }
 
         public RelayCommand<object> AddUserCommand { get; private set; }
-        public RelayCommand         SelectPictureCommand { get; private set; }
-        #endregion // Properties
+
+        public RelayCommand SelectPictureCommand { get; private set; }
+
+        #endregion Properties
 
         #region Constructor
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -89,12 +91,14 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
             _userDataService = userDataService;
 
             // Commands
-            AddUserCommand       = new RelayCommand<object>(p => AddUserExecute(((PasswordBox)p).Password));
+            AddUserCommand = new RelayCommand<object>(p => AddUserExecute(((PasswordBox)p).Password));
             SelectPictureCommand = new RelayCommand(SelectPictureExecute);
         }
-        #endregion // Constructor
+
+        #endregion Constructor
 
         #region Methods
+
         /// <summary>
         /// Create new user object and call web service to add it
         /// </summary>
@@ -104,12 +108,12 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
             ServiceUser.User newUser = new ServiceUser.User()
             {
                 Connected = false,
-                Picture   = Utilities.ImageManager.GetBytesFromImage(_photo),
-                Role      = _role,
+                Picture = Utilities.ImageManager.GetBytesFromImage(_photo),
+                Role = _role,
                 Firstname = _firstname,
-                Name      = _name,
-                Login     = _login,
-                Pwd       = password
+                Name = _name,
+                Login = _login,
+                Pwd = password
             };
 
             bool res = _userDataService.AddUser(newUser);
@@ -143,6 +147,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
                 Photo = dlg.FileName;
             }
         }
-        #endregion // Methods
+
+        #endregion Methods
     }
 }

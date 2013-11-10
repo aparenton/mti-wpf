@@ -1,9 +1,4 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace parent_bMedecine.Message
 {
@@ -13,6 +8,7 @@ namespace parent_bMedecine.Message
     public class OnLoginMessage : MessageBase
     {
         #region Properties
+
         /// <summary>
         /// Current user account name
         /// </summary>
@@ -23,7 +19,8 @@ namespace parent_bMedecine.Message
         /// False otherwise (such as "Medecin")
         /// </summary>
         public bool ReadOnlyUserProfile { get; set; }
-        #endregion // Properties
+
+        #endregion Properties
 
         /// <summary>
         /// Constructor

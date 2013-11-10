@@ -3,10 +3,6 @@ using GalaSoft.MvvmLight.Command;
 using parent_bMedecine.BusinessManagement.Patient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace parent_bMedecine.ViewModel.FlyoutViewModel
 {
@@ -16,13 +12,16 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
     public class AddPatientViewModel : ViewModelBase
     {
         #region Members
+
         private readonly IPatientDataService _patientDataService;
-        private string _name       = String.Empty;
-        private string _firstname  = String.Empty;
+        private string _name = String.Empty;
+        private string _firstname = String.Empty;
         private DateTime _birthday = DateTime.Now;
-        #endregion // Members
+
+        #endregion Members
 
         #region Properties
+
         /// <summary>
         /// Patient name
         /// </summary>
@@ -42,7 +41,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
         public string Firstname
         {
             get { return _firstname; }
-            set 
+            set
             {
                 _firstname = value;
                 RaisePropertyChanged("Firstname");
@@ -63,9 +62,11 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
         }
 
         public RelayCommand AddPatientCommand { get; private set; }
-        #endregion // Properties
+
+        #endregion Properties
 
         #region Constructors
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -77,9 +78,11 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
             // Commands
             AddPatientCommand = new RelayCommand(AddPatientExecute);
         }
-        #endregion // Constructors
+
+        #endregion Constructors
 
         #region Methods
+
         /// <summary>
         /// Create new patient object and call web service to add it
         /// </summary>
@@ -87,9 +90,9 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
         {
             ServicePatient.Patient newPatient = new ServicePatient.Patient()
             {
-                Name         = _name,
-                Firstname    = _firstname,
-                Birthday     = _birthday,
+                Name = _name,
+                Firstname = _firstname,
+                Birthday = _birthday,
                 Observations = new List<ServicePatient.Observation>()
             };
 
@@ -103,6 +106,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
 
             ServicePatient.ServicePatientClient client = new ServicePatient.ServicePatientClient();
         }
-        #endregion // Methods
+
+        #endregion Methods
     }
 }
