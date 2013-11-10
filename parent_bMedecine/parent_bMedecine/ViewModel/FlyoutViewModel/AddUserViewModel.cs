@@ -114,6 +114,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
                 bool res = client.AddUser(newUser);
                 if (res)
                     MessengerInstance.Send<Message.OnAddUserMessage>(new Message.OnAddUserMessage());
+                client.Close();
             }
             catch (Exception)
             {

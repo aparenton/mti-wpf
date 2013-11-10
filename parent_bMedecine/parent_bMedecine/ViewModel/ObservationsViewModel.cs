@@ -146,6 +146,7 @@ namespace parent_bMedecine.ViewModel
                     BloodPressures.Add(new ChartObject() { Category = observation.Date.ToString(), Number = observation.BloodPressure });                       
                 }
                 SelectedObservationIndex = 0;
+                client.Close();
             }
             catch (Exception)
             {

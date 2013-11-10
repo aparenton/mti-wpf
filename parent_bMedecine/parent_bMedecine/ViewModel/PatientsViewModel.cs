@@ -202,6 +202,7 @@ namespace parent_bMedecine.ViewModel
                     RetrievePatients();
                 else
                     MessageBox.Show("Le patient n'a pas pu être supprimé, veuillez réessayer.", "Alerte");
+                client.Close();
             }
             catch (Exception)
             {

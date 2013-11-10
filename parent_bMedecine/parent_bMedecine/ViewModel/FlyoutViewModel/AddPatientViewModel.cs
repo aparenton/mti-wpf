@@ -95,6 +95,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
                 bool res = client.AddPatient(newPatient);
                 if (res)
                     MessengerInstance.Send<Message.OnAddPatientMessage>(new Message.OnAddPatientMessage());
+                client.Close();
             }
             catch (Exception)
             {

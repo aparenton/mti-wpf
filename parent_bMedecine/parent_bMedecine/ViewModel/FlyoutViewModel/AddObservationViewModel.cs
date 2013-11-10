@@ -183,6 +183,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
                 bool res = client.AddObservation(_selectedPatient.Id, newObservation);
                 if (res)
                     MessengerInstance.Send<Message.OnAddObservationMessage>(new Message.OnAddObservationMessage());
+                client.Close();
             }
             catch (Exception)
             {
