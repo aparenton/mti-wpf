@@ -127,7 +127,7 @@ namespace parent_bMedecine.ViewModel
             MessengerInstance.Register<Message.OnLoginMessage>(this, m => { RetrievePatients(); ReadOnlyUserProfile = m.ReadOnlyUserProfile; });
             MessengerInstance.Register<Message.OnLogoutMessage>(this, m => { Reset(); });
             MessengerInstance.Register<Message.OnAddPatientMessage>(this, m => { RetrievePatients(); });
-            MessengerInstance.Register<Message.WhenNoObservationMessage>(this, m => { CurrentViewModel = SimpleIoc.Default.GetInstance<HomeViewModel>(); });
+            MessengerInstance.Register<Message.OnPatientEmptyContent>(this, m => { CurrentViewModel = SimpleIoc.Default.GetInstance<HomeViewModel>(); });
         }
 
         #endregion Constructors
@@ -186,7 +186,10 @@ namespace parent_bMedecine.ViewModel
         {
             bool res = _patientDataService.DeletePatient(SelectedPatient.Id);
             if (res)
+            {
                 RetrievePatients();
+                CurrentViewModel = SimpleIoc.Default.GetInstance<HomeViewModel>();
+            }
             else
                 MessageBox.Show("Le patient n'a pas pu être supprimé, veuillez réessayer.", "Alerte");
         }

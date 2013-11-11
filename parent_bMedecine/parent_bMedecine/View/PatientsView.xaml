@@ -77,6 +77,10 @@
                             <i:InvokeCommandAction Command="{Binding SelectPatientCommand}"
                                                    CommandParameter="{Binding SelectedItem, ElementName=PatientListView}" />
                         </i:EventTrigger>
+                        <i:EventTrigger EventName="MouseRightButtonUp">
+                            <i:InvokeCommandAction Command="{Binding SelectPatientCommand}"
+                                                   CommandParameter="{Binding SelectedItem, ElementName=PatientListView}" />
+                        </i:EventTrigger>
                     </i:Interaction.Triggers>
                     <ListView.ContextMenu>
                         <ContextMenu>

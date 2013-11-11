@@ -147,7 +147,7 @@ namespace parent_bMedecine.ViewModel
             {
                 List<ServicePatient.Observation> res = _patientDataService.GetPatient(SelectedPatient.Id).Observations;
                 if (!res.Any())
-                    MessengerInstance.Send<Message.WhenNoObservationMessage>(new Message.WhenNoObservationMessage());
+                    MessengerInstance.Send<Message.OnPatientEmptyContent>(new Message.OnPatientEmptyContent());
 
                 foreach (var observation in res)
                 {

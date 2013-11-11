@@ -93,7 +93,7 @@
     <Compile Include="Message\OnLoginMessage.cs" />
     <Compile Include="Message\OnLogoutMessage.cs" />
     <Compile Include="Message\OnPatientSelectionMessage.cs" />
-    <Compile Include="Message\WhenNoObservationMessage.cs" />
+    <Compile Include="Message\OnPatientEmptyContent.cs" />
     <Compile Include="Model\ChartObject.cs" />
     <Compile Include="Resources\Images\Images.Designer.cs">
       <AutoGen>True</AutoGen>
