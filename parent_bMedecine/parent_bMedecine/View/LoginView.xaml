@@ -35,7 +35,11 @@
                      Width="250"
                      VerticalAlignment="Top"
                      HorizontalAlignment="Left"
-                     VerticalContentAlignment="Center" />
+                     VerticalContentAlignment="Center">
+            <PasswordBox.InputBindings>
+                <KeyBinding Key="Enter" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=PasswordBox}" />
+            </PasswordBox.InputBindings>
+        </PasswordBox>
         <!-- Login Button-->
         <Button x:Name="LoginButton"
                 Content="{x:Static resx:Resources.Login}"
