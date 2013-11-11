@@ -86,6 +86,8 @@ namespace parent_bMedecine.ViewModel
         /// </summary>
         private void RetrieveUsers()
         {
+            Users.Clear();
+
             List<ServiceUser.User> res = _userDataService.GetListUser();
             foreach (var user in res)
                 Users.Add(user);
