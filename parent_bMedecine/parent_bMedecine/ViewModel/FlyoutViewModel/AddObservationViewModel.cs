@@ -147,7 +147,7 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
             _observationDataService = observationDataService;
 
             // Messages
-            MessengerInstance.Register<Message.OnPatientSelectionMessage>(this, m => { OnPatientSelectionExecute(m.SelectedPatient); });
+            MessengerInstance.Register<Message.OnPatientSelectionMessage>(this, m => { SelectedPatient = m.SelectedPatient; });
 
             // Commands
             AddObservationCommand = new RelayCommand(AddObservationExecute);
@@ -246,15 +246,6 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
         private void DeleteObservationPictureExecute(int index)
         {
             Pictures.RemoveAt(index);
-        }
-
-        /// <summary>
-        /// Set selected patient on selection by the user
-        /// </summary>
-        /// <param name="patient"></param>
-        private void OnPatientSelectionExecute(ServicePatient.Patient patient)
-        {
-            SelectedPatient = patient;
         }
 
         #endregion Methods

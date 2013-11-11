@@ -21,6 +21,7 @@ namespace parent_bMedecine.ViewModel
         private string _searchText = String.Empty;
         private ObservableCollection<ServicePatient.Patient> _patients = new ObservableCollection<ServicePatient.Patient>();
         private ServicePatient.Patient _selectedPatient;
+        private ServicePatient.Patient _defaultPatient;
         private bool _readOnlyUserProfile = false;
 
         #endregion Members
@@ -175,6 +176,11 @@ namespace parent_bMedecine.ViewModel
             Patients.Clear();
 
             List<ServicePatient.Patient> res = _patientDataService.GetListPatient();
+            if (res != null && res.Count != 0)
+            {
+                SelectedPatient = res[0];
+                MessengerInstance.Send<Message.OnPatientSelectionMessage>(new Message.OnPatientSelectionMessage(SelectedPatient));
+            }
             foreach (var patient in res)
                 Patients.Add(patient);
         }
