@@ -14,6 +14,9 @@ namespace parent_bMedecine.Utilities
         /// <returns>byte array data</returns>
         public static byte[] GetBytesFromImage(string imageFile)
         {
+            if (imageFile == null || imageFile.Equals(""))
+                return null;
+
             byte[] b = File.ReadAllBytes(imageFile);
             return b;
         }

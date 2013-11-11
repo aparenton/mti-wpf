@@ -14,6 +14,7 @@
         <converters:BoolToColorConverter x:Key="boolToColorConverter" />
         <converters:BoolToStringConverter x:Key="boolToStringConverter" />
         <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
+        <converters:NullImageConverter x:Key="nullImageConverter" />
     </UserControl.Resources>
 
     <DockPanel DataContext="{Binding Source={StaticResource Locator}, Path=UsersViewModel}"
@@ -48,7 +49,7 @@
                 <DataGridTemplateColumn Header="{x:Static resx:Resources.Picture}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding Picture}"
+                            <Image Source="{Binding Picture, Converter={StaticResource nullImageConverter}}"
                                    Width="64" Height="64" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

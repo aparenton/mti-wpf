@@ -129,6 +129,9 @@
   <data name="BlackIcon" xml:space="preserve">
     <value>/Resources/Images/black_heart.png</value>
   </data>
+  <data name="DefaultAvatar" xml:space="preserve">
+    <value>/Resources/Images/default_avatar.png</value>
+  </data>
   <data name="DeleteObservation" xml:space="preserve">
     <value>/Resources/Images/DeleteObservation.png</value>
   </data>

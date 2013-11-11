@@ -97,6 +97,15 @@ namespace parent_bMedecine.Resources.Images {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à /Resources/Images/default_avatar.png.
+        /// </summary>
+        public static string DefaultAvatar {
+            get {
+                return ResourceManager.GetString("DefaultAvatar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à /Resources/Images/DeleteObservation.png.
         /// </summary>
         public static string DeleteObservation {

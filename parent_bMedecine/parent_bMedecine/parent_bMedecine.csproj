@@ -123,6 +123,7 @@
     <Compile Include="Utilities\Converters\BoolToColorConverter.cs" />
     <Compile Include="Utilities\Converters\BoolToStringConverter.cs" />
     <Compile Include="Utilities\Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Utilities\Converters\NullImageConverter.cs" />
     <Compile Include="Utilities\ImageManager.cs" />
     <Compile Include="Utilities\RoleManager.cs" />
     <Compile Include="ViewModel\FlyoutViewModel\AddObservationViewModel.cs" />
@@ -397,7 +398,9 @@
   <ItemGroup>
     <None Include="Service References\ServiceObservation\ServiceObservation1.disco" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Images\default_avatar.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
