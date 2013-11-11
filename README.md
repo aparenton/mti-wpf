@@ -14,7 +14,7 @@ It is a reference project for:
 * WCF services consumption,
 * Design frameworks usage.
 
-If you have any questions or comments about the project, [feel free to contact me](aparenton+mti-wpf@gmail.com).
+If you have any questions or comments about the project, feel free to contact me at aparenton+mti-wpf@gmail.com.
 ### How to get started?
 
 Download Wcf-Medical solution, and run it in Visual Studio.
