@@ -20,63 +20,65 @@
     <Controls:MetroAnimatedSingleRowTabControl DataContext="{Binding Source={StaticResource Locator}, Path=ObservationsViewModel}">
         <!-- Observations TabItem -->
         <TabItem Header="{x:Static resx:Resources.Observations}">
-            <DockPanel>
-                <StackPanel DockPanel.Dock="Right">
-                    <GroupBox DockPanel.Dock="Top"
-                              Header="{x:Static resx:Resources.Date}">
-                        <ComboBox   x:Name="ObservationDates"
-                                    ItemsSource="{Binding Observations}"
-                                    DisplayMemberPath="Date"
-                                    SelectedValuePath="Date"
-                                    SelectedIndex="{Binding SelectedObservationIndex, Mode=TwoWay}" />
-                    </GroupBox>
-                    <GroupBox DockPanel.Dock="Top"
-                              Header="{x:Static resx:Resources.Patient}">
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="{Binding SelectedPatient.Name}" />
-                            <Label Content="{Binding SelectedPatient.Firstname}" />
-                        </StackPanel>
-                    </GroupBox>
-                    <Grid HorizontalAlignment="Stretch">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <GroupBox Header="{x:Static resx:Resources.Weight}"
-                                  Grid.Column="0">
-                            <Label Content="{Binding Path=SelectedItem.Weight, ElementName=ObservationDates}" />
+            <ScrollViewer>
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Right">
+                        <GroupBox DockPanel.Dock="Top"
+                                  Header="{x:Static resx:Resources.Date}">
+                            <ComboBox   x:Name="ObservationDates"
+                                        ItemsSource="{Binding Observations}"
+                                        DisplayMemberPath="Date"
+                                        SelectedValuePath="Date"
+                                        SelectedIndex="{Binding SelectedObservationIndex, Mode=TwoWay}" />
                         </GroupBox>
-                        <GroupBox Header="{x:Static resx:Resources.BloodPressure}"
-                                  Grid.Column="1">
-                            <Label Content="{Binding Path=SelectedItem.BloodPressure, ElementName=ObservationDates}" />
+                        <GroupBox DockPanel.Dock="Top"
+                                  Header="{x:Static resx:Resources.Patient}">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding SelectedPatient.Name}" />
+                                <Label Content="{Binding SelectedPatient.Firstname}" />
+                            </StackPanel>
                         </GroupBox>
-                    </Grid>
-                    <GroupBox DockPanel.Dock="Top"
-                              Header="{x:Static resx:Resources.Comment}">
-                        <TextBlock Text="{Binding Path=SelectedItem.Comment, ElementName=ObservationDates}"
-                                   TextWrapping="Wrap"
-                                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                                   ScrollViewer.VerticalScrollBarVisibility="Auto" />
-                    </GroupBox>
-                    <GroupBox DockPanel.Dock="Top"
-                              Header="{x:Static resx:Resources.Prescription}">
-                        <ListView ItemsSource="{Binding Path=SelectedItem.Prescription, ElementName=ObservationDates}"
-                                  BorderThickness="0" />
-                    </GroupBox>
-                    <Controls:FlipView DockPanel.Dock="Top"
-                                       IsBannerEnabled="False"
-                                       ItemsSource="{Binding Path=SelectedItem.Pictures, ElementName=ObservationDates}">
-                        <Controls:FlipView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Image Source="{Binding }"
-                                           Width="300" Height="300" />
-                                </Grid>
-                            </DataTemplate>
-                        </Controls:FlipView.ItemTemplate>
-                    </Controls:FlipView>
-                </StackPanel>
-            </DockPanel>
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <GroupBox Header="{x:Static resx:Resources.Weight}"
+                                      Grid.Column="0">
+                                <Label Content="{Binding Path=SelectedItem.Weight, ElementName=ObservationDates}" />
+                            </GroupBox>
+                            <GroupBox Header="{x:Static resx:Resources.BloodPressure}"
+                                      Grid.Column="1">
+                                <Label Content="{Binding Path=SelectedItem.BloodPressure, ElementName=ObservationDates}" />
+                            </GroupBox>
+                        </Grid>
+                        <GroupBox DockPanel.Dock="Top"
+                                  Header="{x:Static resx:Resources.Comment}">
+                            <TextBlock Text="{Binding Path=SelectedItem.Comment, ElementName=ObservationDates}"
+                                       TextWrapping="Wrap"
+                                       ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                       ScrollViewer.VerticalScrollBarVisibility="Auto" />
+                        </GroupBox>
+                        <GroupBox DockPanel.Dock="Top"
+                                  Header="{x:Static resx:Resources.Prescription}">
+                            <ListView ItemsSource="{Binding Path=SelectedItem.Prescription, ElementName=ObservationDates}"
+                                      BorderThickness="0" />
+                        </GroupBox>
+                        <Controls:FlipView DockPanel.Dock="Top"
+                                           IsBannerEnabled="False"
+                                           ItemsSource="{Binding Path=SelectedItem.Pictures, ElementName=ObservationDates}">
+                            <Controls:FlipView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Image Source="{Binding }"
+                                               Width="300" Height="300" />
+                                    </Grid>
+                                </DataTemplate>
+                            </Controls:FlipView.ItemTemplate>
+                        </Controls:FlipView>
+                    </StackPanel>
+                </DockPanel>
+            </ScrollViewer>
         </TabItem>
         <!-- Graphes TabItem -->
         <TabItem Header="{x:Static resx:Resources.Graphs}">

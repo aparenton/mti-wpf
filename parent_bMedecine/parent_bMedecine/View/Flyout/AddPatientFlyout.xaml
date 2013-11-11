@@ -8,46 +8,47 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
 
-    <Grid DataContext="{Binding Source={StaticResource Locator}, Path=AddPatientViewModel}">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
+    <ScrollViewer>
+        <Grid DataContext="{Binding Source={StaticResource Locator}, Path=AddPatientViewModel}">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-        <Separator Grid.Row="0" Grid.Column="0"
+            <Separator Grid.Row="0" Grid.Column="0"
                    Background="White" />
-        <Separator Grid.Row="0" Grid.Column="1"
+            <Separator Grid.Row="0" Grid.Column="1"
                    Background="White" />
 
-        <TextBlock Text="{x:Static resx:Resources.Name}"
+            <TextBlock Text="{x:Static resx:Resources.Name}"
                    Grid.Row="1" Grid.Column="0"
                    Margin="5"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
                    Foreground="White" />
-        <TextBox Text="{Binding Name}"
+            <TextBox Text="{Binding Name}"
                  Grid.Row="1" Grid.Column="1"
                  Controls:TextboxHelper.ClearTextButton="True"
                  Margin="5"
@@ -56,13 +57,13 @@
                  Width="250"
                  VerticalContentAlignment="Center" />
 
-        <TextBlock Text="{x:Static resx:Resources.Firstname}"
+            <TextBlock Text="{x:Static resx:Resources.Firstname}"
                    Grid.Row="2" Grid.Column="0"
                    Margin="5"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
                    Foreground="White" />
-        <TextBox Text="{Binding Firstname}"
+            <TextBox Text="{Binding Firstname}"
                  Grid.Row="2" Grid.Column="1"
                  Controls:TextboxHelper.ClearTextButton="True"
                  Margin="5"
@@ -71,13 +72,13 @@
                  Width="250"
                  VerticalContentAlignment="Center" />
 
-        <TextBlock Text="{x:Static resx:Resources.Birthday}"
+            <TextBlock Text="{x:Static resx:Resources.Birthday}"
                    Grid.Row="3" Grid.Column="0"
                    Margin="5"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
                    Foreground="White" />
-        <DatePicker Grid.Row="3" Grid.Column="1"
+            <DatePicker Grid.Row="3" Grid.Column="1"
                     Margin="5"
                     Controls:TextboxHelper.Watermark="{x:Static resx:Resources.SelectDate}"
                     SelectedDate="{Binding Birthday}"
@@ -86,15 +87,17 @@
                     Width="250"
                     VerticalContentAlignment="Center" />
 
-        <Separator Grid.Row="4" Grid.Column="0"
+            <Separator Grid.Row="4" Grid.Column="0"
                    Background="White" />
-        <Separator Grid.Row="4" Grid.Column="1"
+            <Separator Grid.Row="4" Grid.Column="1"
                    Background="White" />
 
-        <Button Content="{x:Static resx:Resources.Validate}"
+            <Button Content="{x:Static resx:Resources.Validate}"
                 Grid.Row="5" Grid.Column="1"
+                Margin="5"
                 Width="200"
                 Command="{Binding AddPatientCommand}"
                 Click="AddPatient_Click" />
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

@@ -8,64 +8,65 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
 
-    <Grid DataContext="{Binding Source={StaticResource Locator}, Path=AddObservationViewModel}">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition Height="150" />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition Height="150" />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
+    <ScrollViewer>
+        <Grid DataContext="{Binding Source={StaticResource Locator}, Path=AddObservationViewModel}">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition Height="150" />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition Height="150" />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-        <Separator Grid.Row="0" Grid.Column="0"
+            <Separator Grid.Row="0" Grid.Column="0"
                    Background="White" />
-        <Separator Grid.Row="0" Grid.Column="1"
+            <Separator Grid.Row="0" Grid.Column="1"
                    Background="White" />
 
-        <TextBlock Text="{x:Static resx:Resources.Patient}"
+            <TextBlock Text="{x:Static resx:Resources.Patient}"
                    Grid.Row="1" Grid.Column="0"
                    Margin="5"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
                    Foreground="White" />
-        <StackPanel Grid.Row="1" Grid.Column="1"
+            <StackPanel Grid.Row="1" Grid.Column="1"
                     Orientation="Horizontal"
                     TextBlock.FontWeight="Bold"
                     VerticalAlignment="Center"
                     Margin="5">
-            <TextBlock Text="{Binding SelectedPatient.Name}"
+                <TextBlock Text="{Binding SelectedPatient.Name}"
                        Foreground="White" />
-            <TextBlock Text="{Binding SelectedPatient.Firstname}"
+                <TextBlock Text="{Binding SelectedPatient.Firstname}"
                        Padding="3,0,0,0"
                        Foreground="White" />
-        </StackPanel>
+            </StackPanel>
 
-        <TextBlock Text="{x:Static resx:Resources.Date}"
+            <TextBlock Text="{x:Static resx:Resources.Date}"
                    Grid.Row="2" Grid.Column="0"
                    Margin="5"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
                    Foreground="White" />
-        <DatePicker Grid.Row="2" Grid.Column="1"
+            <DatePicker Grid.Row="2" Grid.Column="1"
                     Margin="5"
                     Controls:TextboxHelper.Watermark="{x:Static resx:Resources.SelectDate}"
                     SelectedDate="{Binding Date}"
@@ -74,18 +75,18 @@
                     Width="250"
                     VerticalContentAlignment="Center" />
 
-        <Separator Grid.Row="3" Grid.Column="0"
+            <Separator Grid.Row="3" Grid.Column="0"
                    Background="White" />
-        <Separator Grid.Row="3" Grid.Column="1"
+            <Separator Grid.Row="3" Grid.Column="1"
                    Background="White" />
 
-        <TextBlock Text="{x:Static resx:Resources.Weight}"
+            <TextBlock Text="{x:Static resx:Resources.Weight}"
                    Grid.Row="4" Grid.Column="0"
                    Margin="5"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
                    Foreground="White" />
-        <TextBox Text="{Binding Weight}"
+            <TextBox Text="{Binding Weight}"
                  Grid.Row="4" Grid.Column="1"
                  Controls:TextboxHelper.ClearTextButton="True"
                  Margin="5"
@@ -94,13 +95,13 @@
                  Width="250"
                  VerticalContentAlignment="Center" />
 
-        <TextBlock Text="{x:Static resx:Resources.BloodPressure}"
+            <TextBlock Text="{x:Static resx:Resources.BloodPressure}"
                    Grid.Row="5" Grid.Column="0"
                    Margin="5"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
                    Foreground="White" />
-        <TextBox Text="{Binding BloodPressure}"
+            <TextBox Text="{Binding BloodPressure}"
                  Grid.Row="5" Grid.Column="1"
                  Controls:TextboxHelper.ClearTextButton="True"
                  Margin="5"
@@ -109,18 +110,18 @@
                  Width="250"
                  VerticalContentAlignment="Center" />
 
-        <Separator Grid.Row="6" Grid.Column="0"
+            <Separator Grid.Row="6" Grid.Column="0"
                    Background="White" />
-        <Separator Grid.Row="6" Grid.Column="1"
+            <Separator Grid.Row="6" Grid.Column="1"
                    Background="White" />
 
-        <TextBlock Text="{x:Static resx:Resources.Comment}"
+            <TextBlock Text="{x:Static resx:Resources.Comment}"
                    Grid.Row="7" Grid.Column="0"
                    Margin="5"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
                    Foreground="White" />
-        <TextBox Text="{Binding Comment}"
+            <TextBox Text="{Binding Comment}"
                  Grid.Row="7" Grid.Column="1"
                  AcceptsReturn="True"
                  MaxLines="15"
@@ -131,18 +132,18 @@
                  Width="250"
                  VerticalContentAlignment="Center" />
 
-        <Separator Grid.Row="8" Grid.Column="0"
+            <Separator Grid.Row="8" Grid.Column="0"
                    Background="White" />
-        <Separator Grid.Row="8" Grid.Column="1"
+            <Separator Grid.Row="8" Grid.Column="1"
                    Background="White" />
 
-        <TextBlock Text="{x:Static resx:Resources.Prescription}"
+            <TextBlock Text="{x:Static resx:Resources.Prescription}"
                    Grid.Row="9" Grid.Column="0"
                    Margin="5"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
                    Foreground="White" />
-        <TextBox Text="{Binding Prescription}"
+            <TextBox Text="{Binding Prescription}"
                  Grid.Row="9" Grid.Column="1"
                  AcceptsReturn="True"
                  MaxLines="15"
@@ -152,75 +153,77 @@
                  HorizontalAlignment="Left"
                  Width="250"
                  VerticalContentAlignment="Center" />
-        <Button Content="{x:Static resx:Resources.AddPrescription}"
+            <Button Content="{x:Static resx:Resources.AddPrescription}"
                 Grid.Row="10" Grid.Column="1"
                 Margin="5"
                 Command="{Binding AddObservationPrescriptionCommand}" />
 
-        <ListView x:Name="PrescriptionsListView"
+            <ListView x:Name="PrescriptionsListView"
                   Grid.Row="11" Grid.Column="1"
                   Margin="5"
                   ItemsSource="{Binding Prescriptions}">
-            <ListView.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="{x:Static resx:Resources.DeletePrescription}"
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="{x:Static resx:Resources.DeletePrescription}"
                               Command="{Binding DeleteObservationPrescriptionCommand}"
                               CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedIndex}" />
-                </ContextMenu>
-            </ListView.ContextMenu>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding }"
+                    </ContextMenu>
+                </ListView.ContextMenu>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding }"
                                Margin="2" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-        <Separator Grid.Row="12" Grid.Column="0"
+            <Separator Grid.Row="12" Grid.Column="0"
                    Background="White" />
-        <Separator Grid.Row="12" Grid.Column="1"
+            <Separator Grid.Row="12" Grid.Column="1"
                    Background="White" />
 
-        <TextBlock Text="{x:Static resx:Resources.Pictures}"
+            <TextBlock Text="{x:Static resx:Resources.Pictures}"
                    Grid.Row="13" Grid.Column="0"
                    Margin="5"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Center"
                    Foreground="White" />
 
-        <Button Content="{x:Static resx:Resources.AddPicture}"
+            <Button Content="{x:Static resx:Resources.AddPicture}"
                 Grid.Row="13" Grid.Column="1"
                 Margin="5"
                 Command="{Binding AddObservationPictureCommand}" />
 
-        <ListView x:Name="PicturesListView"
+            <ListView x:Name="PicturesListView"
                   Grid.Row="14" Grid.Column="1"
                   Margin="5"
                   ItemsSource="{Binding Pictures}">
-            <ListView.ContextMenu>
-                <ContextMenu>
-                    <MenuItem Header="{x:Static resx:Resources.DeletePicture}"
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="{x:Static resx:Resources.DeletePicture}"
                               Command="{Binding DeleteObservationPictureCommand}"
                               CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedIndex}" />
-                </ContextMenu>
-            </ListView.ContextMenu>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Image Source="{Binding }"
+                    </ContextMenu>
+                </ListView.ContextMenu>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding }"
                            Width="95" Height="95" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-        <Separator Grid.Row="15" Grid.Column="0"
+            <Separator Grid.Row="15" Grid.Column="0"
                    Background="White" />
-        <Separator Grid.Row="15" Grid.Column="1"
+            <Separator Grid.Row="15" Grid.Column="1"
                    Background="White" />
 
-        <Button Content="{x:Static resx:Resources.Validate}"
+            <Button Content="{x:Static resx:Resources.Validate}"
                 Grid.Row="16" Grid.Column="1"
+                Margin="5"
                 Width="200"
                 Command="{Binding AddObservationCommand}"
                 Click="AddObservation_Click" />
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </UserControl>
