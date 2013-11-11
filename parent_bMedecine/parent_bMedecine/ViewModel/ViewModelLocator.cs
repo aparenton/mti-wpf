@@ -24,14 +24,9 @@ namespace parent_bMedecine.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            if (ViewModelBase.IsInDesignModeStatic)
+            if (!ViewModelBase.IsInDesignModeStatic)
             {
-                SimpleIoc.Default.Register<IUserDataAccess, UserDataAccess>();
-                SimpleIoc.Default.Register<IPatientDataAccess, PatientDataAccess>();
-                SimpleIoc.Default.Register<IObservationDataAccess, ObservationDataAccess>();
-            }
-            else
-            {
+                // DataAccess
                 SimpleIoc.Default.Register<IUserDataAccess, UserDataAccess>();
                 SimpleIoc.Default.Register<IPatientDataAccess, PatientDataAccess>();
                 SimpleIoc.Default.Register<IObservationDataAccess, ObservationDataAccess>();

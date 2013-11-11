@@ -1,5 +1,7 @@
 parent_bMedecine - Bonus :
 
+* Architecture N-Tier avec injection de dépendances (SimpleIoc).
+
 * Utilisation du toolkit open-source MahApps.Metro (https://github.com/MahApps/MahApps.Metro)
 permettant notamment l'utilisation des "flyouts".
 
