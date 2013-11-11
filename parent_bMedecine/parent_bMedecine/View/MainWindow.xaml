@@ -29,7 +29,8 @@
     <Controls:MetroWindow.WindowCommands>
         <Controls:WindowCommands>
             <Button Visibility="{Binding LogoutButtonVisibility}"
-                    Command="{Binding LogoutCommand}">
+                    Command="{Binding LogoutCommand}"
+                    Click="LogoutButton_Click">
                 <StackPanel Orientation="Horizontal">
                     <Rectangle Width="20" Height="20">
                         <Rectangle.Resources>

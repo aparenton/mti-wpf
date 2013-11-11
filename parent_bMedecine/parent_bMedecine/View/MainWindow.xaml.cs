@@ -26,5 +26,14 @@ namespace parent_bMedecine.View
 
             flyout.IsOpen = !flyout.IsOpen;
         }
+
+        private void LogoutButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            foreach (MahApps.Metro.Controls.Flyout flyout in this.Flyouts.Items)
+            {
+                if (flyout != null)
+                    flyout.IsOpen = false;
+            }
+        }
     }
 }
