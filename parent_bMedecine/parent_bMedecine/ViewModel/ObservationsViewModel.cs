@@ -125,6 +125,7 @@ namespace parent_bMedecine.ViewModel
             // Messages
             MessengerInstance.Register<Message.OnLogoutMessage>(this, m => { Reset(); });
             MessengerInstance.Register<Message.OnPatientSelectionMessage>(this, m => { OnPatientSelectionExecute(m.SelectedPatient); });
+            MessengerInstance.Register<Message.OnAddObservationMessage>(this, m => { OnPatientSelectionExecute(SelectedPatient); });
         }
 
         #endregion Constructors
