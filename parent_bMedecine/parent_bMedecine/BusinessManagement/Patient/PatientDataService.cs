@@ -3,10 +3,20 @@ using System.Collections.Generic;
 
 namespace parent_bMedecine.BusinessManagement.Patient
 {
+    /// <summary>
+    /// PatientDataService class
+    /// </summary>
     public class PatientDataService : IPatientDataService
     {
+        /// <summary>
+        /// DataAccess object
+        /// </summary>
         private readonly IPatientDataAccess _patientDataAccess;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="patientDataAccess">injected by SimpleIoC, see ViewModelLocator</param>
         public PatientDataService(IPatientDataAccess patientDataAccess)
         {
             _patientDataAccess = patientDataAccess;

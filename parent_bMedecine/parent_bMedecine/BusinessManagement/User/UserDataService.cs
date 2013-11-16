@@ -2,10 +2,20 @@
 
 namespace parent_bMedecine.BusinessManagement.User
 {
+    /// <summary>
+    /// UserDataService class
+    /// </summary>
     public class UserDataService : IUserDataService
     {
+        /// <summary>
+        /// DataAccess object
+        /// </summary>
         private readonly DataAccess.User.IUserDataAccess _userDataAccess;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="userDataAccess">injected by SimpleIoC, see ViewModelLocator</param>
         public UserDataService(DataAccess.User.IUserDataAccess userDataAccess)
         {
             _userDataAccess = userDataAccess;

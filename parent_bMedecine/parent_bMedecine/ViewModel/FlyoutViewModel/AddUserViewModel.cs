@@ -119,9 +119,13 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
             bool res = _userDataService.AddUser(newUser);
 
             if (res)
+            {
                 MessengerInstance.Send<Message.OnAddUserMessage>(new Message.OnAddUserMessage());
+            }
             else
-                MessageBox.Show("Erreur lors de l'ajout, veuillez réessayer.", "Erreur");
+            {
+                MessageBox.Show("Erreur lors de l'ajout de l'utilisateur, veuillez réessayer.", "Erreur");
+            }
 
             Photo = String.Empty;
             Name = String.Empty;

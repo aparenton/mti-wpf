@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using parent_bMedecine.BusinessManagement.Patient;
 using System;
 using System.Collections.Generic;
+using System.Windows;
 
 namespace parent_bMedecine.ViewModel.FlyoutViewModel
 {
@@ -98,7 +99,13 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
 
             bool res = _patientDataService.AddPatient(newPatient);
             if (res)
+            {
                 MessengerInstance.Send<Message.OnAddPatientMessage>(new Message.OnAddPatientMessage());
+            }
+            else
+            {
+                MessageBox.Show("Erreur lors de l'ajout du patient, veuillez réessayer.", "Erreur");
+            }
 
             Birthday = DateTime.Now;
             Name = String.Empty;

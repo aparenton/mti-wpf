@@ -1,5 +1,8 @@
 ﻿namespace parent_bMedecine.BusinessManagement.Observation
 {
+    /// <summary>
+    /// IObservationDataService interface
+    /// </summary>
     public interface IObservationDataService
     {
         /// <summary>

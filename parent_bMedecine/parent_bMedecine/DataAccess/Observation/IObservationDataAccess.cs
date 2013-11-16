@@ -1,5 +1,8 @@
 ﻿namespace parent_bMedecine.DataAccess.Observation
 {
+    /// <summary>
+    /// IObservationDataAccess interface
+    /// </summary>
     public interface IObservationDataAccess
     {
         /// <summary>

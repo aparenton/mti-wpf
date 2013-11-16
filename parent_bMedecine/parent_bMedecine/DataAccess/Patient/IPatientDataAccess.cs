@@ -2,6 +2,9 @@
 
 namespace parent_bMedecine.DataAccess.Patient
 {
+    /// <summary>
+    /// IPatientDataAccess interface
+    /// </summary>
     public interface IPatientDataAccess
     {
         /// <summary>

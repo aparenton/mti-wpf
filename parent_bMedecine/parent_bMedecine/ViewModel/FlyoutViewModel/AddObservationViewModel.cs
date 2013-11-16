@@ -4,6 +4,7 @@ using parent_bMedecine.BusinessManagement.Observation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace parent_bMedecine.ViewModel.FlyoutViewModel
 {
@@ -190,7 +191,13 @@ namespace parent_bMedecine.ViewModel.FlyoutViewModel
 
             bool res = _observationDataService.AddObservation(_selectedPatient.Id, newObservation);
             if (res)
+            {
                 MessengerInstance.Send<Message.OnAddObservationMessage>(new Message.OnAddObservationMessage());
+            }
+            else
+            {
+                MessageBox.Show("Erreur lors de l'ajout de l'observation, veuillez réessayer.", "Erreur");
+            }
 
             BloodPressure = 0;
             Weight = 0;

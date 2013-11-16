@@ -2,6 +2,9 @@
 
 namespace parent_bMedecine.BusinessManagement.User
 {
+    /// <summary>
+    /// IUserDataService interface
+    /// </summary>
     public interface IUserDataService
     {
         /// <summary>

@@ -2,6 +2,9 @@
 
 namespace parent_bMedecine.BusinessManagement.Patient
 {
+    /// <summary>
+    /// IPatientService interface
+    /// </summary>
     public interface IPatientDataService
     {
         /// <summary>

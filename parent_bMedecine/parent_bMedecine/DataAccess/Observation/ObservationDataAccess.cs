@@ -3,6 +3,9 @@ using System.Diagnostics;
 
 namespace parent_bMedecine.DataAccess.Observation
 {
+    /// <summary>
+    /// ObservationDataAccess class
+    /// </summary>
     public class ObservationDataAccess : IObservationDataAccess
     {
         public bool AddObservation(int idPatient, ServiceObservation.Observation obs)

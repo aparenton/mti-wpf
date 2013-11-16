@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using parent_bMedecine.BusinessManagement.User;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace parent_bMedecine.ViewModel
 {
@@ -101,7 +102,13 @@ namespace parent_bMedecine.ViewModel
         {
             bool res = _userDataService.DeleteUser(user.Login);
             if (res)
+            {
                 Users.Remove(user);
+            }
+            else
+            {
+                MessageBox.Show("Erreur lors de la suppression de l'utilisateur, veuillez réessayer.", "Erreur");
+            }
         }
 
         #endregion Methods

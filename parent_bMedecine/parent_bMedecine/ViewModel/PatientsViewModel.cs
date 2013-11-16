@@ -197,7 +197,9 @@ namespace parent_bMedecine.ViewModel
                 CurrentViewModel = SimpleIoc.Default.GetInstance<HomeViewModel>();
             }
             else
+            {
                 MessageBox.Show("Le patient n'a pas pu être supprimé, veuillez réessayer.", "Alerte");
+            }
         }
 
         /// <summary>

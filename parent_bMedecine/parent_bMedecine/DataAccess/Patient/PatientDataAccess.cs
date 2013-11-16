@@ -4,6 +4,9 @@ using System.Diagnostics;
 
 namespace parent_bMedecine.DataAccess.Patient
 {
+    /// <summary>
+    /// PatientDataAccess class
+    /// </summary>
     public class PatientDataAccess : IPatientDataAccess
     {
         public List<ServicePatient.Patient> GetListPatient()
