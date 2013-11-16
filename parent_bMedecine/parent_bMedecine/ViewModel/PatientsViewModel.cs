@@ -21,7 +21,6 @@ namespace parent_bMedecine.ViewModel
         private string _searchText = String.Empty;
         private ObservableCollection<ServicePatient.Patient> _patients = new ObservableCollection<ServicePatient.Patient>();
         private ServicePatient.Patient _selectedPatient;
-        private ServicePatient.Patient _defaultPatient;
         private bool _readOnlyUserProfile = false;
 
         #endregion Members
@@ -128,6 +127,7 @@ namespace parent_bMedecine.ViewModel
             MessengerInstance.Register<Message.OnLoginMessage>(this, m => { RetrievePatients(); ReadOnlyUserProfile = m.ReadOnlyUserProfile; });
             MessengerInstance.Register<Message.OnLogoutMessage>(this, m => { Reset(); });
             MessengerInstance.Register<Message.OnAddPatientMessage>(this, m => { RetrievePatients(); });
+            MessengerInstance.Register<Message.OnAddObservationMessage>(this, m => { CurrentViewModel = SimpleIoc.Default.GetInstance<ObservationsViewModel>(); });
             MessengerInstance.Register<Message.OnPatientEmptyContent>(this, m => { CurrentViewModel = SimpleIoc.Default.GetInstance<HomeViewModel>(); });
         }
 
