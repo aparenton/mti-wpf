@@ -174,43 +174,33 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <!-- Temperature Chart-->
-                    <chart:ClusteredBarChart Grid.Row="1" Grid.Column="0"
-                                            ChartTitle="{x:Static resx:Resources.TemperatureEvolution}"
-                                            ChartSubTitle=""
+                    <GroupBox Grid.Column="0" Header="{x:Static resx:Resources.TemperatureEvolution}">
+                        <chart:ClusteredBarChart Grid.Row="1" Grid.Column="0"
+                                            ChartTitleVisibility="Collapsed"
                                             IsRowColumnSwitched="True"
                                             SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
-                        <chart:ClusteredBarChart.Series>
-                            <chart:ChartSeries  SeriesTitle="Température"
+                            <chart:ClusteredBarChart.Series>
+                                <chart:ChartSeries  SeriesTitle="Température"
                                                 DisplayMember="Category"
                                                 ValueMember="NumberDouble"
                                                 ItemsSource="{Binding Path=Temperatures}" />
-                        </chart:ClusteredBarChart.Series>
-                    </chart:ClusteredBarChart>
+                            </chart:ClusteredBarChart.Series>
+                        </chart:ClusteredBarChart>
+                    </GroupBox>
                     <!-- Heart Chart-->
-                    <!--<chart:ClusteredBarChart    Grid.Row="1" Grid.Column="1"
-                                            ChartTitle="{x:Static resx:Resources.HeartBeatsEvolution}"
-                                                ChartSubTitle=""
-                                            IsRowColumnSwitched="True"
-                                            SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}">
-                        <chart:ClusteredBarChart.Series>
-                            <chart:ChartSeries  SeriesTitle="Rythme cardiaque"
-                                            DisplayMember="Category"
-                                            ValueMember="Number"
-                                            ItemsSource="{Binding Path=Hearts}" />
-                        </chart:ClusteredBarChart.Series>
-                    </chart:ClusteredBarChart>-->
-                    <DataGrid ItemsSource="{Binding Path=Hearts}"
-                              Grid.Column="1"
+                    <GroupBox Grid.Column="1" Header="{x:Static resx:Resources.HeartBeatsEvolution}">
+                        <DataGrid ItemsSource="{Binding Path=Hearts}"
                               AutoGenerateColumns="False"
                               CanUserAddRows="False"
                               IsReadOnly="True">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="{x:Static resx:Resources.Date}"
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="{x:Static resx:Resources.Date}"
                                                 Binding="{Binding Category}" />
-                            <DataGridTextColumn Header="{x:Static resx:Resources.Value}"
+                                <DataGridTextColumn Header="{x:Static resx:Resources.Value}"
                                                 Binding="{Binding NumberDouble}" />
-                        </DataGrid.Columns>
-                    </DataGrid>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
                 </Grid>
             </DockPanel>
         </TabItem>
