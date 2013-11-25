@@ -29,10 +29,10 @@ Run it, and log in with greg/greg for example.
 
 ### Screenshots
 
-![ScreenShot](https://raw.github.com/aparenton/mti-wpf/master/screenshots/observation.png?token=2270128__eyJzY29wZSI6IlJhd0Jsb2I6YXBhcmVudG9uL210aS13cGYvbWFzdGVyL3NjcmVlbnNob3RzL29ic2VydmF0aW9uLnBuZyIsImV4cGlyZXMiOjEzODQ3NzU5NjB9--20d5592deb5b7017acb3faa74a3b03874fd6a52c)
-![ScreenShot](https://raw.github.com/aparenton/mti-wpf/master/screenshots/add_observation.PNG?token=2270128__eyJzY29wZSI6IlJhd0Jsb2I6YXBhcmVudG9uL210aS13cGYvbWFzdGVyL3NjcmVlbnNob3RzL2FkZF9vYnNlcnZhdGlvbi5QTkciLCJleHBpcmVzIjoxMzg0Nzc2MDU2fQ%3D%3D--1716e6747464904d188d02915429b2c7f07b0251)
-![ScreenShot](https://raw.github.com/aparenton/mti-wpf/master/screenshots/patient_charts.png?token=2270128__eyJzY29wZSI6IlJhd0Jsb2I6YXBhcmVudG9uL210aS13cGYvbWFzdGVyL3NjcmVlbnNob3RzL3BhdGllbnRfY2hhcnRzLnBuZyIsImV4cGlyZXMiOjEzODQ3NzYwMTl9--7e5fce5b1f3ed280b2758f797bafbe3379cfe4de)
-![ScreenShot](https://raw.github.com/aparenton/mti-wpf/master/screenshots/users.png?token=2270128__eyJzY29wZSI6IlJhd0Jsb2I6YXBhcmVudG9uL210aS13cGYvbWFzdGVyL3NjcmVlbnNob3RzL3VzZXJzLnBuZyIsImV4cGlyZXMiOjEzODQ3NzYwNjl9--086acf200c3d9733e9f3834da2223d2c7fbcff3f)
+![ScreenShot](http://i.imgur.com/u8RdZlW.png)
+![ScreenShot](http://i.imgur.com/s1nvRmq.png)
+![ScreenShot](http://i.imgur.com/6zlTqgh.png)
+![ScreenShot](http://i.imgur.com/3eGbA1z.png)
 
 ### License : MIT
 Copyright (c) 2013 Nicolas Brohée, Alexandra Launet, Antoine Parenton
